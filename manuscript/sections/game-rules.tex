@@ -1,0 +1,39 @@
+\section{The game}\label{app:game}
+
+We reproduce the definition of Ref.~\cite[Section~2.1]{TG}; the complete rule table is in the
+ancillary files of that paper.
+
+\paragraph{The flagged magic-square game $G_{\mathrm{FMS}}$~\cite{Mancinska26}.} Let
+$\mathsf{R}=\{{+}{+}{+},{+}{-}{-},{-}{+}{-},{-}{-}{+}\}$ be the sign triples of product $+1$, and
+$\mathsf{C}_j$ the sign triples of product $\eta_j$, where $\eta=(+,+,-)$. Fix
+$r_0=c_0={+}{+}{+}$ and $r_1=c_1={+}{-}{-}$. Alice's questions are $R_1,R_2,R_3,T_0,T_1$ and
+Bob's are $C_1,C_2,C_3,U_0,U_1$. To a row question $R_i$ Alice answers a triple in
+$\mathsf{R}$ or the flag $f$; to a column question $C_j$ Bob answers a triple in $\mathsf{C}_j$
+or $f$. To $T_x$ Alice answers a triple in $\mathsf{C}_1\setminus\{c_x\}$ or a sign; to $U_y$
+Bob answers a triple in $\mathsf{R}\setminus\{r_y\}$ or a sign.
+
+The rules are as follows. At a pair $(R_i,C_j)$, two flags win and a single flag loses; if
+neither player flags, Alice's sign for column $j$ must equal Bob's sign for row $i$, as in the
+magic-square game. At $(T_x,C_1)$, Alice must answer a sign exactly when Bob's answer is $f$ or
+$c_x$, and if she answers a triple, Bob must answer the same triple. The pair $(R_1,U_y)$ has
+the same rule with the roles exchanged and $r_y$ in place of $c_x$. At $(T_x,U_y)$, two signs
+$s$ and $s'$ must satisfy $ss'=(-1)^{xy}$, and every other pair of answers wins. All remaining
+question pairs are won with any answers. The 25 question pairs are asked with equal probability. The ideal strategy uses the state
+$\bigl(\ket{ff}+\sqrt2\sum_{i=1}^4\ket{ii}\bigr)/3$ on $\C^5\otimes\C^5$, a flag level and two
+qubits per player, with the magic-square measurements on the qubits; the factor $\sqrt2$ is the
+ratio tested by the questions $T_x$ and $U_y$.
+
+\paragraph{The game $\GIII$.} Take nine copies of $G_{\mathrm{FMS}}$, indexed by $j\in\Z/9\Z$,
+and one further question $\mathrm{Lab}$ for Bob with answers $\ell\in\Z/9\Z$. Besides the
+$9\times25$ pairs inside the copies there are $18$ pairs
+\begin{align*}
+(R_1^{\,j},\mathrm{Lab})&:\quad\text{win iff }\bigl[\text{Alice answers } f\bigr]\Leftrightarrow\bigl[\ell=j\bigr],\\
+(R_2^{\,j},\mathrm{Lab})&:\quad\text{win iff }\bigl[\text{Alice answers } {+}{+}{+}\bigr]\Leftrightarrow\bigl[\ell\in\{j+1,j+2\}\bigr].
+\end{align*}
+The 243 pairs are asked with equal probability. The first family makes the nine flags a
+partition of unity, each matched with a label of Bob. The second identifies one of the four
+two-qubit levels of copy $j$ with the flags of copies $j+1$ and $j+2$. Together with the ratio
+$\sqrt2$ this yields~\eqref{eq:bridge}.
+
+
+The explicit measurements and their loss for general Schmidt spectra are given in Section~\ref{sec:operational-strategy}.

@@ -1,0 +1,450 @@
+\section{Proof of the exact tower law}\label{app:tower}
+\subsection{Logarithmic rank and a quantitative transfer inequality}
+
+For any probability density $p$ on $(0,\infty)$, set
+\[
+ g_p(y)=e^{y/2}\sqrt{p(e^y)},\qquad y\in\mathbb R,
+ \qquad (T_hg)(y)=g(y-h).
+\]
+Then $\norm{g_p}_2=1$ and, for $h=\log d$,
+\begin{equation}\label{eq:exact-rank-translation}
+ \mathcal E_d(p):=
+ \int_0^\infty
+ \left(\sqrt{p(x)}-d^{-1/2}\sqrt{p(x/d)}\right)^2dx
+ =\norm{g_p-T_hg_p}_2^2.
+\end{equation}
+When $p(x)=p_j$ on $(j-1,j]$ and $d$ is an integer, the integral is
+exactly the discrete Schmidt-coefficient error.  In particular, the
+passage to a continuous rank variable introduces no approximation.
+
+\begin{lemma}[Hellinger transfer]\label{lem:hellinger-transfer}
+For two probability densities $p,q$ on $(0,\infty)$ and any $d>0$,
+\begin{equation}\label{eq:hellinger-transfer}
+ \left|\sqrt{\mathcal E_d(p)}-
+             \sqrt{\mathcal E_d(q)}\right|
+ \leq 2\norm{\sqrt p-\sqrt q}_2.
+\end{equation}
+Consequently, if $b_n\to\infty$,
+$\mathcal E_d(q_n)=a/b_n+O(b_n^{-3/2})$, and
+$\norm{\sqrt{p_n}-\sqrt{q_n}}_2=O(b_n^{-1})$, then
+$\mathcal E_d(p_n)=a/b_n+O(b_n^{-3/2})$.
+If the latter distance is only $o(b_n^{-1/2})$, the conclusion is
+$\mathcal E_d(p_n)=a/b_n+o(b_n^{-1})$.
+\end{lemma}
+
+\begin{proof}
+The change of variables $x=e^y$ is an isometry on square roots of
+densities.  The operator $I-T_h$ has norm at most two.  Apply the reverse
+triangle inequality to $(I-T_h)g_p$ and $(I-T_h)g_q$ and then square.
+\end{proof}
+
+\subsection{The smooth Calabrese--Lefevre distribution}
+
+For $b>0$, define $q_b$ on $(0,\infty)$ by
+\begin{equation}\label{eq:CL-density-exact}
+ q_b(x)=
+ \begin{cases}
+ e^{-b},&0<x\leq1,\\
+ \displaystyle e^{-b-z(x)^2/(4b)},&x>1,
+ \end{cases}
+ \qquad I_0(z(x))=x,\quad z(x)>0.
+\end{equation}
+The constant piece $(0,1]$ represents the largest eigenvalue.  It is
+essential for exact normalization; it has exponentially small weight
+in the estimates below.
+
+\begin{proposition}[Quantitative smooth law]\label{prop:CL-sharp-law}
+The function $q_b$ is a probability density.  For every fixed $d>0$,
+as $b\to\infty$,
+\begin{equation}\label{eq:CL-law-rigorous}
+ -\int_0^\infty q_b(x)\log q_b(x)\,dx=2b,
+ \qquad
+ \mathcal E_d(q_b)=\frac{(\log d)^2}{8b}
+                   +O_d(b^{-3/2}).
+\end{equation}
+The logarithmic-rank square root $g_b=g_{q_b}$ obeys
+\begin{equation}\label{eq:CL-derivative-bounds}
+ \norm{g_b'}_2^2=\frac1{8b}+O(b^{-3/2}),
+ \qquad
+ \norm{(g_b'')_{\rm ac}}_2=O(b^{-1}).
+\end{equation}
+The only singular part of $g_b''$ is the atom
+$-e^{-b/2}(2b)^{-1}\delta_0$.
+\end{proposition}
+
+\begin{proof}
+Write $t=z^2/(4b)$.  The measure induced by $q_b(x)\,dx$ on $t\geq0$
+has an atom $e^{-b}$ at zero and continuous part
+\[
+ e^{-b-t}\,dI_0(2\sqrt{bt}).
+\]
+Using $I_0(2\sqrt{bt})=\sum_{k\geq0}(bt)^k/(k!)^2$, Tonelli's theorem
+gives, for $s>-1$,
+\begin{equation}\label{eq:CL-compound-Poisson}
+ \mathbb E e^{-sT}
+   =e^{-b}\left(1+\int_0^\infty
+       e^{-(1+s)t}\,dI_0(2\sqrt{bt})\right)
+   =\exp\!\left(\frac{b}{1+s}-b\right).
+\end{equation}
+At $s=0$ this proves normalization.  Equivalently, $T$ is the sum of
+a Poisson($b$) number of independent exponential random variables of
+mean one.  Its cumulants are $\kappa_k(T)=b\,k!$, so
+\begin{equation}\label{eq:CL-moments}
+ \mathbb ET=b,\qquad
+ \mathbb E(T-b)^2=2b,\qquad
+ \mathbb E(T-b)^4=12b^2+24b.
+\end{equation}
+Since $-\log q_b=b+T$, its entropy is exactly $2b$.
+
+For $y>0$, put $z=z(e^y)$ and
+\[
+ R(z)=I_1(z)/I_0(z),\qquad B(z)=z/R(z),\qquad
+ a_b(y)=\frac{d}{dy}\log\bigl(e^yq_b(e^y)\bigr)
+        =1-\frac{B(z)}{2b}.
+\]
+For $y<0$ the score $a_b$ is one.  The following elementary bounds
+are used:
+\begin{equation}\label{eq:bessel-ratio-bounds}
+ z\leq B(z)\leq z+2\quad(z>0),\qquad
+ \sup_{z>0}\left|\frac{B'(z)}{R(z)}\right|<\infty.
+\end{equation}
+For completeness, $0<R<1$ follows from the integral representation
+of $I_0$ and $I_1$.  The Riccati equation
+$R'=1-R^2-R/z$, together with the expansions at zero, shows that
+$R(z)>z/(z+2)$: at any prospective crossing of that lower comparison
+function, the derivative of their difference is
+$3z/(z+2)^2>0$.  This proves the first pair of bounds.
+At zero, $R=z/2+O(z^3)$ and $B=2+z^2/4+O(z^4)$, whence
+$B'/R\to1$.  At infinity the fixed-order Bessel expansions give
+$R=1-1/(2z)+O(z^{-2})$ and $B'=1+O(z^{-2})$.
+Thus $B'/R\to1$ there as well, and continuity on compact subintervals
+proves the last bound.  The recurrence and differentiated expansions
+used here are also recorded in NIST DLMF, Sections 10.29 and 10.40.
+
+Under the probability measure in \eqref{eq:CL-compound-Poisson}, let
+$Z=2\sqrt{bT}$ and $U=T-b$.  The exact identity
+\[
+ Z-2b=U-\frac{U^2}{(\sqrt T+\sqrt b)^2}
+\]
+and \eqref{eq:CL-moments} imply
+\begin{equation}\label{eq:CL-radial-moments}
+ \norm{Z-2b-U}_{L^2}=O(1),\qquad
+ \mathbb E(Z-2b)^2=2b+O(\sqrt b),\qquad
+ \mathbb E|Z-2b|^4=O(b^2)
+ \quad(b\geq1).
+\end{equation}
+For the last estimate use $|Z-2b|\leq2|U|$.
+Extend $B$ continuously by $B(0)=2$.  Except at the atom $T=0$,
+the score is $1-B(Z)/(2b)$.  At that atom its actual value is one;
+substituting $1-B(0)/(2b)$ changes its second and fourth moments by
+exponentially small quantities.  Therefore
+\eqref{eq:bessel-ratio-bounds} and \eqref{eq:CL-radial-moments} give
+\begin{equation}\label{eq:CL-score-estimates}
+ \int a_b^2g_b^2\,dy=\frac1{2b}+O(b^{-3/2}),
+ \qquad
+ \int a_b^4g_b^2\,dy=O(b^{-2}).
+\end{equation}
+Because $g_b'=a_bg_b/2$ almost everywhere, the first estimate proves
+the first part of \eqref{eq:CL-derivative-bounds}.
+For $y>0$,
+\[
+ |a_b'(y)|=\frac1{2b}\left|\frac{B'(z)}{R(z)}\right|=O(b^{-1}),
+ \qquad
+ g_b''=\left(\frac{a_b^2}{4}+\frac{a_b'}2\right)g_b.
+\]
+For $y<0$, $g_b''=g_b/4$ and its squared norm on that half-line is
+$e^{-b}/16$.  These facts and \eqref{eq:CL-score-estimates} prove the
+second part of \eqref{eq:CL-derivative-bounds}.
+The function $g_b$ is continuous at zero.  Its derivative jumps by
+$J_b=-e^{-b/2}/(2b)$, giving the asserted singular part of its second
+distributional derivative.  In particular $g_b\in H^1(\mathbb R)$;
+we do not claim $g_b\in H^2(\mathbb R)$.
+
+Let $v_b=(g_b'')_{\rm ac}$.  Integrating the distributional derivative
+of $g_b'$ over an interval gives, for each real $s$,
+\[
+ \norm{T_sg_b'-g_b'}_2
+ \leq |s|\norm{v_b}_2+|J_b|\sqrt{|s|}.
+\]
+For fixed $h=\log d$ and the usual orientation when $h<0$,
+\[
+ g_b-T_hg_b=\int_0^h T_sg_b'\,ds,
+ \quad
+ \norm{g_b-T_hg_b-hg_b'}_2
+ \leq\frac{h^2}{2}\norm{v_b}_2
+      +\frac23|h|^{3/2}|J_b|=O_h(b^{-1}).
+\]
+Since $\norm{g_b'}_2=O(b^{-1/2})$, squaring the last approximation
+and applying \eqref{eq:exact-rank-translation} proves
+\eqref{eq:CL-law-rigorous}.
+\end{proof}
+
+\subsection{Counting the exact discrete levels}
+
+Let
+\[
+ F_r(q)=\prod_{\ell\geq0}(1+q^{2\ell+1})^r
+       =\sum_{n\geq0}a_r(n)q^n,
+ \qquad A_r(n)=\sum_{k=0}^n a_r(k),\qquad c=c_r.
+\]
+The coefficient $a_r(n)$ is the exact degeneracy of the level
+$\varepsilon n$.  We take $A_r(-1)=0$.
+
+\begin{lemma}[Counting with the required remainder]
+\label{lem:tower-counting}
+For each fixed positive integer $r$, as $n\to\infty$ through integers,
+\begin{align}
+ a_r(n)&=\frac{c^{1/4}}{2\sqrt\pi}\,n^{-3/4}
+          e^{2\sqrt{cn}}\bigl(1+O_r(n^{-1/2})\bigr),
+ \label{eq:tower-degeneracies}\\
+ A_r(n)&=\frac{c^{-1/4}}{2\sqrt\pi}\,n^{-1/4}
+          e^{2\sqrt{cn}}\bigl(1+O_r(n^{-1/2})\bigr)
+        =I_0(2\sqrt{cn})\bigl(1+O_r(n^{-1/2})\bigr).
+ \label{eq:tower-counting}
+\end{align}
+Moreover, if $L_r(t)=\log F_r(e^{-t})$, then
+\begin{equation}\label{eq:tower-partition-estimates}
+ L_r(t)=c/t+O_r(t),\qquad
+ L_r'(t)=-c/t^2+O_r(1)
+ \quad(t\downarrow0).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Here is a direct saddle-point proof, including the minor-arc estimate
+needed to exclude an unaccounted lattice periodicity.
+Set $f(x)=\log(1+e^{-x})$.  Midpoint Euler--Maclaurin, applied to
+$f$ and to $x^k f^{(k)}(x)$, gives for each fixed $k\geq0$
+\begin{equation}\label{eq:partition-derivatives}
+ L_r^{(k)}(t)=(-1)^k k!c\,t^{-k-1}+O_{r,k}(t^{1-k}).
+\end{equation}
+Indeed all the functions in question are smooth at zero, have
+integrable second derivatives, and decay exponentially with their
+derivatives at infinity; the midpoint-sum error is $O(t)$ before
+multiplication by $t^{-k}$.  Integration by parts gives
+$\int_0^\infty x^k f^{(k)}(x)\,dx=(-1)^k k!\int_0^\infty f(x)\,dx$,
+and the last integral is $\pi^2/12$.
+In a complex disk $|w-t|\leq t/2$ we also have
+$|L_r^{(k)}(w)|\leq C_{r,k}t^{-k-1}$.
+This follows either from the same sum or from Cauchy's estimate after
+noting $|L_r(w)|\leq C_r/t$ for $\operatorname{Re}w\geq t/2$ and
+$|\operatorname{Im}w|\leq t/2$; the factors are nonzero there.
+
+Under the Boltzmann distribution with parameter $t$, the integer
+energy $N_t$ is the sum of independent Bernoulli occupations times
+their odd level numbers.  Its characteristic function is
+\[
+ \phi_t(\theta)=F_r(e^{-t+i\theta})/F_r(e^{-t}) .
+\]
+Retaining only odd levels $2j+1\leq1/t$ in the modulus of this product
+gives
+\[
+ |\phi_t(\theta)|\leq
+ \exp\!\left[-c_0\sum_{j=0}^{M-1}
+              \sin^2((2j+1)\theta/2)\right],\qquad M\asymp t^{-1},
+\]
+with a positive $c_0$ independent of small $t$.  For $|\theta|\leq\pi$,
+\begin{equation}\label{eq:odd-lattice-bound}
+ \sum_{j=0}^{M-1}\sin^2((2j+1)\theta/2)
+ \geq c_1 M\min\{1,M^2\theta^2\}.
+\end{equation}
+To check this, use $\sin u\geq2u/\pi$ when
+$|\theta|\leq\pi/(2M)$.  In the middle region use the identity
+$M/2-\sin(2M\theta)/(4\sin\theta)$ and
+$|\sin\theta|\geq1/M$.  In the remaining region near $\pm\pi$,
+write $\delta=\pi-|\theta|\leq\pi/(2M)$; the same expression is
+$M/2+\sin(2M\delta)/(4\sin\delta)\geq M/2$.
+Consequently
+\begin{equation}\label{eq:characteristic-tail}
+ |\phi_t(\theta)|\leq
+       \exp[-c_2\min\{t^{-1},\theta^2t^{-3}\}].
+\end{equation}
+
+Take $t=\sqrt{c/n}$.  Fourier inversion gives
+\[
+ a_r(n)=\frac{e^{tn+L_r(t)}}{2\pi}
+    \int_{-\pi}^{\pi}\phi_t(\theta)e^{-in\theta}\,d\theta.
+\]
+On the central arc set $\theta=t^{3/2}u$ with
+$|u|\leq t^{-1/12}$.  Taylor's theorem and
+\eqref{eq:partition-derivatives} give
+\[
+ L_r(t-i\theta)-L_r(t)-in\theta
+ =-cu^2-ic\sqrt t\,u^3
+   +O_r\!\left(tu^4+t^2u^2+t^{3/2}|u|
+                    +t^{3/2}|u|^5\right).
+\]
+The error estimate is uniform on that arc.  The term of order
+$\sqrt t$ is purely imaginary and odd.  Expanding the exponential,
+integrating on the symmetric interval and using Gaussian domination
+therefore gives
+\[
+ \int_{|\theta|\leq t^{3/2-1/12}}
+          \phi_t(\theta)e^{-in\theta}\,d\theta
+ =t^{3/2}\sqrt{\pi/c}\,(1+O_r(t)).
+\]
+For clarity, the integrated error is bounded by a constant times
+$t\int_{\mathbb R}e^{-c u^2/2}(1+|u|^{10})\,du$;
+odd imaginary terms integrate to zero because the values at $u$ and
+$-u$ are complex conjugates.  The complement of the central arc is
+$O(\exp[-c_3t^{-1/6}])$ by \eqref{eq:characteristic-tail}.
+Finally $tn+L_r(t)=2\sqrt{cn}+O_r(t)$, which proves
+\eqref{eq:tower-degeneracies} with the asserted relative $O(t)$
+remainder, rather than merely an ordinary central limit estimate.
+
+To sum the coefficients, put $H(x)=I_0(2\sqrt{cx})$ for $x\geq0$.
+The fixed-order Bessel expansion implies
+\[
+ H'(x)=\sqrt{c/x}\,I_1(2\sqrt{cx})
+ =\frac{c^{1/4}}{2\sqrt\pi}\,x^{-3/4}e^{2\sqrt{cx}}
+      (1+O_r(x^{-1/2})).
+\]
+Thus $a_r(k)=H'(k)(1+O_r(k^{-1/2}))$ for all sufficiently large $k$.
+The function $H'$ is eventually increasing.  Integral comparison
+then gives $\sum_{k\leq n}H'(k)=H(n)+O_r(H'(n)+1)$.
+The total of the relative-error terms is $O_r(n^{-1/2}H(n))$:
+split at $n/2$, use the exponential separation below $n/2$, and
+bound $k^{-1/2}\leq\sqrt{2/n}$ above it.  Since
+$H'(n)/H(n)=O_r(n^{-1/2})$, this proves \eqref{eq:tower-counting}.
+\end{proof}
+
+\begin{remark}[Independent number-theoretic check]
+For $r=1,2$ the coefficient estimate also follows from Chern's eta-quotient theorem~\cite[Theorem~1.1]{Chern19}.  Indeed
+\[
+ F_r(q)=\frac{(q^2;q^2)_\infty^{2r}}
+                 {(q;q)_\infty^r(q^4;q^4)_\infty^r}.
+\]
+In his notation $m=(1,2,4)$, $\delta=(-r,2r,-r)$,
+$\Delta_1=0$, $\Delta_2=-r$, and
+$\Delta_3(k)$ equals $r/4,-2r,r$ when $k$ is odd,
+$k\equiv2\pmod4$, and $k\equiv0\pmod4$, respectively.
+His hypothesis (1.8) holds for $1\leq r\leq24$.
+The $k=1$ term is
+$\sqrt{c/(n-r/24)}I_1(2\sqrt{c(n-r/24)})$; every other exponentially
+growing term has at most half its exponential rate.  This checks the
+normalization of \eqref{eq:tower-degeneracies}.  The direct proof above
+does not need the restriction $r\leq24$.
+\end{remark}
+
+\subsection{Uniform inversion and completion of the proof}
+
+\begin{lemma}[Uniform microscopic comparison]
+\label{lem:tower-uniform-comparison}
+Let $p_{r,\varepsilon}(x)=p_j$ on $(j-1,j]$ for the ordered spectrum
+\eqref{eq:tower-spectrum-rigorous}, and put $b=c_r/\varepsilon$.
+There is a constant $C_r<\infty$ such that, for all sufficiently
+small $\varepsilon>0$,
+\begin{equation}\label{eq:tower-uniform-logratio}
+ \underset{x>0}{\operatorname{ess\,sup}}
+ \left|\log\frac{p_{r,\varepsilon}(x)}{q_b(x)}\right|
+ \leq C_r\varepsilon,
+ \qquad
+ \norm{\sqrt{p_{r,\varepsilon}}-\sqrt{q_b}}_2=O_r(\varepsilon).
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Fix $r$ and write $c=c_r$ and $H(u)=I_0(2\sqrt{cu})$.
+For $x>1$ define $u(x)=H^{-1}(x)$, and put $u(x)=0$ for
+$0<x\leq1$.  If $A_r(n-1)<x\leq A_r(n)$, the exact level at rank
+$x$ is $n$.  We claim
+\begin{equation}\label{eq:bounded-inverse-energy}
+ |u(x)-n|\leq K_r
+\end{equation}
+with a constant independent of both $n$ and $x$.
+By \eqref{eq:tower-counting},
+$\log A_r(n)-\log H(n)=O_r(n^{-1/2})$, whereas
+\[
+ \frac{d}{du}\log H(u)=\sqrt{c/u}\,
+               \frac{I_1(2\sqrt{cu})}{I_0(2\sqrt{cu})}
+             =\sqrt{c/u}+O_r(u^{-1}).
+\]
+Choose a fixed, sufficiently large $K_r$.  For all sufficiently large
+$n$, these two estimates imply
+$H(n-K_r)\leq A_r(n-1)$ and $A_r(n)\leq H(n+K_r)$.
+Monotonicity of $H$ proves \eqref{eq:bounded-inverse-energy} there.
+There are only finitely many smaller levels, and their rank intervals
+are bounded, so increasing $K_r$ proves it everywhere.
+Empty intervals caused by zero degeneracies require no treatment;
+for example $a_1(2)=0$, while $a_1(n)>0$ for every $n\geq3$.
+
+At the rank under consideration,
+\[
+ p_{r,\varepsilon}(x)=e^{-L_r(\varepsilon)-\varepsilon n},
+ \qquad q_b(x)=e^{-b-\varepsilon u(x)}.
+\]
+Since $L_r(\varepsilon)=b+O_r(\varepsilon)$, the logarithm of their
+ratio is uniformly $O_r(\varepsilon)$, proving the first claim.
+Both functions are normalized, and pointwise
+$|\sqrt p-\sqrt q|\leq(e^{C_r\varepsilon/2}-1)\sqrt q$ after
+enlarging the constant, so integration proves the second claim.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:exact-tower-law}]
+The entropy of the odd tower is
+$S=L_r(\varepsilon)-\varepsilon L_r'(\varepsilon)$. Equation
+\eqref{eq:partition-derivatives} gives
+\[
+ S=2c_r/\varepsilon+O_r(\varepsilon),\qquad
+ V=\varepsilon^2 L_r''(\varepsilon)
+   =2c_r/\varepsilon+O_r(\varepsilon).
+\]
+Apply Proposition~\ref{prop:xx-count-to-error} with $W=\varepsilon^{-1}$
+and $L(z)=L_r(\varepsilon z)$. The real and complex derivative bounds
+in Lemma~\ref{lem:tower-counting} give $v_\beta\asymp_r W$ and the
+required analytic bounds. The characteristic function of the physical
+energy under tilt $\beta$ is $\phi_{\varepsilon\beta}(\varepsilon t)$
+in the notation of that lemma. For $|t|\le\pi W$, the odd-lattice
+estimate~\eqref{eq:characteristic-tail} gives
+\[
+ |\phi_{\varepsilon\beta}(\varepsilon t)|
+ \le \exp\bigl(-c W\min\{1,t^2\}\bigr)
+\]
+uniformly in $\beta$ near one. This proves the hypotheses of the
+counting criterion. Its conclusion is
+\[
+ \mathcal E_d=\frac{(\log d)^2}{4V}+O_{r,d}(\varepsilon^2)
+      =\frac{(\log d)^2\varepsilon}{8c_r}+O_{r,d}(\varepsilon^2),
+ \qquad
+ S\mathcal E_d=\frac{(\log d)^2}{4}+O_{r,d}(\varepsilon).
+\]
+\end{proof}
+
+
+\subsection{A transfer condition for other spectra}
+
+The same leading law transfers to other spectra under a quantitative Hellinger estimate.
+
+\begin{corollary}[A sufficient transfer condition]
+\label{cor:CL-physical-transfer}
+Let $(p_{N,j})$ be any sequence of decreasing probability spectra, let
+$p_N(x)=p_{N,j}$ on $(j-1,j]$, and let $b_N\to\infty$.  Suppose
+\begin{equation}\label{eq:physical-transfer-hypotheses}
+ S(p_N)/(2b_N)\longrightarrow1,
+ \qquad
+ \norm{\sqrt{p_N}-\sqrt{q_{b_N}}}_2=o(b_N^{-1/2}).
+\end{equation}
+Then, for every fixed integer $d\geq2$,
+$\mathcal E_d(p_N)S(p_N)\to(\log d)^2/4$.
+In particular the second hypothesis holds if
+$\operatorname{ess\,sup}_{x>0}|\log(p_N(x)/q_{b_N}(x))|
+=o(b_N^{-1/2})$.
+\end{corollary}
+
+\begin{proof}
+The first assertion follows directly from
+Lemma~\ref{lem:hellinger-transfer} and
+Proposition~\ref{prop:CL-sharp-law}.  The final sufficient criterion
+follows from the same pointwise square-root estimate used in
+Lemma~\ref{lem:tower-uniform-comparison}.
+\end{proof}
+
+For finite-dimensional physical spectra the final, global log-ratio
+criterion cannot hold because the spectrum has a finite-rank tail;
+the Hellinger condition in \eqref{eq:physical-transfer-hypotheses} is
+the usable criterion and includes the tail mass.  It may also be
+replaced by the strictly weaker, direct condition
+$\norm{(I-T_{\log d})(g_{p_N}-g_{q_{b_N}})}_2=o(b_N^{-1/2})$.
+Neither leading R\'enyi entropy asymptotics nor weak Gaussian
+convergence of logarithmic rank proves these microscopic conditions.
+Such a transfer therefore requires more than the leading entropy asymptotic.

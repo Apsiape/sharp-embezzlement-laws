@@ -1,0 +1,547 @@
+Verified 110 distributed file checksums
+test_bounds_and_tail (__main__.Reproducibility.test_bounds_and_tail) ... ok
+test_compact_witness (__main__.Reproducibility.test_compact_witness) ... ok
+test_dense_fast_and_doubled_chains (__main__.Reproducibility.test_dense_fast_and_doubled_chains) ... ok
+test_dilation_and_compressed_ranks (__main__.Reproducibility.test_dilation_and_compressed_ranks) ... ok
+test_dyadic_sine_witness (__main__.Reproducibility.test_dyadic_sine_witness) ... ok
+test_fms_measurements_and_loss (__main__.Reproducibility.test_fms_measurements_and_loss) ... ok
+test_spin_exact_diagonalization (__main__.Reproducibility.test_spin_exact_diagonalization) ... ok
+test_supplied_critical_points (__main__.Reproducibility.test_supplied_critical_points) ... ok
+test_theory_and_pairs (__main__.Reproducibility.test_theory_and_pairs) ... ok
+
+----------------------------------------------------------------------
+Ran 9 tests in 0.745s
+
+OK
+(3504, 6418, 10169, 8726, 11381, 10778, 11296, 10649, 11831, 7230, 3906, 2185, 3944, 2287, 3512, 972, 4004, 2448, 145)
+Word squared norms ((52, 144, 304), (112, 36, 144), (52, 108, 252), (92, 36, 124))
+Gram comparison ratios (521.542484, 521.578866, 521.307375, 521.551893, 521.429787, 521.307375, 521.307375, 521.307375, 521.307375, 521.545839, 521.179293)
+Magic coefficient upper bound 209.578410832
+Global constant 1353145.5
+Binary64 rounding constants and Schmidt-vector transfer checked with exact rationals.
+Chain-only transferred loss < 0.000461 < tracial floor.
+Assisted 2^18 defect and loss exceed their thresholds.
+Assisted 2^19 defect and loss lie below their thresholds.
+Assisted 2^20 defect and loss lie below their thresholds.
+{
+  "shells": 9,
+  "schmidt_rank": 4608,
+  "qubits_per_party": 13,
+  "E": 0.04887432761262169,
+  "E_shell_sum": 0.048874327612621705,
+  "E_repeated": 0.048874327612621726,
+  "explicit_loss": 0.00040225784043310066,
+  "proved_loss_upper": 0.0005641063329383492,
+  "tracial_loss_floor": 0.0007060612150362539,
+  "certified_margin": 0.00014195488209790472,
+  "loss_upper_after_vector_error": 0.0006631100240614503
+}
+{
+  "shell_coefficients": [
+    15,
+    11,
+    10,
+    8,
+    6,
+    3
+  ],
+  "shell_norm_squared": 555,
+  "base_schmidt_rank": 32,
+  "schmidt_rank": 288,
+  "qubits_per_party": 9,
+  "E": 0.08370578499908632,
+  "E_exact": {
+    "rational": "598/555",
+    "sqrt2_coefficient": "-26/37"
+  },
+  "explicit_loss": 0.0006889365020500918,
+  "tracial_loss_floor": 0.0007060612150362539,
+  "certified_margin": 1.7124712986161302e-05
+}
+[
+  {
+    "alpha": "1",
+    "score_exact": "2*sqrt(5)/5 + 2*sqrt(30)/5",
+    "ground_loss": 0.17602513581185147,
+    "all_flat_floor": 0.18,
+    "loss_gap": 0.003974864188148526,
+    "certified_trace_distance_margin": 0.0039
+  },
+  {
+    "alpha": "5/6",
+    "score_exact": "sqrt(5)/3 + 2*sqrt(30)/5",
+    "ground_loss": 0.18032905540006217,
+    "all_flat_floor": 0.18620689655172415,
+    "loss_gap": 0.005877841151661977,
+    "certified_trace_distance_margin": 0.0058
+  }
+]
+{
+  "game": "original uniform 243-pair game",
+  "shared_resource": "central-cut open XX ground state tensored with a shared Phi_9",
+  "exact_flat_loss_floor": "(3-2*sqrt(2))/243",
+  "certified_flat_loss_floor": {
+    "lower": "0.000706061215036254742372932311031291534405992",
+    "upper": "0.000706061215036254742372932311031291534405993"
+  },
+  "quadrature_order": 24,
+  "geometric_amplitude_ratio": "32767/32768",
+  "geometric_prefix_energy_cutoff": 400000,
+  "required_strict_error_caps": {
+    "covariance_compression_singular_l2_upper": "0.000000079500000000000000000000000000000000000",
+    "kernel_enclosure_frobenius_upper": "0.000000000000000003320000000000000000000000000",
+    "omitted_squared_singular_mass_upper": "0.000000000000003000000000000000000000000000000",
+    "retained_squared_singular_error_upper": "0.000000000012100000000000000000000000000000000",
+    "total_one_parity_singular_l2_upper": "0.000003550000000000000000000000000000000000000",
+    "omitted_geometric_probability_upper": "0.000000013000000000000000000000000000000000000"
+  },
+  "rows": [
+    {
+      "power": 18,
+      "chain_length": 262144,
+      "compressed_covariance_dimension": 296,
+      "exponents": [
+        11037,
+        33596,
+        57136,
+        81569,
+        106688,
+        132338,
+        158423,
+        184879,
+        211661,
+        238735,
+        266074,
+        293658,
+        321469,
+        349490,
+        377711,
+        406118,
+        434702,
+        463456,
+        492369,
+        521437,
+        550651,
+        580008,
+        609500,
+        639124
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 18224,
+        "retained_probability": 0.9999999999883714,
+        "duplication_defect": 0.09078820393909291,
+        "assisted_loss": 0.0007472280159596125
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003313039272049203156831325942",
+        "omitted_squared_singular_mass_upper": "0.000000000000000638368429112969117652067923429",
+        "retained_squared_singular_error_upper": "0.000000000009293793069303251529639023290763970",
+        "total_one_parity_singular_l2_upper": "0.000003128163135286021044730738671355954337092",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000000742252542361875631761341988056",
+        "rounded_matrix_singular_l2_upper": "0.000003048676997934081651563720383674904303571",
+        "largest_physical_or_model_singular_value_upper": "0.472921558430913776587691758392631160478826593",
+        "schmidt_angle_derivative_upper": "3.080486131596829661730660657735741699330034252",
+        "sorted_schmidt_amplitude_l2_upper": "0.000013627734045275440574510644130138266754685",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000013630000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 4375,
+        "geometric_prefix_mass": {
+          "lower": "0.999999991994952810872971441165807405864534497",
+          "upper": "0.999999991994952810872971441165807405864583161"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.090788830184555012896788703422532634614455190",
+          "upper": "0.090788830184555012896788703422532634614646984"
+        },
+        "omitted_geometric_probability_upper": "0.000000008005047189127028558834192594135465503",
+        "geometric_duplication_defect_upper": "0.090788846194649391150845821090917822885577990",
+        "physical_duplication_defect": {
+          "lower": "0.090664610577313780605615103735180169455317533",
+          "upper": "0.090805274461198152334213973288712195109530451"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000746210786644557865066790977244281230084917",
+        "upper": "0.000747368514083935410158139697849483087321239"
+      },
+      "comparison_to_flat_loss_floor": "above",
+      "certified_absolute_gap": {
+        "lower": "0.000040149571608303122693858666212989695678924",
+        "upper": "0.000041307299047680667785207386818191552915247"
+      }
+    },
+    {
+      "power": 19,
+      "chain_length": 524288,
+      "compressed_covariance_dimension": 320,
+      "exponents": [
+        10537,
+        32018,
+        54344,
+        77460,
+        101191,
+        125398,
+        149994,
+        174920,
+        200135,
+        225608,
+        251316,
+        277239,
+        303362,
+        329670,
+        356152,
+        382798,
+        409599,
+        436548,
+        463637,
+        490860,
+        518212,
+        545687,
+        573281,
+        600990
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 24704,
+        "retained_probability": 0.9999999999847086,
+        "duplication_defect": 0.08537781667943643,
+        "assisted_loss": 0.0007026980796661434
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003311204688592632937040542817",
+        "omitted_squared_singular_mass_upper": "0.000000000000000426164464193080054910916824648",
+        "retained_squared_singular_error_upper": "0.000000000003763742490347739908311234822258405",
+        "total_one_parity_singular_l2_upper": "0.000002019632692334816419857485584952747257871",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000000573440162404204002104358009062",
+        "rounded_matrix_singular_l2_upper": "0.000001940146554982878861273923867491488007475",
+        "largest_physical_or_model_singular_value_upper": "0.475219311320796474747507820920032633606976149",
+        "schmidt_angle_derivative_upper": "3.216341631744648281968432046870028348918874231",
+        "sorted_schmidt_amplitude_l2_upper": "0.000009186489059387600278889430964465409992174",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000009187000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 5642,
+        "geometric_prefix_mass": {
+          "lower": "0.999999989555580358567165715616020362061794576",
+          "upper": "0.999999989555580358567165715616020362061843510"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.085377478906852419942687510148696859634537188",
+          "upper": "0.085377478906852419942687510148696859634729959"
+        },
+        "omitted_geometric_probability_upper": "0.000000010444419641432834284383979637938205424",
+        "geometric_duplication_defect_upper": "0.085377499795691702808356078916656135511140807",
+        "physical_duplication_defect": {
+          "lower": "0.085247344373876895557737786991056158435732955",
+          "upper": "0.085388237688856173543079677901243380133912122"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000701624233529850992244755448486058917166526",
+        "upper": "0.000702783849290997313111766896306529877645368"
+      },
+      "comparison_to_flat_loss_floor": "below",
+      "certified_absolute_gap": {
+        "lower": "0.000003277365745257429261165414724761656760624",
+        "upper": "0.000004436981506403750128176862545232617239467"
+      }
+    },
+    {
+      "power": 20,
+      "chain_length": 1048576,
+      "compressed_covariance_dimension": 344,
+      "exponents": [
+        10080,
+        30585,
+        51822,
+        73761,
+        96253,
+        119175,
+        142448,
+        166016,
+        189843,
+        213900,
+        238165,
+        262622,
+        287256,
+        312054,
+        337007,
+        362104,
+        387338,
+        412703,
+        438192,
+        463798,
+        489518,
+        515347,
+        541280,
+        567314
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 33154,
+        "retained_probability": 0.9999999999798471,
+        "duplication_defect": 0.08046152823982909,
+        "assisted_loss": 0.0006622348003278114
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003311785130720108250962012783",
+        "omitted_squared_singular_mass_upper": "0.000000000000001368099610460520504765703292589",
+        "retained_squared_singular_error_upper": "0.000000000012040068179821534454648995227866793",
+        "total_one_parity_singular_l2_upper": "0.000003549563410184921461487549880075140826001",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000001388868091785629210471825425636",
+        "rounded_matrix_singular_l2_upper": "0.000003470077272832983322461860687299960105639",
+        "largest_physical_or_model_singular_value_upper": "0.477243992091723172762516270331429431918792786",
+        "schmidt_angle_derivative_upper": "3.352898926308834413682069692829497115765154809",
+        "sorted_schmidt_amplitude_l2_upper": "0.000016831018544191224665492449838848410880055",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000016840000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 7295,
+        "geometric_prefix_mass": {
+          "lower": "0.999999987021851209881789127580634976018606169",
+          "upper": "0.999999987021851209881789127580634976018655853"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.080460653044529116535374991293872759216190075",
+          "upper": "0.080460653044529116535374991293872759216385721"
+        },
+        "omitted_geometric_probability_upper": "0.000000012978148790118210872419365023981393831",
+        "geometric_duplication_defect_upper": "0.080460679000826696771796736132602807179173383",
+        "physical_duplication_defect": {
+          "lower": "0.080312356168071461988169192649306386557089283",
+          "upper": "0.080479787197708736647817172263928377138512272"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000661007046650793925828553025920217173309376",
+        "upper": "0.000662385079816532811916190718221632733650307"
+      },
+      "comparison_to_flat_loss_floor": "below",
+      "certified_absolute_gap": {
+        "lower": "0.000043676135219721930456741592809658800755685",
+        "upper": "0.000045054168385460816544379285111074361096617"
+      }
+    }
+  ]
+}
+{
+  "game": "original uniform 243-pair game",
+  "shared_resource": "central-cut open XX ground state tensored with Phi_9",
+  "rows": [
+    {
+      "size": 524288,
+      "matrix_dimension": 320,
+      "mode_ratios": [
+        725013012680,
+        376390412384,
+        190431323202,
+        94049068635,
+        45586373024,
+        21776800624,
+        10280282818,
+        4804426508,
+        2225600168,
+        1022886736,
+        466766590,
+        211602061,
+        95345465,
+        42718820,
+        19038425,
+        8442451,
+        3726051,
+        1637100,
+        716210,
+        312052
+      ],
+      "ratio_denominator": 1000000000000,
+      "matched_error_squared_upper": "0.0000000000000000000000023774",
+      "omitted_singular_mass_upper": "0.0000000000002562475537559905",
+      "one_parity_singular_error_upper": "0.0000005956951394005137629834",
+      "aligned_vector_error_upper": "0.0000030087148042140643588725",
+      "prefix_rank": 10647,
+      "prefix_runs": 1434,
+      "model_prefix_tail_upper": "0.0000000007179691232044711989",
+      "model_error_upper": "0.0853778227158704470191553259",
+      "model_loss_upper": "0.0007026981293487279590053937",
+      "physical_loss_upper_generic_transfer": "0.0007028576511565982088011898",
+      "physical_loss_upper_specific_transfer": "0.0007027270722288558833448619",
+      "flat_loss_floor_lower": "0.0007060612150362547423729323"
+    },
+    {
+      "size": 1048576,
+      "matrix_dimension": 344,
+      "mode_ratios": [
+        735192162739,
+        393211977323,
+        205666429229,
+        105290596160,
+        53001221895,
+        26331357153,
+        12942726514,
+        6304569029,
+        3046918804,
+        1462219421,
+        697265988,
+        330560251,
+        155869310,
+        73129044,
+        34148896,
+        15875989,
+        7349998,
+        3389291,
+        1557000,
+        712690
+      ],
+      "ratio_denominator": 1000000000000,
+      "matched_error_squared_upper": "0.0000000000000000000000027418",
+      "omitted_singular_mass_upper": "0.0000000000003784916718543374",
+      "one_parity_singular_error_upper": "0.0000007047029055345065808733",
+      "aligned_vector_error_upper": "0.0000035592871658950901092155",
+      "prefix_rank": 13979,
+      "prefix_runs": 1789,
+      "model_prefix_tail_upper": "0.0000000009174233203937371180",
+      "model_error_upper": "0.0804615355915381665598257871",
+      "model_loss_upper": "0.0006622348608357050745664674",
+      "physical_loss_upper_generic_transfer": "0.0006624180623573408586394055",
+      "physical_loss_upper_specific_transfer": "0.0006622680997132711765046892",
+      "flat_loss_floor_lower": "0.0007060612150362547423729323"
+    }
+  ]
+}
+{
+  "size": 19342813113834066795298816,
+  "nodes": 1418,
+  "modes": 81,
+  "rounded_singular_error": 4e-05,
+  "omitted_squared_error": 3.456356338642578e-11,
+  "quantization_squared_error": 4.7238837847703006e-11,
+  "singular_error": 4.81e-05,
+  "vector_error": 0.0011063
+}
+{
+  "exponents": [
+    2676,
+    8030,
+    13389,
+    18758,
+    24138,
+    29530,
+    34936,
+    40355,
+    45787,
+    51231,
+    56686,
+    62153,
+    67629,
+    73114,
+    78607,
+    84109,
+    89617,
+    95132,
+    100653,
+    106180,
+    111713,
+    117250,
+    122793,
+    128340,
+    133892,
+    139448,
+    145007,
+    150571,
+    156139,
+    161710,
+    167284,
+    172862,
+    178443,
+    184027,
+    189614,
+    195204,
+    200797,
+    206393,
+    211991,
+    217592,
+    223195,
+    228801,
+    234410,
+    240021,
+    245634,
+    251249,
+    256867,
+    262486,
+    268108,
+    273732,
+    279358,
+    284986,
+    290616,
+    296248,
+    301882,
+    307517,
+    313155,
+    318794,
+    324435,
+    330078,
+    335722,
+    341368,
+    347016,
+    352665,
+    358316,
+    363968,
+    369622,
+    375278,
+    380935,
+    386594,
+    392254,
+    397915,
+    403578,
+    409242,
+    414908,
+    420575,
+    426243,
+    431913,
+    437584,
+    443256,
+    448929
+  ],
+  "cutoff": 380000,
+  "rank": 185926736,
+  "peak": {
+    "lower": "0.006748833317389436358066990406278825832694944",
+    "upper": "0.006748833317389436358066990406278825832695523"
+  },
+  "tail": {
+    "lower": "0.000082217162715639803344159365716926288542912",
+    "upper": "0.000082217162715639803344159365716926293998049"
+  },
+  "prefix_duplication_error": {
+    "lower": "0.013735796367426328639093403676098135170275780",
+    "upper": "0.013735796367426328639093403676098135191003108"
+  },
+  "prefix_nine_block_variance": {
+    "lower": "0.000800858721842588365885236909330938906606879",
+    "upper": "0.000800858721842588365885236909330938907160582"
+  },
+  "raw_loss_bound": {
+    "lower": "0.099805145158373420450448170567589837152705560",
+    "upper": "0.099805145158373420450448170567589837297868681"
+  },
+  "loss_bound": {
+    "lower": "0.000410720761968614898973037738961275050011133",
+    "upper": "0.000410720761968614898973037738961275050608514"
+  },
+  "uniform_tracial_floor": {
+    "lower": "0.000706061215036254742372932311031291534405992",
+    "upper": "0.000706061215036254742372932311031291534405993"
+  },
+  "model_separates": true,
+  "distance_bound": "3/2500",
+  "transferred_loss_bound": {
+    "lower": "0.000460799754443163771129846265247324951347704",
+    "upper": "0.000460799754443163771129846265247324951980458"
+  },
+  "distance_bound_certifies_separation": true
+}

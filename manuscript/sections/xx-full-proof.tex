@@ -1,0 +1,211 @@
+\section{Microscopic energy counts and the smooth rank profile}
+\label{app:xx-full}
+
+We use the assumptions of Proposition~\ref{prop:xx-count-to-error} and
+the notation in~\eqref{eq:xx-saddle-F}. All constants below are uniform
+in the real tilt interval of that proposition.
+
+\begin{lemma}[Cumulative counts with their left limits]
+\label{lem:xx-microscopic-counting}
+For $|E-\mu|\le2B$, the exact cumulative counts satisfy
+\eqref{eq:xx-microscopic-counting}, including energies at which the count
+jumps.
+\end{lemma}
+
+\begin{proof}
+Put $\Delta=(\tau W)^{-1}$ and let $K(u)=c_K(\sin(u/4)/(u/4))^4$,
+where $c_K$ normalizes the integral to one. This even, nonnegative
+kernel has finite second moment, a positive minimum on $[-1,1]$, and
+Fourier transform supported on $[-1,1]$. The support statement follows
+by writing the sinc function as the Fourier transform of a uniform
+density on $[-1/4,1/4]$ and taking the fourfold convolution.
+By~\eqref{eq:chain-damping},
+\[
+ \int_{|t|\le\Delta^{-1}}|\varphi_\beta(t)|\,dt=O(W^{-1/2}).
+\]
+Consequently the convolution of the tilted law of $A$ with
+$K_\Delta(u)=\Delta^{-1}K(u/\Delta)$ has density bounded by $C/\sqrt W$.
+At the midpoint of a closed interval of length $\Delta$, this density
+is at least $c/\Delta$ times the probability of the interval. Covering
+longer intervals by such intervals gives, for every closed interval $I$,
+\begin{equation}\label{eq:xx-concentration}
+ \Pr_\beta(A\in I)\le C(|I|+\Delta)/\sqrt W.
+\end{equation}
+The same bound applies to singletons by enclosure.
+
+For $k_\beta(u)=e^{-\beta u}\mathbf1_{\{u\ge0\}}$ and a real shift $v$,
+the change $|k_\beta(E-A-v)-k_\beta(E-A)|$ is bounded by the variation
+measure of $k_\beta$ on the closed interval swept out by the shift.
+This measure has total mass two. Integrating first over the law of $A$
+and using~\eqref{eq:xx-concentration} bounds the expectation of the change
+by $2C(|v|+\Delta)/\sqrt W$. Thus smoothing by an independent
+$\Delta Z$ with $Z$ of density $K$ changes the expectation by
+$O(\Delta/\sqrt W)$.
+
+At $E=m_\beta$, Fourier inversion gives the smoothed expectation as
+\begin{equation}\label{eq:xx-smoothed-fourier}
+ \mathbb E_\beta k_\beta(E-A-\Delta Z)
+ =\frac{1}{2\pi}\int_{-\Delta^{-1}}^{\Delta^{-1}}
+ \frac{\mathbb E_\beta e^{it(A-m_\beta)}}{\beta-it}
+                   \widehat K(\Delta t)\,dt .
+\end{equation}
+The integral outside $|t|\le W^{-5/12}$ is
+$O(e^{-c'W^{1/6}})$ by~\eqref{eq:chain-damping}. On the inner interval
+put $u=t\sqrt{v_\beta}$. The analytic derivative bounds give
+\[
+ \log\mathbb E_\beta e^{it(A-m_\beta)}
+ =-u^2/2+i\alpha_\beta u^3+O(W^{-1}u^4),
+ \qquad \alpha_\beta\in\mathbb R,\quad |\alpha_\beta|\le C W^{-1/2}.
+\]
+Here $|u|\le C W^{1/12}$, so after factoring out $e^{-u^2/2}$, the
+exponential equals $1+i\alpha_\beta u^3+O(W^{-1}(u^4+u^6))$.
+Expanding $(\beta-it)^{-1}=\beta^{-1}+it\beta^{-2}+O(t^2)$ and
+$\widehat K(\Delta t)=1+O(\Delta^2t^2)$, the two first-order corrections
+integrate to zero by oddness. The remaining terms are bounded in the
+rescaled integral by $C W^{-1}e^{-u^2/2}(1+|u|^8)$. The Gaussian
+tail beyond the inner interval is exponentially small. Therefore
+\[
+ \mathbb E_\beta k_\beta(E-A-\Delta Z)
+     =\frac{1}{\beta\sqrt{2\pi v_\beta}}\bigl(1+O(W^{-1})\bigr).
+\]
+The $O(\Delta/\sqrt W)$ smoothing error has this same relative order.
+For the strict count, dropping the event $A=E$ changes the unsmoothed
+expectation by $O(\Delta/\sqrt W)$ by~\eqref{eq:xx-concentration}.
+Multiplying both expectations by $e^{L(\beta)+\beta E}$ and taking
+logarithms gives~\eqref{eq:xx-microscopic-counting}.
+\end{proof}
+
+\begin{lemma}[Smooth profile on the logarithmic rank axis]
+\label{lem:chain-rank-profile}
+With the exact square-root profile $g$ and smooth cutoff profile $G$
+defined in the proof of Proposition~\ref{prop:xx-count-to-error}, the
+three estimates in~\eqref{eq:chain-profile-estimates} hold.
+\end{lemma}
+
+\begin{proof}
+Throughout this proof $U=A-\mu$ under the tilt $\beta=1$. The derivative
+bounds give
+\begin{equation}\label{eq:chain-cumulant-moments}
+ \mathbb E_1 U=0,\quad \mathbb E_1 U^2=V,\quad
+ \mathbb E_1 U^3=-L'''(1)=O(W),\quad
+ \mathbb E_1 U^4=L^{(4)}(1)+3V^2=O(W^2).
+\end{equation}
+Also $\log\mathbb E_1 e^{\theta U}\le CW\theta^2$ for small real
+$\theta$ by Taylor expansion of $L(1-\theta)$. Taking $\theta$ of
+order $B/W$ with either sign gives
+\begin{equation}\label{eq:chain-cutoff-tail}
+ \Pr_1(|U|>B/2)\le 2e^{-c(\log W)^2}.
+\end{equation}
+The first three moments restricted to this tail are smaller than every
+power of $W^{-1}$ by H\"older's inequality and the fourth moment bound.
+
+From $\beta'(E)=-1/v_{\beta(E)}$ we obtain
+\begin{equation}\label{eq:xx-F-derivatives}
+ F'(E)=\beta(E)+\frac1{\beta(E)v_{\beta(E)}}
+                  +\frac{L'''(\beta(E))}{2v_{\beta(E)}^2}.
+\end{equation}
+In particular $F'$ is bounded above and away from zero. Each
+$E$-derivative applies $-v_\beta^{-1}\partial_\beta$. Thus, for
+$0\le j\le3$, $\partial_E^j(F'-\beta)=O(W^{-j-1})$, and for
+$1\le j\le3$, $\partial_E^j\beta=O(W^{-j})$. These bounds follow
+term by term from $v_\beta\asymp W$ and the uniform bounds on the
+fixed-order derivatives of $L$. For $a(E)=1-1/F'(E)$ we have
+\[
+ a(\mu)=O(W^{-1}),\qquad
+ a'(\mu)=-1/V+O(W^{-2}),\qquad
+ \partial_E^j a(E)=O(W^{-j})\quad(1\le j\le3).
+\]
+
+When $y\in F([\mu-3B/2,\mu+3B/2])$, the lower bound on $F'$ and
+\eqref{eq:xx-microscopic-counting} put $e^y$ between
+$R(\mu-2B)$ and $R(\mu+2B)$. Hence the exact energy $E_{e^y}$ lies
+in the counting window. Conversely, when $|E_{e^y}-\mu|\le B/2$,
+the two bounds on the exact rank give
+$y\in F([\mu-B,\mu+B])$. In either case
+\begin{equation}\label{eq:xx-inverse-rank}
+ E_{e^y}=E_*(y)+O(W^{-1}).
+\end{equation}
+Indeed, $R(E_{e^y}^-)<e^y\le R(E_{e^y})$ away from the immaterial
+endpoints of the rank intervals, and the lower bound on $F'$ converts
+the two logarithmic count errors into the energy error. Therefore, on
+the support of $G$, the uncut profile
+$G_0(y)=\exp((y-L(1)-E_*(y))/2)$ satisfies
+$G_0^2/g^2=1+O(W^{-1})$. On the ranks with $|E_{e^y}-\mu|\le B/2$,
+the cutoff is one. The law of $E_{e^y}$ under $g(y)^2\,dy$ equals the
+law of $A$ under the original Gibbs law. Thus~\eqref{eq:chain-cutoff-tail}
+and the ratio bound give $\norm{g-G}_2=O(W^{-1})$.
+
+The cutoff and its first two $y$-derivatives are bounded. Its
+derivatives are supported where the exact energy lies in the tail of
+\eqref{eq:chain-cutoff-tail}. On the support of $G$,
+\[
+ G_0'=\tfrac12 a(E_*)G_0,\qquad
+ G_0''=\left(\tfrac14 a(E_*)^2+
+                 \frac{a'(E_*)}{2F'(E_*)}\right)G_0.
+\]
+The bound $|a(E_*)|\le C(1+|E_*-\mu|)/W$, the ratio bound and the
+fourth moment imply $\norm{G''}_2=O(W^{-1})$. Contributions from the
+cutoff derivatives are smaller than every power of $W^{-1}$.
+
+To compute $\norm{G'}_2^2$, we can drop cutoff derivative terms and
+restrict to $|E_{e^y}-\mu|\le B/2$ at negligible cost. On this set,
+replacing $G_0^2$ by $g^2$ costs $O(W^{-2})$ because the squared score
+has integral $O(W^{-1})$. Replacing $a(E_*)$ by $a(E_{e^y})$ changes
+the score pointwise by $O(W^{-2})$ by~\eqref{eq:xx-inverse-rank}.
+It remains to compute $\mathbb E_1[a(\mu+U)^2\mathbf1_{\{|U|\le B/2\}}]$.
+Write
+\[
+ a(\mu+U)=a_0+a_1 U+a_2 U^2+\rho(U),\qquad
+ |\rho(U)|\le C|U|^3/W^3,
+\]
+with $a_0=O(W^{-1})$, $a_1=-1/V+O(W^{-2})$, $a_2=O(W^{-2})$.
+On the truncated set the squared sum of the constant, quadratic and
+remainder terms has expectation $O(W^{-2})$, since $|U|\le W$ there
+and $\mathbb E_1 U^4=O(W^2)$. Its cross term with $a_1 U$ is also
+$O(W^{-2})$. The constant cross term has zero full mean by
+\eqref{eq:chain-cumulant-moments}, the quadratic cross term uses
+$\mathbb E_1 U^3=O(W)$, and the remainder cross term is bounded by
+$C W^{-4}\mathbb E_1 U^4$. Reinstating the first three full moments
+has negligible cost by~\eqref{eq:chain-cutoff-tail}. The linear term
+alone contributes $a_1^2 V=1/V+O(W^{-2})$. This proves
+$\norm{G'}_2^2=1/(4V)+O(W^{-2})$.
+\end{proof}
+
+\paragraph{Trace sums for the free chains.}
+For finite XX the mesh gives $\sum_j s_j=O(W)$. For $e\ge1$, a
+fixed-order $z$-derivative of $\log(1+e^{-ze})$ is bounded by
+$C_k e^k e^{-(1-2\eta)e}$ on a small fixed complex neighborhood
+of the tilt interval. Take $\eta<1/4$ so this bound is $O_k(s)$.
+For $e\le1$, shrinking the imaginary neighborhood bounds
+$|1+e^{-ze}|$ away from zero, and the number of such modes is $O(W)$.
+This proves the analytic derivative bounds needed in
+Proposition~\ref{prop:xx-count-to-error}. The analytic logarithms can
+be chosen real on the real tilt interval. Zero modes contribute a
+constant $\log2$ and infinite-energy modes may be omitted.
+
+The entropy and variance summands in the main text are smooth even
+functions of $e$ at zero, and $e^2$ is smooth in $s$ at $s=1/2$.
+At $s=0$ the derivatives with respect to $s$ are
+$O(s(1+|\log s|^2))$. Thus the summands are Lipschitz in $s$ on
+$[0,1/2]$. For each function $f(e)$ used in these trace sums,
+the integral comparison on the branch $e_k=4\pi^2|k|/L_i$ has error
+$O(1)$ because $f'$ is integrable. The alternating exponential series
+gives $\int_0^\infty\log(1+e^{-e})\,de=\pi^2/12$ and
+$\int_0^\infty e/(1+e^e)\,de=\pi^2/12$. Integration by parts gives
+$\int_0^\infty e^2 e^e/(1+e^e)^2\,de=\pi^2/6$.
+
+The largest-probability summand, as a function of $s$, is
+$F_b(s)=\log2-\log(1+\sqrt{1-4s^2})$. Let $s_j^0$ denote the mesh
+values in decreasing order. For mesh energy $e(s_j^0)\ge\epsilon$,
+where $0<\epsilon\le1$, the square-root difference identity gives
+$|F_b(s_j)-F_b(s_j^0)|\le C\epsilon^{-1}|s_j-s_j^0|$. For mesh
+energies below $\epsilon$, the global bound is
+$C|s_j-s_j^0|^{1/2}$ and there are $O(1+W\epsilon)$ entries. The
+$\ell^1$ comparison and Cauchy--Schwarz give a trace-sum error of order
+$\epsilon^{-1}+(1+W\epsilon)^{1/2}$. Taking $\epsilon=W^{-1/3}$
+and evaluating the mesh integral therefore yields
+\[
+ b_N=\frac{\log N}{12}+O((\log N)^{1/3}).
+\]
+Exact doubling gives the Ising counterpart
+$b_L=(\log L)/24+O((\log L)^{1/3})$.

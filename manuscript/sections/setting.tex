@@ -1,0 +1,156 @@
+\section{Setting}\label{sec:setting}
+
+\subsection{Nonlocal games, bipartite systems and types}
+
+A nonlocal game consists of finite sets of questions $x$ for Alice and $y$ for Bob, finite
+sets of answers $a$ and $b$, a probability distribution $\pi(x,y)$ and a rule
+$V(a,b\,|\,x,y)\in\{0,1\}$. The referee draws $(x,y)$ from $\pi$; the players, who cannot
+communicate, answer $a$ and $b$ and win if $V(a,b\,|\,x,y)=1$~\cite{CHTW04,BrunnerRMP}.
+
+\emph{Finite systems.} Let $\psi\in\cH_A\otimes\cH_B$ be a unit vector. A strategy assigns to
+each question a positive operator-valued measure (POVM), $\{A^x_a\}_a$ on $\cH_A$ and
+$\{B^y_b\}_b$ on $\cH_B$. Its losing probability is $\ip{\psi}{L\psi}$ with the loss operator
+\begin{equation}\label{eq:loss}
+L=\sum_{x,y}\pi(x,y)\sum_{a,b\,:\,V(a,b|x,y)=0}A^x_a\otimes B^y_b,\qquad 0\le L\le 1 ,
+\end{equation}
+and the value of the game at $\psi$ is $\omega(\psi)=1-\inf\ip{\psi}{L\psi}$, the infimum being
+over all strategies. Local ancillas in fixed pure states are included, since a measurement on
+system plus ancilla is a POVM on the system.
+
+\emph{Infinite systems.} The Hilbert space of an infinite system need not factorize. A bipartite
+system is then a pair of von Neumann algebras $M_A$, $M_B$ on a separable Hilbert space $\cH$
+that commute, $M_B\subseteq M_A'$, together with a unit vector
+$\Omega\in\cH$. Haag duality is the stronger equality $M_B=M_A'$. Alice's POVMs are taken in $M_A$ and Bob's in $M_B$, the product
+$A^x_a\otimes B^y_b$ in~\eqref{eq:loss} is replaced by $A^x_aB^y_b$, and $\omega(\Omega)$ is
+defined as before. For $M_A=\mathcal{B}(\cH_A)\otimes 1$ and $M_B=M_A'$ this is the tensor-product definition. For a pure
+state of a spin chain with quasi-local algebra $\fA=\fA_L\otimes\fA_R$ (left and right
+half-chains) and GNS representation $(\pi,\cH,\Omega)$ we put $M_A=\pi(\fA_R)''$ and
+$M_B=\pi(\fA_L)''$.
+
+\emph{Types.} A von Neumann algebra with trivial centre is a factor. A factor has type I if it
+is isomorphic to all bounded operators on a Hilbert space, type II if it is not of type I but
+has a faithful normal semifinite trace, and type III otherwise. For a faithful normal state
+$\varphi=\ip{\Omega}{\,\cdot\,\Omega}$ on $M$, use the cyclic GNS space $\overline{M\Omega}$,
+where $\Omega$ is also separating. Tomita--Takesaki theory provides the modular operator
+$\Delta_\varphi$ on this space and the modular group
+$\sigma_t^\varphi(x)=\Delta_\varphi^{it}x\Delta_\varphi^{-it}$; the fixed points of
+$\sigma^\varphi$ form the centralizer $M_\varphi=\{x:\varphi(xy)=\varphi(yx)\ \forall y\}$. For $M=\mathcal{B}(\cH_A)$ with a faithful density matrix of eigenvalues
+$p_j>0$, the modular point spectrum consists of the ratios $p_i/p_j$; the
+full spectrum is their closure. Connes's invariant $S(M)$ is the intersection
+of modular spectra over faithful normal semifinite weights. It is $\{1\}$
+for semifinite factors, $\{0,1\}$ for III$_0$,
+$\{0\}\cup\lambda^{\Z}$ for III$_\lambda$, $0<\lambda<1$, and
+$[0,\infty)$ for III$_1$~\cite{Connes73,TakesakiII}.
+
+\subsection{The game}\label{sec:game}
+
+The game $\GIII$ is the game called $G_{\mathrm{III}}$ in Ref.~\cite{TG}, and
+Appendix~\ref{app:game} reproduces its definition. It is built from nine copies of the flagged
+magic-square game of Man\v{c}inska~\cite{Mancinska26}, which extends the Mermin--Peres
+magic-square game~\cite{Mermin90,Peres90} by one extra answer, called a flag, and two extra
+questions per player. One further question to Bob, whose answer is a label in $\Z/9\Z$, links
+the nine copies. Alice has 45 possible questions and Bob 46, each with at most nine answers,
+and the 243 question pairs that occur are asked with equal probability.
+
+If either local algebra admits a faithful normal semifinite trace, then every strategy
+loses with positive probability~\cite[Theorem~1.1]{TG}. For a factor $M_A$ with separable
+predual in standard form, the same theorem characterizes the existence of a normal state
+with a perfect strategy on $(M_A,M_A')$ by an invariant normal state on the flow of weights.
+Every type-III$_1$ factor meets that criterion. The robust lower comparison in
+Theorem~\ref{thm:equiv} uses Ref.~\cite[Theorem~1.4]{TG}, with an explicit constant proved in
+Appendix~\ref{sec:explicit-robust}.
+For CHSH on a standard pair, van Luijk, Stottmeister, Werner and Wilming obtained
+$\beta\ge 2\sqrt{2}-8\sqrt{\kappa(\varphi)}$, where $\beta$ is the CHSH correlation
+coefficient and $\kappa$ is their worst-case marginal error in predual
+norm~\cite[Theorem~J and Proposition~100]{vLSWW24}.
+
+\begin{lemma}[Linked modular bridge]
+\label{lem:linked-bridge}
+Let $M_A,M_B$ be commuting von Neumann algebras on $\cH$ and $\Omega$ a unit vector
+whose marginal $\varphi$ on $M_A$ is faithful. Suppose that POVMs in these algebras
+win $\GIII$ with probability one at $\Omega$. For each $j\in\Z/9\Z$, let $F_j$ be
+Alice's flag effect on $R_1^j$. The $F_j$ are orthogonal projections in the centralizer
+of $\varphi$, with $\sum_jF_j=1$ and $\varphi(F_j)=1/9$. There are partial isometries
+$w_j\in M_A$ such that, for all real $t$,
+\begin{equation}\label{eq:bridge}
+w_j^*w_j=F_j,\qquad w_jw_j^*=F_{j+1}+F_{j+2},\qquad \sigma^\varphi_t(w_j)=2^{it}w_j .
+\end{equation}
+\end{lemma}
+
+\begin{proof}
+Let $e$ project onto $\overline{M_A\Omega}$. This space reduces $M_A$, and the
+representation there is faithful and normal. Compress Bob's effects to it by
+$B\mapsto eBe|_{e\cH}$. They still form POVMs in the commutant, and every expectation
+$\ip{\Omega}{AB\Omega}$ is preserved because $e\Omega=\Omega$ and $[e,A]=0$.
+We work in this cyclic and separating representation of the faithful normal state
+$\varphi$~\cite[Lemma~1.6]{TG}.
+
+A perfect binary match of commuting effects $P,Q$ has zero expectation of
+$(P-Q)^2+P(1-P)+Q(1-Q)$. Positivity gives $P\Omega=Q\Omega$, and faithfulness
+makes Alice's effect $P$ a projection. Replacing $P\Omega$ by $Q\Omega$ and commuting
+$Q$ past $X\in M_A$ gives $\varphi(PX)=\varphi(XP)$. The first label test therefore
+gives centralizer projections $F_j$ with $F_j\Omega=B_j^{\mathrm{Lab}}\Omega$.
+The label effects sum to one, so separation gives $\sum_jF_j=1$ and the $F_j$ are
+orthogonal. The second label test matches Alice's $R_2^j$ outcome $+++$ to
+$B_{j+1}^{\mathrm{Lab}}+B_{j+2}^{\mathrm{Lab}}$. On $\Omega$ this sum equals
+$F_{j+1}+F_{j+2}$, so separation identifies Alice's outcome with that
+projection~\cite[Section~2.4]{TG}.
+
+Each copy is a perfect flagged magic-square strategy on this faithful normal support.
+The checked square generates a centralizer copy of $M_4$ with unit $1-F_j$, and the four
+nonflag outcomes of $R_2^j$ are rank-one projections in it~\cite[Lemma~2.1]{TG}.
+The calibrated sign tests give a partial isometry $\beta_j$ from $F_j$ onto a rank-one
+projection $q_j$ of that copy, with $\sigma_t^\varphi(\beta_j)=2^{it}\beta_j$~\cite[Lemma~2.2]{TG}.
+Choose a partial isometry $v_j$ in that matrix algebra with initial projection $q_j$
+and final projection $F_{j+1}+F_{j+2}$. Then $w_j=v_j\beta_j$ has the required initial
+and final projections, and $\sigma_t^\varphi(w_j)=v_j\sigma_t^\varphi(\beta_j)$ gives the
+last identity in~\eqref{eq:bridge}. The KMS identity gives
+$2\varphi(F_j)=\varphi(F_{j+1})+\varphi(F_{j+2})$.
+A largest weight forces both successors to be largest, so all nine weights are $1/9$.
+\end{proof}
+
+For a nonfaithful marginal with support $p\in M_A$, the bridge applies in the corner
+$pM_Ap$ on $p\cH$. The equality $p\Omega=\Omega$ and commutation of $p$ with Bob's effects
+preserve the correlations in this reduction. On the standard pair of a faithful marginal,
+the maps $s_r=\sum_j w_j^*F_{j+r}$ for $r=1,2$ satisfy $s_r^*s_s=\delta_{rs}1$,
+$\sum_rs_rs_r^*=1$ and $\sigma_t^\varphi(s_r)=2^{-it}s_r$. The local column isometries
+with entries $s_r^*$ and $Js_r^*J$, where $J$ is the modular conjugation, extract a Bell
+pair exactly. Indeed, Tomita's identity gives
+$s_r^*(Js_s^*J)\Omega=2^{-1/2}s_r^*s_s\Omega=2^{-1/2}\delta_{rs}\Omega$.
+
+\subsection{The embezzlement error}\label{sec:E}
+
+For a unit vector $\psi\in\cH_A\otimes\cH_B$ the embezzlement error $\cE(\psi)$ is defined by
+the infimum in~\eqref{eq:E}, taken over unitaries $U_A$ on $\cH_A\otimes\C^2$ and $U_B$ on
+$\cH_B\otimes\C^2$; $\Phi_2=(\ket{00}+\ket{11})/\sqrt2$ is a Bell pair on the two added qubits.
+This is embezzlement in the sense of van Dam and Hayden with $\psi$ as the catalyst, measured
+by the squared distance; the maximal overlap, or root fidelity, is $1-\cE/2$. Let
+$\lambda=(\lambda_j)_{j\ge1}$, $\lambda_j=\sqrt{p_j}$, be the decreasing sequence of Schmidt
+coefficients of $\psi$, and define an isometry $D$ on $\ell^2(\N)$ by
+\begin{equation}\label{eq:D}
+(D\lambda)_{2j-1}=(D\lambda)_{2j}=\lambda_j/\sqrt2 .
+\end{equation}
+
+\begin{lemma}[Formula for the embezzlement error]\label{lem:formula}
+$\cE(\psi)=\norm{\lambda-D\lambda}^2=2-\sqrt2\sum_{m\ge1}\sqrt{p_m\,p_{\lceil m/2\rceil}}$.
+\end{lemma}
+
+\begin{proof}
+The Schmidt coefficients of $\psi\otimes\ket{00}$ are $\lambda$, and those of
+$\psi\otimes\Phi_2$ are $D\lambda$, which is again decreasing. For two unit vectors with
+decreasing Schmidt coefficients $\alpha$ and $\beta$, the supremum of the overlap
+$\lvert\ip{\chi}{(U_A\otimes U_B)\chi'}\rvert$ over local unitaries is $\sum_j\alpha_j\beta_j$.
+This is von Neumann's trace inequality~\cite{HornJohnson}; the bound is attained by aligning
+the Schmidt bases in finite dimensions and approached in infinite dimensions. Hence the infimum
+in~\eqref{eq:E} equals $2-2\ip{\lambda}{D\lambda}=\norm{\lambda-D\lambda}^2$, because $D$ is an
+isometry.
+\end{proof}
+
+
+For a target of dimension $d$ the same argument gives
+\begin{equation}\label{eq:Ed}
+\cE_d(p)=\|(1-D_d)\lambda\|_2^2,
+\qquad (D_d\lambda)_j=d^{-1/2}\lambda_{\lceil j/d\rceil}.
+\end{equation}
+The distinction between local-unitary and LOCC error matters for rates;
+we use~\eqref{eq:Ed} throughout.

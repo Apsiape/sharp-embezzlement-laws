@@ -1,0 +1,88 @@
+\section{Numerical methods and error control}\label{app:numerics}
+
+The source archive includes a portable Python implementation and the data
+used in every figure. The critical XX model is the open hopping chain at
+half filling. The critical Ising model is
+$-\sum_j X_jX_{j+1}-\sum_jZ_j$. The gapped comparison adds the staggered
+potential $\delta\sum_j(-1)^j a_j^*a_j$ to XX, with
+$\xi=1/\operatorname{arsinh}(\delta/2)$. All numerical chain cuts are
+central.
+
+For a free-fermion reduced state, the Schmidt probabilities are products
+of the one-mode probabilities $\zeta_k,1-\zeta_k$, obtained from the
+restricted covariance~\cite{Peschel03}. Dense diagonalization checks the
+small sizes. At large sizes, sine transforms implement the covariance
+without storing a dense matrix, and the eigensolver retains the modes
+furthest from zero and one. The critical-chain sweep retains up to 60
+Ising modes and uses two copies of them for XX according to the exact
+correspondence~\cite{IgloiJuhasz08}. Direct XX calculations check the
+doubled spectra. The code enumerates and sorts the Schmidt probabilities
+formed from the retained modes that exceed $10^{-11}$ times the
+largest one (a run that would keep more than $12{,}000{,}000$ of them
+stops with an error), and records the retained mass, $\cE$, and the explicit strategy
+losses with and without $\Phi_9$. The largest sizes in this sweep are
+$131{,}072$ Ising spins and $262{,}144$ XX sites.
+The gapped curves retain the original
+data, with selected values independently recomputed; they are estimates
+of the long-chain limit.
+
+If a sorted Schmidt tail of probability $\tau$ is discarded and the
+prefix renormalized to $\widehat p$, then
+\begin{equation}\label{eq:tail-control}
+\|\sqrt p-\sqrt{\widehat p}\|_2^2=2-2\sqrt{1-\tau},\qquad
+\left|\sqrt{\cE_d(p)}-\sqrt{\cE_d(\widehat p)}\right|
+\le2\sqrt{2-2\sqrt{1-\tau}}.
+\end{equation}
+The code propagates this bound and estimates the mass of omitted
+one-body modes by bounding their minority occupation probabilities
+by the smallest retained one, conditional on retention of the
+leading exact modes. Dense, matrix-free, doubled-mode and
+archived-data comparisons assess floating-point eigensolver error.
+For the game score itself the
+block-diagonal fallback of Corollary~\ref{cor:operational-truncation}
+gives the sharper linear tail cost.
+
+Tower probabilities are counted with exact integer degeneracies from
+$\prod_{\ell\ge0}(1+q^{2\ell+1})^r$. This avoids expanding exponentially
+large lists at small $\varepsilon$. The smooth spectrum uses scaled
+Bessel functions and stable inverse-rank quadrature. Tables interpolate
+the computed tower and smooth curves at the physical value $b=-\ln p_1$.
+The code also evaluates finite tensor powers through exact binomial
+multiplicities and checks the finite sine-profile witness by an independent
+compressed-rank calculation.
+
+Two implementations verify the $19\times19$ matrix inequality using exact
+arithmetic. Direct construction of all POVMs and evaluation of all
+question pairs checks~\eqref{eq:operational-loss} independently of its
+quadratic-form implementation. The archive's README gives the commands
+for the checks and for regenerating each figure.
+
+For the XXZ data in Figure~\ref{fig:xxz}, the coefficients of
+$\prod_{j\ge1}(1+q^j)$ are computed as exact integers using Euler's
+pentagonal recurrence. The squared error is summed over intersections
+of exact integer rank intervals, without expanding the Schmidt list.
+An exponential-moment estimate bounds the omitted tail. The partition
+function and entropy are evaluated through their modular transformation.
+The four-spin tilted CHSH strategy is checked independently with exact
+algebraic arithmetic on the full $16\times16$ spin Hamiltonian, its ground
+vector, the local basis changes and the physical Bell observables.
+
+The assisted certificates extend the XX calculation to $N=2^{19}$ and
+$2^{20}$ by compressing the exact covariance to dimensions $320$ and $344$.
+Directed interval arithmetic, exact residual bounds and integer rank
+counts give losses below $0.000703$ and $0.000663$ on
+$\psi_N\otimes\Phi_9$. An independent implementation uses rational
+mode ratios and a different retained prefix to check both separations.
+Table~\ref{tab:xx-assisted-certificate} gives the certified intervals,
+including the control at $N=2^{18}$. These certificates account for
+arithmetic and spectral errors as well as the discarded Schmidt mass.
+
+The chain-only certificate for the original game at $N=2^{84}$ uses a separate
+calculation with rigorous arithmetic and spectral error bounds. A dyadic
+Gaussian quadrature compresses one parity block of the cross covariance
+to dimension 1418. Residual intervals and a Frobenius-norm tail estimate
+control its singular values. Exact integer multiplicities and directed
+arithmetic bound the model strategy loss below $0.000410720762$.
+Transferring the strategy to the physical ground state gives the
+certified loss bound $0.000461$. The complete parameters and error
+propagation appear in Appendix~\ref{app:xx84-certificate}.

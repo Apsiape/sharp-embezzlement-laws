@@ -1,0 +1,110 @@
+\section{The game measures the embezzlement error}\label{sec:equiv}
+
+We first collect the properties of $\cE$ that are used below. The
+bounds~\eqref{eq:window}--\eqref{eq:variance} are contained in Ref.~\cite[Section~6.4]{TG}, and
+we include short proofs to keep the paper self-contained. Throughout, $T$ denotes a random
+variable on $(0,\infty)$ with density $p(t)=p_{\lceil t\rceil}$, which is a continuous version
+of the rank of a Schmidt probability, and $X=\log_2T$.
+
+\begin{proposition}[Properties of $\cE$]\label{prop:E}
+Let $\psi$ be a pure bipartite state with Schmidt probabilities $p_1\ge p_2\ge\cdots$, Schmidt
+coefficients $\lambda$ and entanglement entropy $S=-\sum_jp_j\ln p_j\le\infty$. The embezzlement
+error is positive and never exceeds its value on a product state,
+\begin{equation}\label{eq:range}
+0<\cE(\psi)\le2-\sqrt2,
+\end{equation}
+with equality on the right exactly when all nonzero $p_j$ are equal, that is, for product
+states and maximally entangled states. It does not change when a maximally entangled state
+$\Phi_k$ of any local dimension $k$ is added, and its square root is Lipschitz continuous in the
+Schmidt coefficients: if $\psi'$ has Schmidt coefficients $\lambda'$, then
+\begin{equation}\label{eq:invariance}
+\cE(\psi\otimes\Phi_k)=\cE(\psi),\qquad
+\bigl\lvert\sqrt{\cE(\psi)}-\sqrt{\cE(\psi')}\bigr\rvert\le2\norm{\lambda-\lambda'}.
+\end{equation}
+A small error forces the Schmidt probabilities to spread over many ranks. The largest of them,
+and the total weight of the ranks between $r+1$ and $2r$ for every integer $r\ge1$, satisfy
+\begin{equation}\label{eq:window}
+p_1\le(6+4\sqrt2)\,\cE(\psi),\qquad\sum_{j=r+1}^{2r}p_j\le\sqrt{\cE(\psi)} ,
+\end{equation}
+while the entanglement entropy and, when finite, the variance of $X$ satisfy
+\begin{equation}\label{eq:entropybound}
+\sqrt{\cE(\psi)}\;\ge\;\frac{\ln2}{2\,(S+1+3\ln2)}
+\end{equation}
+and
+\begin{equation}\label{eq:variance}
+\cE(\psi)\,\bigl(4\Var(X)+1\bigr)\ge1 .
+\end{equation}
+\end{proposition}
+
+\begin{proof}
+We use the formula $\cE=\norm{\lambda-D\lambda}^2=2-2\ip{\lambda}{D\lambda}$ of
+Lemma~\ref{lem:formula} throughout.
+
+\emph{Range.} Since $\lambda$ is decreasing, $\lambda_{\lceil m/2\rceil}\ge\lambda_m$. Hence
+$\ip{\lambda}{D\lambda}=\sum_m\lambda_m\lambda_{\lceil m/2\rceil}/\sqrt2\ge1/\sqrt2$, which is
+the upper bound in~\eqref{eq:range}. Equality requires
+$\lambda_m\in\{0,\lambda_{\lceil m/2\rceil}\}$ for all $m$, that is, a flat spectrum. Positivity
+follows from the first bound in~\eqref{eq:window}.
+
+\emph{Invariance and continuity.} The Schmidt coefficients of $\psi\otimes\Phi_k$ are
+$(D_k\lambda)_m=\lambda_{\lceil m/k\rceil}/\sqrt k$. The map $D_k$ is an isometry, and it
+commutes with $D=D_2$ because $\lceil\lceil m/k\rceil/2\rceil=\lceil m/(2k)\rceil$. Therefore
+$\norm{D_k\lambda-DD_k\lambda}=\norm{D_k(\lambda-D\lambda)}=\norm{\lambda-D\lambda}$. The
+Lipschitz bound holds because $\sqrt{\cE}=\norm{(1-D)\lambda}$ and $\norm{1-D}\le2$.
+
+\emph{Largest probability and windows.} The first component of $\lambda-D\lambda$ is
+$\lambda_1(1-1/\sqrt2)$, so $\cE\ge p_1(1-1/\sqrt2)^2=p_1/(6+4\sqrt2)$. For the second bound
+in~\eqref{eq:window}, let $f(s)=(\ln2)\,2^sp(2^s)$ be the density of $X$ and $g=\sqrt f$. The
+substitution $t=2^{s+1}$ in
+$\norm{\lambda-D\lambda}^2=\int_0^\infty\bigl(\sqrt{p(t)}-\sqrt{p(t/2)/2}\bigr)^2dt$ gives
+\begin{equation}\label{eq:Eshift}
+\cE(\psi)=\int_{\R}\bigl(g(s+1)-g(s)\bigr)^2\,ds .
+\end{equation}
+In other words, the embezzlement error measures how much the distribution of $X$ changes when
+it is shifted by one. Put $\mu(u)=\int_u^{u+1}f$. By the Cauchy--Schwarz inequality,
+$\sum_{k\in\Z}\lvert\mu(u+k)-\mu(u+k-1)\rvert\le\int_{\R}\lvert g(s)-g(s-1)\rvert\,(g(s)+g(s-1))\,ds\le2\sqrt{\cE}$.
+The left-hand side is the total variation of a nonnegative summable sequence and is therefore
+at least twice its maximum. So $\mu(u)\le\sqrt{\cE}$ for all $u$, and the choice $u=\log_2r$
+gives the claim.
+
+\emph{Entropy.} Because $p$ is decreasing, $t\,p(t)\le\int_0^tp\le1$, hence
+$-\ln p(T)\ge\ln T$ and $S\ge(\ln2)\,\mathbb{E}[X]$. The negative part of $X$ contributes
+$\int_0^1p_1\log_2(1/t)\,dt=p_1/\ln2\le1/\ln 2$. Put $h=\sqrt{\cE}$. For $x\ge0$ the interval
+$(1,2^x]$ is covered by at most $x+1$ windows of the form $(r,2r]$, and $p_1=2\mu(-1)\le2h$, so
+$\Pr[X\le x]\le(x+3)h$ and
+$\mathbb{E}[X_+]\ge\int_0^\infty(1-(x+3)h)_+\,dx=(1-3h)_+^2/(2h)$. If $h<1/3$ this gives
+$S\ge(\ln2)\bigl(\tfrac1{2h}-3\bigr)-1$, which is~\eqref{eq:entropybound}. If $h\ge1/3$
+then~\eqref{eq:entropybound} holds because its right-hand side is below $0.12$.
+
+\emph{Variance.} Assume $X$ has finite second moment; otherwise the variance bound is interpreted as vacuous. The laws of $X$ and $X-1$ have means that differ by one. With
+$\mu_X=\mathbb{E}[X]$ and $c=\mu_X-\tfrac12$ we obtain
+$1=\int(s-c)\bigl(f(s)-f(s+1)\bigr)ds\le\sqrt{\cE}\,\bigl(\norm{(s-c)g(s)}_2+\norm{(s-c)g(s+1)}_2\bigr)
+=2\sqrt{\cE}\,\sqrt{\Var(X)+\tfrac14}$, which is~\eqref{eq:variance}.
+\end{proof}
+
+\begin{remark}\label{rem:sharp}
+The power of $S$ in~\eqref{eq:entropybound} cannot be improved for general states, since the sine profiles in Section~\ref{sec:operational-lower} have
+$\cE=O(K^{-2})$ and $S=\Theta(K)$. Their shell distribution keeps a fixed
+fraction of its mass at ranks $2^{\Theta(K)}$, giving the entropy estimate. For exact conformal tower spectra $\cE$
+is of order $1/S$ (Section~\ref{sec:law}), and~\eqref{eq:variance} is then the relevant bound.
+The second bound in~\eqref{eq:window} controls the weight of every factor-of-two window of
+ranks. In particular the quantity $\eta_{\mathrm{emb}}$ of Ref.~\cite{Sierant26}, which decides
+universal LOCC embezzlement~\cite{ZTG24}, satisfies $\eta_{\mathrm{emb}}\le2\sqrt{\cE}$. Explicit
+Gaussian embezzlement protocols for free-fermion ground states are given in
+Ref.~\cite{KvLSW25}, which also notes that their convergence with the system size is very slow.
+\end{remark}
+
+
+\paragraph{The numerical lower comparison.}
+The proof in Appendix~\ref{sec:explicit-robust} extracts the magic-square
+sector with a $210\sqrt N$ error, where $N$ is its total forbidden mass.
+A polar decomposition then aligns the nine label sectors, at a cost bounded
+by twice the square root of their total mismatch. These estimates give
+\[
+ \mathcal E(\psi)\le C\,\varepsilon,\qquad
+ C=\frac{243(210^2+448)}8=\frac{2{,}706{,}291}{2},
+\]
+for every strategy of loss $\varepsilon$. Local projective dilations preserve
+the nonzero Schmidt spectrum, so the bound holds for arbitrary POVMs and
+arbitrary Schmidt rank. Taking the infimum of the loss proves the lower
+bound in Theorem~\ref{thm:equiv}.

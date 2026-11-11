@@ -1,0 +1,52 @@
+\section{Quantum fields}\label{sec:qft}
+
+\begin{corollary}[Vacuum of a free field]\label{cor:qft}
+Let $\Omega$ be the vacuum of the free scalar field of mass $m>0$ in $d+1$ space-time
+dimensions, with $d\ge1$. If Alice and Bob measure in complementary wedges, then
+$\omega(\Omega)=1$ and every strategy loses with positive probability. For any split pair
+$M_A\subseteq\mathcal N\subseteq M_B'$ with $\mathcal N$ a type I factor, the loss of every
+strategy is at least $\cE(\rho_{\mathcal N})/C>0$, where $\cE(\rho_{\mathcal N})$ is the
+Bell-pair error~\eqref{eq:Ed} evaluated on the eigenvalues of the vacuum density matrix on
+$\mathcal N$.
+\end{corollary}
+
+\begin{proof}
+The vacuum is cyclic and separating for the wedge algebra by the Reeh--Schlieder property
+and locality~\cite{Haag}. The Bisognano--Wichmann theorem identifies complementary wedge
+algebras as commutants and the vacuum modular group with the Lorentz
+boosts~\cite{BisognanoWichmann75}. The wedge algebra is a factor of type
+$\IIIone$~\cite{Driessler75,Haag}. Van Luijk, Stottmeister, Werner and Wilming proved
+bipartite embezzlement for the wedge vacuum~\cite[Theorem~97]{vLSWW24} and reported it in
+Ref.~\cite{vLSWWPRL24}. The ancilla argument in the proof of Theorem~\ref{thm:value} gives
+value one for $G$.
+
+For the free massive scalar field, write a point of the positive mass shell as
+\[
+ p^0=m_\perp\cosh\theta,\qquad p^1=m_\perp\sinh\theta,
+ \qquad m_\perp=\sqrt{m^2+|p_\perp|^2}.
+\]
+Then $d^dp/(2p^0)=\tfrac12\,d\theta\,d^{d-1}p_\perp$, and a boost in the wedge direction
+translates the rapidity $\theta$. Fourier transformation in $\theta$ identifies the
+one-particle boost generator with multiplication by a real coordinate on a space with
+Lebesgue measure, so its vector spectral measures have no atoms. On each positive-particle
+sector of symmetric Fock space the generator is the restriction of a sum of one-particle
+generators. Product vectors have convolution spectral measures, which are atomless, and
+are total in the unsymmetrized tensor power. The spectral projections onto singletons
+therefore vanish on each positive-particle sector. Only the vacuum line contributes a
+modular eigenvector. The Bisognano--Wichmann identification of the vacuum modular group
+with the boosts thus excludes $2$ from the point spectrum of the modular operator.
+Proposition~\ref{prop:modular-obstruction} rules out perfect play.
+
+For a split pair, $\cH=\cH_1\otimes\cH_2$ with $\mathcal{N}=\mathcal{B}(\cH_1)\otimes1$.
+Every strategy is a tensor-product strategy on the pure state $\Omega$, whose Schmidt
+probabilities are the eigenvalues of $\rho_{\mathcal N}$. Theorem~\ref{thm:equiv}
+together with~\eqref{eq:range} gives the bound. For example, for double cones
+$\mathcal O_1,\mathcal O_2$ with $\overline{\mathcal O_1}\subset\mathcal O_2$, the split
+property supplies the required factor for $\mathcal M(\mathcal O_1)$ and
+$\mathcal M(\mathcal O_2')$~\cite{Buchholz74,DoplicherLongo84}.
+\end{proof}
+
+Summers and Werner showed that the vacuum violates the Bell--CHSH inequality maximally for
+complementary wedges~\cite{SummersWerner87c,SummersWerner87b}. The first statement of
+Corollary~\ref{cor:qft} is the corresponding result for a game that no system of type I or II
+can win.

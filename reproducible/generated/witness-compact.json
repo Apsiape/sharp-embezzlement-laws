@@ -1,0 +1,22 @@
+{
+  "shell_coefficients": [
+    15,
+    11,
+    10,
+    8,
+    6,
+    3
+  ],
+  "shell_norm_squared": 555,
+  "base_schmidt_rank": 32,
+  "schmidt_rank": 288,
+  "qubits_per_party": 9,
+  "E": 0.08370578499908632,
+  "E_exact": {
+    "rational": "598/555",
+    "sqrt2_coefficient": "-26/37"
+  },
+  "explicit_loss": 0.0006889365020500918,
+  "tracial_loss_floor": 0.0007060612150362539,
+  "certified_margin": 1.7124712986161302e-05
+}

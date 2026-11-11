@@ -1,0 +1,145 @@
+\subsection{The finite XX certificate with a shared nine-dimensional register}
+\label{app:xx-assisted-certificate}
+
+Let \(L_N\) denote the loss of the explicit strategy on
+\(\psi_{\mathrm{XX},N}\otimes\Phi_9\). Repeating each Schmidt amplitude nine
+times and dividing it by \(3\) commutes with duplication by two and preserves
+the norm. The ninefold blocks in Theorem~\ref{thm:operational-upper} therefore
+give \(L_N=2\cE(\psi_{\mathrm{XX},N})/243\). We bound this loss at
+\(N=2^{18},2^{19},2^{20}\).
+
+\paragraph{Covariance compression.}
+Use the exact parity kernel~\eqref{eq:xx84-kernel}, whose singular list
+occurs twice, and the dyadic quadrature above with order
+\(k=\min(24,L)\) on a bin of length \(L\).
+The polynomial comparison leading to~\eqref{eq:xx84-compression} now
+uses degree \(23\). For \(m=N/4\le2^{18}\), the reciprocal kernel
+\(1/(\pi w)\) has Frobenius norm at most
+\(\sqrt{1+\ln(2m)}/(2\pi)<1\) on the integer grid and less than \(2\)
+on the quadrature grid. The same geometric and Cauchy remainder estimates
+with this order give
+\[
+ \|s(B)-s(K)\|_2
+ \le 3\,3^{-24}
+      +\tfrac12\bigl[(3/2)3^{-24}+(8/3)2^{-24}\bigr]
+ <7.95\times10^{-8}.
+\]
+Here \(K\) is the exact weighted quadrature kernel and singular lists are
+padded by zeroes. The dimensions of \(K\) are \(296,320,344\), respectively.
+
+\paragraph{Arithmetic and spectral errors.}
+The verifier \texttt{assisted\_xx\_certificate.py} uses floating-point
+eigensolvers to propose roots and eigenpairs. On each bin with \(L>24\)
+it evaluates the rational Jacobi determinant polynomials by
+\(p_0(x)=1,\ p_1(x)=x,\ p_{j+1}(x)=xp_j(x)-\beta_j^2 p_{j-1}(x)\).
+The 24 disjoint sign-changing brackets for \(p_{24}\) are bisected on
+the grid \(10^{-28}\mathbb Z\). The resulting brackets enclose every
+Jacobi eigenvalue. For a root \(\mu\), the Jacobi eigenvector with first
+entry one has entries \(p_j(\mu)/(\beta_1\cdots\beta_j)\). The quadrature
+weight is \(L\) divided by the sum of their squares. This gives intervals
+for the exact nodes and weights.
+
+With directed arithmetic on \(10^{-45}\mathbb Z\), the code encloses
+\(\pi\) by Machin's formula and evaluates the degree-24 cosine and sinc
+polynomials on the argument intervals. For \(|t|\le2\) the alternating
+remainders are bounded by \(2^{26}/26!<10^{-18}\). The entry enclosures
+give a symmetric midpoint matrix \(\widehat K\) and
+\(\|K-\widehat K\|_{\mathrm F}<3.32\times10^{-18}\) in all three runs.
+
+For each of 24 proposed eigenvectors \(v\), the verifier takes \(\mu\)
+to be the nearest grid point to its exact Rayleigh quotient. Integer
+arithmetic gives an upper bound on \(\|\widehat K v-\mu v\|_2/\|v\|_2\).
+The disjoint residual intervals contain distinct eigenvalues.
+Subtracting the squares of the lower bounds on their absolute values
+from the exact \(\|\widehat K\|_{\mathrm F}^2\) bounds the omitted squared
+singular mass by \(3\times10^{-15}\). For a model ratio \(r_i=q^{k_i}\)
+with \(q=32767/32768\), the model singular value is \(s_i^*=r_i/(1+r_i^2)\).
+Table~\ref{tab:xx-assisted-exponents} gives the three lists of 24 exponents.
+The verifier encloses their ratios by directed binary exponentiation. The sum of squared differences
+between the matched model entries and the retained singular values is
+less than \(1.21\times10^{-11}\). Sorting the matched lists, with omitted
+entries paired with zero, can only decrease their \(\ell^2\) distance.
+Combining the three errors gives the one-parity distance
+\(\|s(B)-s^*\|_2<3.55\times10^{-6}\) in all three runs. The verifier uses
+the individual enclosures for each size.
+
+The physical and model singular values lie below \(1/2\). A singular value
+\(s\) gives the mode Schmidt angle \(\theta(s)=\tfrac12\arcsin(2s)\).
+On \([0,s_{\max}]\) the derivative is at most
+\((1-4s_{\max}^2)^{-1/2}\), with \(s_{\max}\) bounded by the largest
+model value plus the one-parity error. Placing the model in the physical
+Schmidt mode bases gives squared vector distance
+\(2(1-\prod_i\cos^2(\theta(s_i)-\theta(s_i^*)))\), which is at most
+\(2\sum_i(\theta(s_i)-\theta(s_i^*))^2\). This uses both copies of the
+one-parity list. Rearrangement again decreases the distance. The verifier
+checks that the resulting bound on the ordered amplitude distance fits
+the fixed rational budget \(d\) in Table~\ref{tab:xx-assisted-certificate}.
+
+\begin{table}[htb]
+\centering\footnotesize
+\begin{tabular}{@{}lp{13cm}@{}}
+\toprule
+$N$ & Exponents $k_i$ in increasing order \\
+\midrule
+$2^{18}$ & 11037, 33596, 57136, 81569, 106688, 132338, 158423, 184879, 211661, 238735, 266074, 293658, 321469, 349490, 377711, 406118, 434702, 463456, 492369, 521437, 550651, 580008, 609500, 639124 \\
+$2^{19}$ & 10537, 32018, 54344, 77460, 101191, 125398, 149994, 174920, 200135, 225608, 251316, 277239, 303362, 329670, 356152, 382798, 409599, 436548, 463637, 490860, 518212, 545687, 573281, 600990 \\
+$2^{20}$ & 10080, 30585, 51822, 73761, 96253, 119175, 142448, 166016, 189843, 213900, 238165, 262622, 287256, 312054, 337007, 362104, 387338, 412703, 438192, 463798, 489518, 515347, 541280, 567314 \\
+\bottomrule
+\end{tabular}
+\caption{The three finite geometric models for the assisted certificates. Each exponent occurs twice; the common amplitude ratio is $32767/32768$.}
+\label{tab:xx-assisted-exponents}
+\end{table}
+
+\paragraph{Exact ranks and score transfer.}
+Each ratio \(q^{k_i}\) occurs twice in the normalized geometric model.
+The amplitudes are \(\sqrt{p_0}q^e\), where
+\(p_0=\prod_i(1+q^{2k_i})^{-2}\), in increasing order of \(e\), with
+multiplicities from \(\prod_i(1+z^{k_i})^2\).
+Keep the unnormalized prefix \(u\) at \(e\le400000\). The integer
+recurrence and rank interval intersections used for the \(2^{84}\)
+model give its mass and duplication overlap in directed arithmetic.
+Put \(E_0=\|(I-D)u\|_2^2\) and \(\tau=1-\|u\|_2^2\).
+The full model's overlap with its duplication is at least the prefix
+overlap by positivity, so its duplication defect is at most
+\(E_0+2\tau\). Since \(D\) is an isometry, the two norm comparisons
+with the full model give
+\[
+ \max\{0,\sqrt{E_0}-2(d+\sqrt{\tau})\}
+ \le \sqrt{\cE(\psi_{\mathrm{XX},N})}
+ \le \sqrt{E_0+2\tau}+2d.
+\]
+The upper bound thus pays the omitted geometric mass linearly before
+transferring the square root of the defect. The verifier checks that each
+omitted prefix mass satisfies \(\tau<1.30\times10^{-8}\) and uses the fixed
+\(d\) budget in each row to obtain the loss intervals.
+
+\begin{table}[htb]
+\centering\small
+\begin{tabular}{@{}lrrll@{}}
+\toprule
+\(N\) & Prefix rank & \(d\) upper bound & Certified interval for \(\cE(\psi_N)\) &
+  Certified interval for \(L_N\)\\
+\midrule
+\(2^{18}\) & \(4375\) & \(1.363\times10^{-5}\) &
+  \([0.0906646,\,0.0908053]\) &
+  \([0.000746210786,\,0.000747368515]\)\\
+\(2^{19}\) & \(5642\) & \(9.187\times10^{-6}\) &
+  \([0.0852473,\,0.0853883]\) &
+  \([0.000701624233,\,0.000702783850]\)\\
+\(2^{20}\) & \(7295\) & \(1.684\times10^{-5}\) &
+  \([0.0803123,\,0.0804798]\) &
+  \([0.000661007046,\,0.000662385080]\)\\
+\bottomrule
+\end{tabular}
+\caption{Certified embezzlement errors of the exact XX ground states
+$\psi_N$ and losses of the prescribed strategy on $\psi_N\otimes\Phi_9$.
+The intervals round the verifier's endpoints outwards. The amplitude-distance
+bound $d$ includes covariance compression, spectral truncation and arithmetic
+errors.}
+\label{tab:xx-assisted-certificate}
+\end{table}
+
+The floor \(\gamma=(3-2\sqrt2)/243\) lies between
+\(0.0007060612150362\) and \(0.0007060612150363\).
+The certified assisted losses are below \(0.000703\) and \(0.000663\)
+at \(N=2^{19}\) and \(N=2^{20}\), respectively.

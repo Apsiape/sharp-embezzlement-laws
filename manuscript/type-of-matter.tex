@@ -1,0 +1,615 @@
+\documentclass[10pt,a4paper]{article}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[a4paper,left=2.3cm,right=2.3cm,top=2.1cm,bottom=2.3cm]{geometry}
+\linespread{1.04}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage{graphicx,booktabs,enumitem,xcolor,array}
+\usepackage[font=small,labelfont=bf]{caption}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,decorations.pathreplacing,positioning}
+\usepackage[numbers,sort&compress]{natbib}
+\usepackage{microtype}
+\usepackage[bottom]{footmisc}
+\usepackage[colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black]{hyperref}
+
+\newtheorem{theorem}{Theorem}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\cE}{\mathcal{E}}
+\newcommand{\cH}{\mathcal{H}}
+\newcommand{\fA}{\mathfrak{A}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\Var}{\operatorname{Var}}
+\newcommand{\Tr}{\operatorname{Tr}}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle #1|}
+\newcommand{\ip}[2]{\langle #1,#2\rangle}
+\newcommand{\norm}[1]{\lVert #1\rVert}
+\newcommand{\IIIone}{\mathrm{III}_1}
+\newcommand{\GIII}{G}
+\setlist{nosep,leftmargin=1.6em}
+\setlength{\parskip}{0.25em}
+\setlength{\textfloatsep}{12pt plus 2pt minus 4pt}
+\renewcommand{\bottomfraction}{0.6}\renewcommand{\topfraction}{0.9}\renewcommand{\textfraction}{0.1}
+
+
+\newcommand{\E}{\mathcal E}
+\newcommand{\A}{\mathfrak A}
+\newcommand{\D}{\mathcal D}
+\newcommand{\HH}{\mathcal H}
+\newcommand{\Ad}{\operatorname{Ad}}
+\newcommand{\dist}{\operatorname{dist}}
+\newcommand{\spec}{\operatorname{spec}}
+\newcommand{\III}{\mathrm{III}_1}
+\newcommand{\sd}{\operatorname{sd}}
+\newcommand{\sech}{\operatorname{sech}}
+\newcommand{\arcosh}{\operatorname{arcosh}}
+\DeclareMathOperator{\diag}{diag}
+\allowdisplaybreaks[2]
+\title{\vspace{-1.8cm}\bfseries Sharp embezzlement laws for quantum chains\\ and finite Bell tests}
+\author{Seth Douglas \and Nidhal Mghirbi}
+\date{\small Version 1.0.0, November 2026}
+\hypersetup{pdftitle={Sharp embezzlement laws for quantum chains and finite Bell tests},pdfauthor={Seth Douglas and Nidhal Mghirbi}}
+\begin{document}
+\maketitle
+\vspace{-2.2em}
+\begin{abstract}
+\noindent
+For the finite open critical XX and Ising chains, we prove a sharp
+entanglement-embezzlement law from their exact discrete Schmidt spectra,
+including all degeneracies.
+For a maximally entangled target of fixed dimension $d$, the optimal
+squared local-unitary error is $\mathcal E_d=(\ln d)^2/(4S)+O_d(S^{-2})$,
+where $S$ is the half-chain entanglement entropy. A counting criterion
+gives a Gaussian crossover for growing $d$ and the same sharp law for the
+XXZ corner-transfer-matrix spectrum as $\Delta\downarrow1$.
+We compare the optimal loss in a fixed Bell game with 243
+question pairs to the Bell-pair embezzlement error with explicit constants,
+and prove the loss floor
+$(3-2\sqrt2)/243$ for maximally entangled states of every dimension.
+With a shared nine-dimensional maximally entangled register, the open XX
+ground state at $N=2^{19}$ beats this floor in the original game.
+At $N=2^{84}$ the chain alone suffices.
+A tagged test gives an exact tilted CHSH
+separation for the four-spin XX ground state, with classical play in the
+original game branch. For the infinite critical XX ground state, the
+half-chain factors are type III$_1$ and the game value is one without
+attainment.
+\end{abstract}
+
+\section{Introduction and main results}\label{sec:intro}
+
+Entanglement embezzlement uses local unitaries to extract entanglement from
+a shared state while disturbing it as little as possible~\cite{vDH03}.
+We determine the optimal squared error from the exact half-chain Schmidt
+spectra of the finite open XX and critical Ising chains.
+For a pure bipartite state $\psi$ with decreasing Schmidt probabilities $p_j$,
+define the squared error for a Bell-pair target by
+\begin{equation}\label{eq:E}
+\cE(\psi)=\inf_{U_A,U_B}
+\bigl\|(U_A\otimes U_B)(\psi\otimes|00\rangle)-\psi\otimes\Phi_2\bigr\|^2
+=2-\sqrt2\sum_{j\ge1}\sqrt{p_jp_{\lceil j/2\rceil}}.
+\end{equation}
+Here $\Phi_d=d^{-1/2}\sum_{j=1}^d|jj\rangle$ is a maximally entangled pair.
+We use $\cE_d$ for the analogous error with target $\Phi_d$, and $\cE=\cE_2$.
+Entropies are in nats, and $\log$ and $\ln$ denote natural logarithms.
+
+For the finite chains we use
+$H_N^{\mathrm{XX}}=\tfrac12\sum_{j=1}^{N-1}(X_jX_{j+1}+Y_jY_{j+1})$
+and $H_L^{\mathrm I}=-\sum_{j=1}^{L-1}X_jX_{j+1}-\sum_{j=1}^{L}Z_j$,
+with open boundaries.
+
+\begin{theorem}[Finite open XX chain]\label{thm:xx-full-law}
+Let $\psi_N$ be the ground state of the half-filled open XX chain on an
+even number $N$ of sites, cut in the middle. Write $S_N$ for its
+entanglement entropy and $V_N$ for its information variance, the variance
+of $-\log p_j$ when $j$ has the Schmidt probability law $(p_j)$.
+For every fixed integer $d\ge2$,
+\begin{align}
+ S_N&=\frac{\log N}{6}+O(1),\qquad
+ V_N=\frac{\log N}{6}+O(1),\label{eq:xx-three-limits}\\
+ \mathcal E_d(\psi_N)&=\frac{(\log d)^2}{4V_N}
+      +O_d((\log N)^{-2})
+   =\frac{3(\log d)^2}{2\log N}+O_d((\log N)^{-2}),\label{eq:xx-full-rate}\\
+ S_N\mathcal E_d(\psi_N)&=\frac{(\log d)^2}{4}
+      +O_d((\log N)^{-1}).\label{eq:xx-full-limit}
+\end{align}
+\end{theorem}
+
+\begin{corollary}[Finite open critical Ising chain]\label{cor:ising-full-law}
+For the ground state of the open critical transverse-field Ising chain
+on an even number $L$ of spins, cut in the middle,
+\[
+ S_L=\frac{\log L}{12}+O(1),\qquad V_L=\frac{\log L}{12}+O(1),
+ \qquad \mathcal E_d=\frac{3(\log d)^2}{\log L}
+                +O_d((\log L)^{-2}).
+\]
+Consequently $S_L\mathcal E_d=(\log d)^2/4+O_d((\log L)^{-1})$.
+\end{corollary}
+
+The proof and the common spectral criterion appear in Section~\ref{sec:law}.
+Under that criterion, as the information variance $V$ tends to infinity,
+$\mathcal E_d=2(1-e^{-(\log d)^2/(8V)})+o(1)$ uniformly over integers
+$d\ge2$. The error vanishes precisely when $\log d=o(\sqrt V)$.
+The corresponding root fidelity $1-\mathcal E_d/2$ has the same limiting
+curve as the optimal LOCC root fidelity obtained by Zhang, Liu and Chen
+under a Gaussian logarithmic-rank hypothesis, with
+fixed-charge random states as an application~\cite[Eq.~(6) and
+Supplement, Theorem~1]{ZhangLiuChen26}. Here it holds for local unitaries
+on the chain spectra, uniformly over the target dimension.
+
+A Bell game gives an operational test of the Bell-pair error $\cE$.
+A referee sends questions to two separated players, receives their answers,
+and applies a fixed winning rule~\cite{CHSH69,CHTW04,BrunnerRMP}. We use the
+game $G$ of Ref.~\cite{TG}, built from nine linked flagged magic squares with
+243 equally likely question pairs. Write $\omega(\psi)$ for the supremal
+winning probability when the players share $\psi$.
+
+\begin{theorem}[The game measures the embezzlement error]\label{thm:equiv}
+Every pure bipartite state satisfies the following bounds with the numerical
+constant $C=2{,}706{,}291/2$:
+\[
+\frac{\cE(\psi)}{C}\le1-\omega(\psi)
+\le\min\left\{\frac1{27},\,\mathcal B(p)\right\},
+\qquad \mathcal B(p)\le\frac73\cE(\psi).
+\]
+The loss $\mathcal B(p)$ is achieved by the explicit measurements in
+Section~\ref{sec:operational-strategy}, without an additional shared state.
+If a shared $\Phi_9$ is included, their loss is exactly
+$2\cE(\psi)/243$. The classical value of $G$ is $26/27$.
+\end{theorem}
+
+The lower comparison follows from the robust principle of Ref.~\cite{TG}.
+Appendix~\ref{sec:explicit-robust} gives a self-contained proof with the
+displayed numerical constant. The upper comparison, its exact state-dependent
+loss, and the classical value are proved from the complete rule table.
+We also obtain the following numerical bound independent of $C$.
+\begin{equation}\label{eq:gamma-intro}
+1-\omega(\Phi_d)\ge
+\gamma=\frac{3-2\sqrt2}{243}
+=7.060612\ldots\times10^{-4}
+\quad\text{for every }d.
+\end{equation}
+An explicit state on nine qubits per party has a strategy with loss below
+$6.90\times10^{-4}$ (Section~\ref{sec:operational-lower}).
+
+With an additional shared $\Phi_9$, the open XX ground state at
+$N=2^{19}=524{,}288$ has loss below $0.000703$ in the original game,
+and at $N=2^{20}$ its loss is below $0.000663$.
+Both bounds are certified, including the physical-spectrum and arithmetic
+errors (Section~\ref{sec:xx-assisted-separation}). The same auxiliary
+register preserves the comparison class, since
+$\Phi_D\otimes\Phi_9$ is a maximally entangled state of rank $9D$.
+
+The open XX ground state at $N=2^{84}$ admits a chain-only strategy in the
+original game with loss below $0.000461$, beating the floor $\gamma$.
+The certificate uses a covariance calculation of dimension 1418 and exact
+integer rank counts (Section~\ref{sec:xx84-separation}).
+
+The four-spin open XX ground state gives an exact separation in a tagged
+extension of $G$ with a tilted CHSH branch of five question pairs. The
+strategy plays the original game branch classically and uses only the
+four-spin ground state and explicitly specified local measurements. Its
+total loss is below $0.177$, and every maximally entangled state has loss
+at least $0.180$ (Section~\ref{sec:finite-chain-hybrid}).
+
+When a quantum system is divided into two infinite halves, the observables
+of one half generate a von Neumann algebra $M_A$. Gapped one-dimensional
+ground states with bounded entanglement entropy have type I
+half-chains~\cite{Hastings07,Matsui13}. The type-$\IIIone$ property of the
+critical XX chain goes back to Matsui~\cite{Matsui01}, as recorded in
+Ref.~\cite[Proposition~6.9]{KMSW}; the general critical-free-fermion
+result is due to van Luijk, Stottmeister and Wilming~\cite{vLSW25}.
+Type $\IIIone$ is precisely the factor type for which every normal state can
+embezzle any finite entangled state with arbitrarily small disturbance
+to the original state~\cite{vLSWW24}.
+
+\begin{theorem}[Critical chains approach perfect play]\label{thm:value}
+The infinite XX ground state, divided into its two physical half-chains, has
+$\omega(\Omega)=1$. The same value holds at every unit vector in its ground-state
+sector and for the critical free-fermion chains covered by Ref.~\cite{vLSW25},
+with Alice and Bob assigned the complementary physical half-chains.
+For the ground state $\psi_N$ of the even-length open XX chain, cut in the middle,
+$\cE(\psi_N)\to0$ and $\omega(\psi_N)\to1$ along the full sequence.
+\end{theorem}
+
+\begin{theorem}[Nonattainment at the infinite ground state]\label{thm:notattained}
+Every strategy at the infinite XX ground state loses with positive probability.
+The same holds for the vacuum of a free massive scalar field when the players
+measure in complementary wedges.
+\end{theorem}
+
+The reason for nonattainment is spectral. Perfect play would create a modular
+eigenvector of eigenvalue two, whereas the XX ground state and the free-field
+vacuum have no modular eigenvectors outside the vacuum line. This applies the
+modular obstruction to exact embezzlement of
+van Luijk, Stottmeister, Werner and Wilming~\cite[Proposition~35 and
+Corollary~36]{vLSWW24}, through the game's bridge, to two concrete
+states of matter.
+
+For the XXZ corner-transfer-matrix spectrum, the same sharp product law
+holds as $\Delta\downarrow1$, with a remainder of order
+$\operatorname{arcosh}\Delta$. The spectral formula for a pure
+N\'eel sector is an input to this result, as specified in
+Section~\ref{sec:interacting}. At fixed critical coupling, explicit finite-depth circuit
+Hamiltonians retain the type-$\IIIone$ half-chain structure, and one
+preserves the entire finite Schmidt spectrum at the chosen cut
+(Section~\ref{sec:interacting}).
+
+\paragraph{Relation to earlier work.}
+The critical-free-fermion result is due to van Luijk, Stottmeister and
+Wilming~\cite{vLSW25}; the general embezzlement classification is due to
+van Luijk, Stottmeister, Werner and Wilming~\cite{vLSWW24}.
+Qualitative finite-size embezzling families were also established in
+Ref.~\cite[Section~6.3]{vLSW25}. Kera, van~Luijk, Stottmeister and
+Wilming bound Gaussian conversion through the density of the covariance
+spectrum: if the embezzling covariance has $\varepsilon$-dense spectrum,
+the trace-distance error of converting the embezzler together with one
+Gaussian state into the embezzler together with another, minimized over
+Gaussian unitaries, is at most $11\varepsilon^{1/4}$ times the number of
+modes of these states~\cite[Theorem~1]{KvLSW25}. In a smoothed Calabrese--Lefevre model,
+Sierant derives inverse-square-root logarithmic decay of the rank-window
+statistic that controls universal LOCC embezzlement~\cite{Sierant26}. These quantities
+differ from the optimal squared local-unitary error studied here, so
+their rates and ours are not directly comparable; our
+law determines its leading coefficient and remainder for the exact
+open-chain spectra. The Schmidt-overlap formula in~\eqref{eq:E}
+is standard~\cite{vDH03,LeungWang14}; LOCC embezzlement and its rank-window
+criterion were characterized by Zanoni, Theurer and Gour~\cite{ZTG24}.
+The game and its robust lower estimate come from Ref.~\cite{TG}, using
+Man\v{c}inska's flagged magic square~\cite{Mancinska26}. The modular
+obstruction of Ref.~\cite{vLSWW24} and later exact-embezzlement
+self-tests~\cite{Harris26,PaddockSchmidt26} precede the present applications.
+
+Junge and Palazuelos constructed Bell inequalities whose violation on
+maximally entangled states is bounded uniformly over all finite dimensions,
+with growing violations on suitable nonmaximally entangled
+states~\cite[Theorem~1.4]{JungePalazuelos11}. Vidick and Wehner gave an
+explicit separation for the $I_{3322}$ inequality~\cite{VidickWehner11}.
+Liang, V\'ertesi and Brunner also give a Bell inequality whose maximal
+quantum violation cannot be attained by any finite-dimensional maximally
+entangled state~\cite{LiangVertesiBrunner11}.
+For the flagged magic square underlying $G$, Man\v{c}inska proves a
+dimension-independent gap for maximally entangled states and gives a
+rank-five state that wins perfectly~\cite[Corollary~4 and Proposition~1]{Mancinska26}.
+The existence of a positive floor for $G$ follows already from that result;
+the deficit bound in Ref.~\cite[Section~6.6]{TG} gives another route.
+Here we obtain the explicit constant $(3-2\sqrt2)/243$, relate the
+optimal loss to Bell-pair embezzlement, and certify strategies on finite
+XX ground states. The four-spin result realizes the known tilted CHSH
+separation~\cite{AMP12,BP15} on a chain ground state.
+
+The tower law builds on the Calabrese--Lefevre distribution and conformal
+level counting~\cite{CalabreseLefevre08,CardyTonni16,ACT18}. The physical
+finite-chain proof instead starts from the exact covariance and derives
+microscopic Fourier counting estimates. Both control the ordered, discrete
+spectrum at the scale needed for the optimal local-unitary error. Related logarithmic-rank mechanisms occur
+in nonlocal magic and diffusive embezzlement~\cite{Sierant26,ZhangLiuChen26,LiuCui26},
+with different observables or allowed operations. Entropy scaling alone is
+already known not to determine half-chain type: Liu and Yi construct
+translation-invariant pure states of types II$_\infty$, III$_\lambda$ and
+III$_1$ with logarithmic-order interval entropy~\cite{LiuYi26}.
+Our singlet family supplies the exact law $S_N=(c/6)\ln N+O_c(1)$ for any
+$c>0$, together with a direct game-loss bound and an exponentially decaying
+inhomogeneous parent interaction.
+
+\begin{figure}[b]
+\centering
+\begin{minipage}[c]{0.46\textwidth}
+\centering
+\begin{tikzpicture}[x=0.40cm,y=0.40cm,>={Stealth[length=4.5pt]},font=\small]
+  \fill[black!6] (-7.1,-0.9) rectangle (-0.15,0.9);
+  \fill[black!14] (0.15,-0.9) rectangle (7.1,0.9);
+  \draw[black!45] (-6.5,0) -- (6.5,0);
+  \foreach \i in {-6.5,-5.5,...,-0.5} \filldraw[fill=white,draw=black!70] (\i,0) circle (0.24);
+  \foreach \i in {0.5,1.5,...,6.5} \filldraw[fill=black!70,draw=black!70] (\i,0) circle (0.24);
+  \draw[dashed,thick] (0,-1.4) -- (0,1.4);
+  \node at (-3.6,-1.7) {Bob: left half};
+  \node at (3.6,-1.7) {Alice: right half};
+  \node[draw,rounded corners=2pt,inner sep=4pt,align=center,minimum width=5.6cm] (ref) at (0,4.7)
+       {referee draws one of\\ 243 question pairs $(x,y)$};
+  \draw[->] (-4.6,3.5) -- node[left] {$y$} (-4.6,1.15);
+  \draw[->] (-2.6,1.15) -- node[right] {$b$} (-2.6,3.5);
+  \draw[->] (4.6,3.5) -- node[right] {$x$} (4.6,1.15);
+  \draw[->] (2.6,1.15) -- node[left] {$a$} (2.6,3.5);
+  \node[align=center] at (0,-2.95) {the players win if $V(a,b\,|\,x,y)=1$};
+  \node at (-6.6,6.35) {(a)};
+\end{tikzpicture}
+\end{minipage}\hfill
+\begin{minipage}[c]{0.46\textwidth}
+\centering
+\includegraphics[width=\textwidth]{fig_main.pdf}
+\end{minipage}
+\caption{(a) The game. A chain in its ground state is cut in the middle, and each player
+measures one half without communicating with the other. (b) Embezzlement error $\cE$ across
+the cut. By Theorem~\ref{thm:equiv} the smallest losing probability lies between $\cE/C$ and
+$(7/3)\,\cE$. For critical chains $\cE$ keeps decreasing as the chain grows, for gapped chains it
+levels off after a few correlation lengths $\xi$, and for product states and Bell pairs it
+stays at $2-\sqrt2$.}
+\label{fig:main}
+\end{figure}
+
+\input{sections/setting.tex}
+
+\input{sections/law.tex}
+
+\input{sections/properties.tex}
+
+\input{sections/operational.tex}
+
+\input{sections/finite-separation.tex}
+
+\input{sections/critical.tex}
+
+\input{sections/entropy.tex}
+
+
+
+\input{sections/interacting.tex}
+
+\input{sections/qft.tex}
+
+\input{sections/discussion.tex}
+
+\appendix
+
+\input{sections/game-rules.tex}
+
+\input{sections/robust-proof.tex}
+
+\input{sections/xx84-certificate.tex}
+\input{sections/xx-assisted-certificate.tex}
+
+\input{sections/tower-proof.tex}
+
+\input{sections/xx-mesh.tex}
+\input{sections/arbitrary-cuts.tex}
+\input{sections/xx-full-proof.tex}
+\input{sections/rank-variance.tex}
+
+\input{sections/xxz-proof.tex}
+
+\input{sections/interacting-proof.tex}
+
+\input{sections/scaling.tex}
+
+\input{sections/numerics.tex}
+
+\small
+\setlength{\bibsep}{3pt plus 0.5pt minus 0.5pt}
+\begin{thebibliography}{99}
+
+\bibitem{Connes73} A.~Connes, Une classification des facteurs de type III,
+Ann.\ Sci.\ \'Ec.\ Norm.\ Sup\'er.\ \textbf{6}, 133--252 (1973).
+
+\bibitem{TakesakiII} M.~Takesaki, \emph{Theory of Operator Algebras II} (Springer, 2003).
+
+\bibitem{Hastings07} M.~B.~Hastings, An area law for one-dimensional quantum systems,
+J.\ Stat.\ Mech.\ P08024 (2007).
+
+\bibitem{Matsui13} T.~Matsui, Boundedness of entanglement entropy and split property of quantum
+spin chains, Rev.\ Math.\ Phys.\ \textbf{25}, 1350017 (2013).
+
+\bibitem{Matsui01} T.~Matsui, The split property and the symmetry breaking
+of the quantum spin chain, Commun.\ Math.\ Phys.\ \textbf{218},
+393--416 (2001), doi:10.1007/s002200100413.
+
+\bibitem{CalabreseCardy04} P.~Calabrese and J.~Cardy, Entanglement entropy and
+quantum field theory, J.\ Stat.\ Mech.\ P06002 (2004), arXiv:hep-th/0405152.
+
+\bibitem{CalabreseCardyPeschel10} P.~Calabrese, J.~Cardy and I.~Peschel,
+Corrections to scaling for block entanglement in massive spin-chains,
+J.\ Stat.\ Mech.\ P09003 (2010), arXiv:1007.0881.
+
+\bibitem{FagottiCalabrese11} M.~Fagotti and P.~Calabrese, Universal parity
+effects in the entanglement entropy of XX chains with open boundary
+conditions, J.\ Stat.\ Mech.\ P01017 (2011), arXiv:1010.5796.
+
+\bibitem{Arias23} R.~Arias, G.~Di~Giulio, E.~Keski-Vakkuri and E.~Tonni,
+Probing RG flows, symmetry resolution and quench dynamics through the
+capacity of entanglement, JHEP \textbf{03}, 175 (2023), arXiv:2301.02117.
+
+\bibitem{Haag} R.~Haag, \emph{Local Quantum Physics}, 2nd ed.\ (Springer, 1996).
+
+\bibitem{vLSW25} L.~van~Luijk, A.~Stottmeister and H.~Wilming, Critical fermions are universal
+embezzlers, Nat.\ Phys.\ \textbf{21}, 1141--1146 (2025); arXiv:2406.11747.
+
+\bibitem{vDH03} W.~van~Dam and P.~Hayden, Universal entanglement transformations without
+communication, Phys.\ Rev.\ A \textbf{67}, 060302(R) (2003).
+
+\bibitem{vLSWW24} L.~van~Luijk, A.~Stottmeister, R.~F.~Werner and H.~Wilming, Embezzlement of
+entanglement, quantum fields, and the classification of von Neumann algebras,
+arXiv:2401.07299v4 (2025).
+
+\bibitem{vLSWWPRL24} L.~van~Luijk, A.~Stottmeister, R.~F.~Werner and H.~Wilming,
+Relativistic Quantum Fields Are Universal Entanglement Embezzlers,
+Phys.\ Rev.\ Lett.\ \textbf{133}, 261602 (2024).
+
+\bibitem{CHSH69} J.~F.~Clauser, M.~A.~Horne, A.~Shimony and R.~A.~Holt, Proposed experiment to
+test local hidden-variable theories, Phys.\ Rev.\ Lett.\ \textbf{23}, 880--884 (1969).
+
+\bibitem{CHTW04} R.~Cleve, P.~H{\o}yer, B.~Toner and J.~Watrous, Consequences and limits of
+nonlocal strategies, in \emph{Proc.\ 19th IEEE Conference on Computational Complexity} (2004),
+pp.~236--249.
+
+\bibitem{BrunnerRMP} N.~Brunner, D.~Cavalcanti, S.~Pironio, V.~Scarani and S.~Wehner, Bell
+nonlocality, Rev.\ Mod.\ Phys.\ \textbf{86}, 419--478 (2014).
+
+\bibitem{JungePalazuelos11} M.~Junge and C.~Palazuelos, Large violation of Bell
+inequalities with low entanglement, Commun.\ Math.\ Phys.\ \textbf{306},
+695--746 (2011), arXiv:1007.3043.
+
+\bibitem{VidickWehner11} T.~Vidick and S.~Wehner, More nonlocality with less
+entanglement, Phys.\ Rev.\ A \textbf{83}, 052310 (2011), \mbox{arXiv:1011.5206}.
+
+\bibitem{LiangVertesiBrunner11} Y.-C.~Liang, T.~V\'ertesi and N.~Brunner,
+Semi-device-independent bounds on entanglement, Phys.\ Rev.\ A
+\textbf{83}, 022108 (2011), arXiv:1012.1513.
+
+\bibitem{TG} S.~Douglas and N.~Mghirbi, Finite games that read the type of a von Neumann
+algebra, version 1.1.0 (2026), \href{https://doi.org/10.5281/zenodo.23931154}{doi:10.5281/zenodo.23931154}.
+
+\bibitem{LeungWang14} D.~Leung and B.~Wang, Characteristics of universal embezzling families,
+Phys.\ Rev.\ A \textbf{90}, 042331 (2014).
+
+\bibitem{ZTG24} E.~Zanoni, T.~Theurer and G.~Gour, Complete characterization of entanglement
+embezzlement, Quantum \textbf{8}, 1368 (2024).
+
+\bibitem{KvLSW25} A.~Kera, L.~van~Luijk, A.~Stottmeister and H.~Wilming, Gaussian fermionic
+embezzlement of entanglement, arXiv:2509.15749.
+
+\bibitem{Sierant26} P.~Sierant, Exact quantification of nonlocal magic, arXiv:2608.28563.
+
+\bibitem{Harris26} S.~J.~Harris, Self-testing of exact entanglement embezzlement,
+arXiv:2605.22713.
+
+\bibitem{PaddockSchmidt26} C.~Paddock and S.~Schmidt, A commuting operator self-test for exact
+entanglement embezzlement, arXiv:2609.38083.
+
+\bibitem{Mancinska26} L.~Man\v{c}inska, The right entanglement for perfect nonlocality and
+zero-error communication, arXiv:2610.06512.
+
+\bibitem{Mermin90} N.~D.~Mermin, Simple unified form for the major no-hidden-variables theorems,
+Phys.\ Rev.\ Lett.\ \textbf{65}, 3373--3376 (1990).
+
+\bibitem{Peres90} A.~Peres, Incompatible results of quantum measurements, Phys.\ Lett.\ A
+\textbf{151}, 107--108 (1990).
+
+\bibitem{HornJohnson} R.~A.~Horn and C.~R.~Johnson, \emph{Matrix Analysis}, 2nd ed.\
+(Cambridge University Press, 2013), Section~7.4.
+
+\bibitem{PP} S.~Douglas and N.~Mghirbi, Perfect play in a binary-scoring nonlocal game requires
+infinite dimension but only finite energy, version 2.0.0 (2026),
+\href{https://doi.org/10.5281/zenodo.23772890}{doi:10.5281/zenodo.23772890}.
+
+\bibitem{LSM61} E.~Lieb, T.~Schultz and D.~Mattis, Two soluble models of an antiferromagnetic
+chain, Ann.\ Phys.\ \textbf{16}, 407--466 (1961).
+
+\bibitem{Araki84} H.~Araki, On the XY-model on two-sided infinite chain, Publ.\ Res.\ Inst.\
+Math.\ Sci.\ \textbf{20}, 277--296 (1984).
+
+\bibitem{ArakiMatsui85} H.~Araki and T.~Matsui, Ground states of the XY-model, Commun.\ Math.\
+Phys.\ \textbf{101}, 213--245 (1985).
+
+\bibitem{HartmanWintner54} P.~Hartman and A.~Wintner, The spectra of Toeplitz's matrices,
+Amer.\ J.\ Math.\ \textbf{76}, 867--882 (1954).
+
+\bibitem{ArakiWyss64} H.~Araki and W.~Wyss, Representations of canonical anticommutation
+relations, Helv.\ Phys.\ Acta \textbf{37}, 136--159 (1964).
+
+\bibitem{PowersStormer70} R.~T.~Powers and E.~St{\o}rmer, Free states of the canonical
+anticommutation relations, Commun.\ Math.\ Phys.\ \textbf{16}, 1--33 (1970).
+
+\bibitem{Araki71} H.~Araki, On quasifree states of CAR and Bogoliubov automorphisms, Publ.\
+Res.\ Inst.\ Math.\ Sci.\ \textbf{6}, 385--442 (1971).
+
+\bibitem{BR2} O.~Bratteli and D.~W.~Robinson, \emph{Operator Algebras and Quantum Statistical
+Mechanics 2}, 2nd ed.\ (Springer, 1997), Sections~5.2 and~5.3.
+
+\bibitem{KadisonRingrose1} R.~V.~Kadison and J.~R.~Ringrose, \emph{Fundamentals of the Theory
+of Operator Algebras I} (Academic Press, 1983), Chapter~5.
+
+\bibitem{AKLV13} I.~Arad, A.~Kitaev, Z.~Landau and U.~Vazirani, An area law and sub-exponential
+algorithm for 1D systems, arXiv:1301.1162.
+
+\bibitem{VLRK03} G.~Vidal, J.~I.~Latorre, E.~Rico and A.~Kitaev, Entanglement in quantum
+critical phenomena, Phys.\ Rev.\ Lett.\ \textbf{90}, 227902 (2003).
+
+\bibitem{Fisher94} D.~S.~Fisher, Random antiferromagnetic quantum spin chains, Phys.\ Rev.\ B
+\textbf{50}, 3799--3821 (1994).
+
+\bibitem{RefaelMoore04} G.~Refael and J.~E.~Moore, Entanglement entropy of random quantum
+critical points in one dimension, Phys.\ Rev.\ Lett.\ \textbf{93}, 260602 (2004).
+
+\bibitem{PeschelEisler09} I.~Peschel and V.~Eisler, Reduced density matrices and entanglement
+entropy in free lattice models, J.\ Phys.\ A \textbf{42}, 504003 (2009).
+
+\bibitem{Lauchli13} A.~M.~L\"auchli, Operator content of real-space entanglement spectra at
+conformal critical points, arXiv:1303.0741.
+
+\bibitem{CardyTonni16} J.~Cardy and E.~Tonni, Entanglement Hamiltonians in two-dimensional
+conformal field theory, J.\ Stat.\ Mech.\ 123103 (2016).
+
+\bibitem{ACT18} V.~Alba, P.~Calabrese and E.~Tonni, Entanglement spectrum degeneracy and the
+Cardy formula in 1+1 dimensional conformal field theories, J.\ Phys.\ A \textbf{51}, 024001
+(2018).
+
+\bibitem{IgloiJuhasz08} F.~Igl\'oi and R.~Juh\'asz, Exact relationship between the entanglement
+entropies of XY and quantum Ising chains, Europhys.\ Lett.\ \textbf{81}, 57003 (2008).
+
+\bibitem{PKL99} I.~Peschel, M.~Kaulke and \"O.~Legeza, Density-matrix spectra for integrable
+models, Ann.\ Phys.\ (Leipzig) \textbf{8}, 153--164 (1999).
+
+\bibitem{CalabreseLefevre08} P.~Calabrese and A.~Lefevre, Entanglement spectrum in
+one-dimensional systems, Phys.\ Rev.\ A \textbf{78}, 032329 (2008).
+
+\bibitem{Peschel03} I.~Peschel, Calculation of reduced density matrices from correlation
+functions, J.\ Phys.\ A \textbf{36}, L205--L208 (2003).
+
+\bibitem{BisognanoWichmann75} J.~J.~Bisognano and E.~H.~Wichmann, On the duality condition for a
+Hermitian scalar field, J.\ Math.\ Phys.\ \textbf{16}, 985--1007 (1975).
+
+\bibitem{Driessler75} W.~Driessler, Comments on lightlike translations and applications in
+relativistic quantum field theory, Commun.\ Math.\ Phys.\ \textbf{44}, 133--141 (1975).
+
+\bibitem{SummersWerner87b} S.~J.~Summers and R.~Werner, Maximal violation of Bell's inequalities
+is generic in quantum field theory, Commun.\ Math.\ Phys.\ \textbf{110}, 247--259 (1987).
+
+\bibitem{Buchholz74} D.~Buchholz, Product states for local algebras, Commun.\ Math.\ Phys.\
+\textbf{36}, 287--304 (1974).
+
+\bibitem{DoplicherLongo84} S.~Doplicher and R.~Longo, Standard and split inclusions of von
+Neumann algebras, Invent.\ Math.\ \textbf{75}, 493--536 (1984).
+
+\bibitem{Dalmonte18} M.~Dalmonte, B.~Vermersch and P.~Zoller, Quantum simulation and spectroscopy
+of entanglement Hamiltonians, Nat.\ Phys.\ \textbf{14}, 827--831 (2018).
+
+\bibitem{Kokail21} C.~Kokail, R.~van~Bijnen, A.~Elben, B.~Vermersch and P.~Zoller, Entanglement
+Hamiltonian tomography in quantum simulation, Nat.\ Phys.\ \textbf{17}, 936--942 (2021).
+
+\bibitem{Otte22} P.~Otte, A Szeg\H{o} limit theorem related to the Hilbert matrix,
+Rocky Mountain J.\ Math.\ \textbf{54}(5), 1447--1472 (2024),
+doi:10.1216/rmj.2024.54.1447; arXiv:2207.11029.
+
+\bibitem{SummersWerner87c} S.~J.~Summers and R.~Werner, Bell's inequalities and quantum field theory. II. Bell's inequalities are maximally violated in the vacuum, J.\ Math.\ Phys.\ \textbf{28}, 2448--2456 (1987).
+
+\bibitem{LiuYi26} R.~Liu and J.~Yi, Translation-Invariant Pure States with Exotic Half-Chain Factors, arXiv:2610.24154 (2026).
+\bibitem{Chern19} S.~Chern, Asymptotics for the Fourier coefficients of eta-quotients, J.\ Number Theory \textbf{199}, 168--191 (2019); arXiv:1805.08759.
+\bibitem{Fedele20} E.~Fedele, The spectral density of Hankel operators with piecewise continuous symbols, Integral Equations Operator Theory \textbf{92}, 1 (2020), \href{https://doi.org/10.1007/s00020-019-2556-9}{doi:10.1007/s00020-019-2556-9}.
+\bibitem{Widom66} H.~Widom, Hankel matrices, Trans.\ Amer.\ Math.\ Soc.\ \textbf{121}, 1--35 (1966).
+\bibitem{deBoer19} J.~de Boer, J.~J\"arvel\"a and E.~Keski-Vakkuri, Aspects of capacity of entanglement, Phys.\ Rev.\ D \textbf{99}, 066012 (2019).
+\bibitem{ZhangLiuChen26} S.-X.~Zhang, S.~Liu and Y.-Q.~Chen, Entanglement embezzlement from diffusive hydrodynamics, arXiv:2609.26362 (2026).
+\bibitem{LiuCui26} L.-Y.-N.~Liu and J.~Cui, Entanglement, anti-flatness, and nonlocal nonstabilizerness: a unified perspective from entanglement spectrum, arXiv:2609.01993 (2026).
+\bibitem{NO} P.~Naaijkens and Y.~Ogata, The split and approximate split property in 2D systems:
+stability and absence of superselection sectors, Commun.\ Math.\ Phys.\ \textbf{392}, 921--950 (2022).
+\bibitem{Ogata} Y.~Ogata, A classification of pure states on quantum spin chains satisfying the split property with on-site finite group symmetries, Trans.\ Amer.\ Math.\ Soc.\ Ser.\ B \textbf{8}, 39--65 (2021).
+\bibitem{KMSW} M.~Keyl, T.~Matsui, D.~Schlingemann and R.~F.~Werner, Entanglement, Haag-duality and type properties of infinite quantum spin chains, Rev.\ Math.\ Phys.\ \textbf{18}, 935--970 (2006).
+
+\bibitem{ADW20} M.~Aizenman, H.~Duminil-Copin and S.~Warzel,
+Dimerization and N\'eel order in different quantum spin chains
+through a shared loop representation, Ann.\ Henri Poincar\'e
+\textbf{21}, 2737--2774 (2020), arXiv:2002.02543.
+
+\bibitem{AMP12} A.~Ac\'in, S.~Massar and S.~Pironio, Randomness versus
+nonlocality and entanglement, Phys.\ Rev.\ Lett.\ \textbf{108}, 100402 (2012).
+\bibitem{BP15} C.~Bamps and S.~Pironio, Sum-of-squares decompositions for a
+family of Clauser--Horne--Shimony--Holt-like inequalities and their application
+to self-testing, Phys.\ Rev.\ A \textbf{91}, 052111 (2015).
+
+\bibitem{Hulthen38} L.~Hulth\'en, \"Uber das Austauschproblem eines
+Kristalles, Ark.\ Mat.\ Astron.\ Fys.\ \textbf{26A}, no.~11,
+1--106 (1938).
+
+\end{thebibliography}
+
+\end{document}

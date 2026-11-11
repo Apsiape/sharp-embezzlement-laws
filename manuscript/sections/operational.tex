@@ -1,0 +1,315 @@
+% A proof insert for type-of-matter.tex. Uses the manuscript's theorem and math macros.
+
+\subsection{An explicit finite-resource strategy}\label{sec:operational-strategy}
+
+Write $\lambda_i=\sqrt{p_i}$ in decreasing order and pad the sequence with zeroes. Use labels $j\in\mathbb Z/9\mathbb Z$ and set $\lambda_{j,n}=\lambda_{9(n-1)+j+1}$ for $j=0,\ldots,8$. For each $j$ and $m\ge1$, define
+\[
+ a_{jm}=\lambda_{j,m},\qquad
+ b_{jm,k}=\lambda_{j+1+2k+r,\lceil m/2\rceil},\qquad
+ r=(m-1)\bmod 2,\quad k=0,1,2,3,
+\]
+where the first index of $\lambda$ is read modulo nine. For $b=(b_0,b_1,b_2,b_3)$ define $\bar b=(b_0+b_1+b_2+b_3)/4$ and
+\[
+ q_1=\tfrac12(b_0-b_1+b_2-b_3),\quad
+ q_2=\tfrac12(b_0+b_1-b_2-b_3),\quad
+ q_3=\tfrac12(b_0-b_1-b_2+b_3).
+\]
+Set
+\begin{equation}\label{eq:operational-loss}
+ \mathcal B(p)=\frac1{243}\sum_{j,m}
+ \left[(\sqrt2 a_{jm}-\bar b_{jm})^2
+       +8(q_{jm,1}^2+q_{jm,3}^2)+\frac{25}{4}q_{jm,2}^2\right].
+\end{equation}
+
+\begin{theorem}\label{thm:operational-upper}
+There is a strategy for $\GIII$ on $\psi$ with losing probability $\mathcal B(p)$ using no additional shared state. In particular,
+\[
+ 1-\omega(\psi)\le \min\{1/27,\mathcal B(p)\},\qquad
+ \mathcal B(p)\le \frac73\cE(\psi).
+\]
+If $\psi$ has Schmidt rank $d$, the sum in~\eqref{eq:operational-loss} can be restricted to $1\le m\le2\lceil d/9\rceil$.
+\end{theorem}
+
+\begin{proof}
+Use the real Pauli square with $Z=\operatorname{diag}(1,-1)$, $X=\left(\begin{smallmatrix}0&1\\1&0\end{smallmatrix}\right)$, $Y=\left(\begin{smallmatrix}0&-i\\i&0\end{smallmatrix}\right)$, and with tensor products written without the $\otimes$ symbol,
+\[
+ \begin{pmatrix}
+ ZI & IZ & ZZ\\
+ IX & XI & XX\\
+ ZX & XZ & YY
+ \end{pmatrix}.
+\]
+The entries in a row or column commute and their products give the required parity. On $\mathbb C^5=\mathbb C f\oplus (\mathbb C^2\otimes\mathbb C^2)$ use the joint spectral projections of a row or column, and the projection onto $f$ for the flag. For a sign triple $(s_1,s_2,s_3)$ of the required parity the projection on the four-dimensional summand is $\prod_i (I+s_i M_i)/2$, where $M_1,M_2,M_3$ are the relevant cells in order. The four row-2 basis vectors are
+\[
+ (e_0,e_1,e_2,e_3)=(|++\rangle_X,|-+\rangle_X,|+-\rangle_X,|--\rangle_X).
+\]
+The selected row-1 and column-1 vectors are $r_y=|0y\rangle_Z$ and $c_x=|0\rangle_Z\otimes|(-1)^x\rangle_X$. For $T_x$ the sign projections are onto $(f\pm c_x)/\sqrt2$, and the three triple projections are those of column 1 other than $c_x$. For $U_y$ use $(f\pm r_y)/\sqrt2$ and the other row-1 triple projections. These are complete orthogonal measurements.
+
+For a question in copy $j$, both players use the same identification of Schmidt coordinates with five-level blocks. The coordinate $(j,m)$ is $(f,m)$ and the coordinate $(j+1+2k+r,\lceil m/2\rceil)$ is $(e_k,m)$. This is a bijection between the padded countable coordinate space and $\{f,e_0,e_1,e_2,e_3\}\times\mathbb N$. Use the direct sum of the five-level measurements over $m$. For finite Schmidt rank, the identification on the Schmidt support is an isometry into $\mathbb C^5\otimes\mathbb C^{2\lceil d/9\rceil}$ and the compressed projections are a POVM. One can extend the POVM off the Schmidt support by any fixed outcome. Bob measures the original label for $\mathrm{Lab}$. Alice's row-1 flag selects label $j$ and her row-2 $+++ $ selects $e_0$, the pair of labels $j+1,j+2$. Both label tests pass exactly. If $p$ consists of ninefold equal blocks, the same construction has loss $2\cE(p)/243$, proving the assisted assertion of Theorem~\ref{thm:equiv}.
+
+In one block the state is the unnormalised vector $a|ff\rangle+\sum_k b_k|e_ke_k\rangle$. The block contributions add, since the copy's projections are diagonal in the block index. For each row-column test the flag component has zero loss, and the nonflag loss is $\tfrac14\sum_e(b_e-b_{\pi(e)})^2$, where the cell operator permutes the $X\otimes X$ basis by $\pi$ up to signs. Each of the three nonidentity flips of the $X$ bits occurs twice and the other cells are diagonal. The sum over nine tests is therefore
+\[
+ \sum_{e<e'}(b_e-b_{e'})^2=4\sum_e(b_e-\bar b)^2.
+\]
+In $(T_x,C_1)$ the sign sector groups the flag with $c_x$. On this block-diagonal state there are no flag-to-nonflag cross terms in the loss. Thus a loss is precisely a mismatch in the column-1 basis on the nonflag sector. Changing the first bit from $X$ to $Z$ gives total loss $2(q_1^2+q_3^2)$ over the two values of $x$. Likewise $(R_1,U_y)$ compares outcomes in the $Z\otimes Z$ basis, where the four diagonal entries of the nonflag coefficient matrix are $\bar b$. This gives $2\sum_e(b_e-\bar b)^2$ over the two values of $y$.
+
+When both answers are signs in $(T_x,U_y)$, the restricted state is
+\[
+ a|ff\rangle+(-1)^{xy}\frac{b_{2x}+b_{2x+1}}{2\sqrt2}|c_xr_y\rangle.
+\]
+Measuring the indicated sign projections gives loss $\tfrac12(a-(b_{2x}+b_{2x+1})/(2\sqrt2))^2$. The sum over $(x,y)$ is $(\sqrt2a-\bar b)^2+q_2^2/4$. The four contributions add to~\eqref{eq:operational-loss} because $\sum_e(b_e-\bar b)^2=q_1^2+q_2^2+q_3^2$ and the remaining question pairs are free.
+
+For the uniform bound let $P$ be orthogonal projection onto sequences constant on each consecutive block of nine coordinates. Put $v=\|(1-P)\lambda\|^2$ and $h=\|(1-D)\lambda\|=\sqrt{\cE(\psi)}$. The quadratic form in~\eqref{eq:operational-loss} is invariant under a simultaneous cyclic shift of all label blocks, so its bilinear form vanishes between $P\lambda$ and $(1-P)\lambda$. This follows by averaging the latter argument over the nine shifts. On $P\lambda$ its value is $2\|(1-D)P\lambda\|^2/243$, since the four $b$ entries are equal. For each copy the quadratic form inside the sum is at most $8(a^2+\sum_k b_k^2)$. Indeed, in the orthonormal coordinates $a,2\bar b,q_1,q_2,q_3$ the first square has coefficient norm squared $9/4$, and the other coefficients are at most $8$. Each copy uses every coordinate exactly once. Hence
+\begin{equation}\label{eq:operational-adaptive}
+ \mathcal B(p)\le \frac2{243}\|(1-D)P\lambda\|^2+\frac8{27}v
+ \le \frac2{243}(h+\sqrt{8v/9})^2+\frac8{27}v.
+\end{equation}
+For the second inequality use $(1-D)P\lambda=P(1-D)\lambda+PD(1-P)\lambda$. For one zero-mean block $x\in\mathbb R^9$, applying $D$ and averaging the resulting two blocks gives two constant vectors with entries $\pm (x_1+x_2+x_3+x_4-x_6-x_7-x_8-x_9)/(9\sqrt2)$. Thus $\|PD(1-P)\|\le\sqrt{8/9}$.
+
+The variance of nine real numbers in a range of length $R$ is at most $20R^2/9$, where the variance here means the sum of squared deviations from the mean. To see this, maximise the convex sum of squared deviations over the nine-dimensional box by choosing each coordinate at an endpoint. If $r$ coordinates are at one endpoint, the sum is $r(9-r)R^2/9$. The ranges of disjoint consecutive blocks of the decreasing sequence $\lambda$ sum to at most $\lambda_1$. Their squared ranges after the first two blocks sum to at most $\lambda_{19}^2$. In particular $v\le(20/9)p_1$, and a better estimate follows from the first 19 coordinates. Let $T$ act on $x\in\mathbb R^{19}$ by $(Tx)_i=x_i-x_{\lceil i/2\rceil}/\sqrt2$, and set
+\[
+ Q=\operatorname{diag}(I_9-J_9/9,I_9-J_9/9,20/9),
+\]
+where $J_9$ has all entries one. Then $v\le x^{\mathsf T}Qx$ at $x=(\lambda_1,\ldots,\lambda_{19})$. The $19\times19$ matrix $(15/2)T^{\mathsf T}T-Q$ is positive definite. An exact certificate is given below. It follows that $v\le(15/2)\|Tx\|^2\le(15/2)h^2$. Equation~\eqref{eq:operational-adaptive} gives
+\[
+ \mathcal B(p)\le\left[\frac{20}{9}+\frac2{243}(1+\sqrt{20/3})^2\right]\cE(\psi)<\frac73\cE(\psi).
+\]
+
+Finally, in each flagged magic-square copy a deterministic strategy loses at least one pair. If all row-column tests pass, the six flag statuses agree. Playing only flags forces the four sign tests to implement the contradictory classical CHSH constraints, while playing no flags forces the contradictory row and column parities of the magic square. Conversely, Bob can answer label $0$ and the players use all flags and all signs $+$ in copy $0$. For $j\ne0$ use
+\[
+ R_1=C_1=(-,+,-),\qquad R_2=R_3=C_2=(+,t,t),\qquad C_3=(-,t,t),
+\]
+and $T_x=C_1$, $U_y=R_1$, where $t=+$ exactly when $0\in\{j+1,j+2\}$. The copy loses just at $(R_3,C_1)$ and both label tests pass. Copy $0$ loses just at $(T_1,U_1)$. Thus the classical loss is exactly $9/243=1/27$.
+\end{proof}
+
+\paragraph{Exact matrix certificate.}
+Start with $H=(15/2)T^{\mathsf T}T-Q$. For $k=1,\ldots,19$, record $d_k=H_{kk}$ and replace every remaining entry $H_{ij}$, $i,j>k$, by $H_{ij}-H_{ik}H_{kj}/d_k$. With arithmetic in $\mathbb Q(\sqrt2)$ the integers $\lfloor 1000d_k\rfloor$ are
+\[
+ \begin{split}
+ &(3504,6418,10169,8726,11381,10778,11296,10649,11831,7230,\\
+ &\qquad3906,2185,3944,2287,3512,972,4004,2448,145).
+ \end{split}
+\]
+These positive pivots certify positive definiteness by successive Schur complements. The verification uses only rational operations and comparison of a rational number with a rational multiple of $\sqrt2$ by squaring.
+
+\paragraph{Leading coefficient for spread-out spectra.}
+In the proof above, $|\|(1-D)P\lambda\|-h|\le2\sqrt v$. Using the orthogonal splitting of~\eqref{eq:operational-loss} gives
+\[
+ \bigl|\mathcal B(p)-(2/243)\cE(\psi)\bigr|
+ \le \frac8{243}\sqrt{v\,\cE(\psi)}+\frac{80}{243}v,
+ \qquad v\le\frac{20}{9}p_1.
+\]
+Thus the explicit strategy uses no shared ancilla and has loss $(2/243)\cE(\psi)(1+o(1))$ along any sequence for which $p_1=o(\cE(\psi))$.
+
+\paragraph{Implementation in a known Schmidt basis.}
+For copy $j$, reversibly decompose a zero-based Schmidt index $i$ into its quotient and remainder upon division by nine. If the remainder is $j$, keep the quotient as block index and set the five-level register to $f$. Otherwise subtract $j$ modulo nine, subtract one, and write the result as $2k+r$ with $0\le k\le3$ and $r=0,1$. Set the register to $e_k$ and double the old quotient and add $r$ to obtain the block index. The inverse recovers the original quotient and remainder from these registers. With binary index registers, reversible arithmetic for this isometry and its inverse has a gate count and workspace polynomial in $\log d$. It is followed by a fixed five-level measurement independent of $d$. The change to the Schmidt basis is a separate state-dependent operation.
+
+\begin{corollary}\label{cor:operational-truncation}
+Let $p^{(d)}$ be the first $d$ Schmidt probabilities renormalised by $1-\tau$, where $\tau=\sum_{i>d}p_i<1$. There is a strategy on $\psi$ with loss at most
+\[
+ (1-\tau)\min\{1/27,\mathcal B(p^{(d)})\}+\tau/27.
+\]
+For any state $\rho$ at trace distance at most $\eta$ from $|\psi\rangle\langle\psi|$, the same strategy on $\rho$ has loss at most this bound plus $\eta$.
+\end{corollary}
+
+\begin{proof}
+Use the better of the explicit and classical strategies on the Schmidt prefix and the classical strategy on its orthogonal complement. The local measurements are block diagonal and both sides' Schmidt projections agree on the state, so the loss is the probability-weighted sum of the two losses. For the noisy state use $0\le L\le I$ and $|\operatorname{Tr}L(\rho-\sigma)|\le\tfrac12\|\rho-\sigma\|_1$ for states $\rho,\sigma$.
+\end{proof}
+
+\subsection{An explicit lower bound for maximally entangled states}\label{sec:operational-lower}
+
+Man\v{c}inska proves a dimension-independent gap for maximally entangled
+states on the single flagged magic square and constructs a rank-five
+perfect resource~\cite[Corollary~4 and Proposition~1]{Mancinska26}.
+The existence of a positive gap for $G$ already follows by restriction to
+its nine copies. The next theorem gives an explicit constant and
+quantitative stability bounds.
+
+% Proof insert for the uniform 243-pair game. Uses manuscript math macros.
+\begin{theorem}\label{thm:operational-tracial}
+For every finite local dimension and every strategy on $\Phi_d$ with
+arbitrary POVMs, the losing probability in $\GIII$ is at least
+\begin{equation}\label{eq:operational-tracial}
+ \gamma=\frac{3-2\sqrt2}{243}>7.06\times10^{-4}.
+\end{equation}
+The bound holds for mixtures of maximally entangled states on arbitrary
+Schmidt supports. At trace distance $\eta$ from such a mixture the losing
+probability is at least $\gamma-\eta$. For a pure state with decreasing Schmidt
+amplitudes $\lambda_i$ and a flat rank-$d$ state in the same local spaces,
+\[
+ 1-\omega(\psi)\ge
+ \left(\sqrt\gamma-\sqrt{2-2d^{-1/2}\sum_{i=1}^d\lambda_i}\right)_+^2.
+\]
+\end{theorem}
+
+\begin{proof}
+Compress all effects to the Schmidt supports and absorb the transpose into
+Bob's effects. The resulting probabilities are $\tau(AB)$, with
+$\tau=\operatorname{Tr}/d$. Write $\|A\|_2^2=\tau(A^*A)$. For effects $P,Q$,
+the binary mismatch $\mu=\tau(P+Q-2PQ)$ bounds both
+$|\tau(P)-\tau(Q)|$ and $\|\sqrt P-\sqrt Q\|_2^2$. The first assertion follows
+from the two nonnegative mismatches $\tau(P(I-Q))$ and $\tau((I-P)Q)$.
+The second follows from $\tau(\sqrt P\sqrt Q)\ge\tau(P\sqrt Q)\ge\tau(PQ)$
+by positivity and the trace property.
+
+In a fixed copy, write $P_i,Q_j$ for the row and column flag effects,
+and $m_{ij}$ for the conditional loss at $(R_i,C_j)$. Let
+$M=\sum_{i,j}m_{ij}$, let $N$ be the sum of the four conditional losses at
+$(T_x,C_1)$ and $(R_1,U_y)$, and let $L$ be the sum of the four conditional
+losses at $(T_x,U_y)$. Write $\alpha$ for the loss at $(R_1,\mathrm{Lab})$ and
+$B$ for the matching label effect. Use the positive contraction
+\[
+ W=\left(\frac{\sqrt{P_1}+\sqrt{Q_1}}2\right)^2,
+ \qquad w=\tau(W).
+\]
+Each $m_{ij}$ bounds the binary flag mismatch. The coefficient matrix
+\[
+ \frac19\begin{pmatrix}5&2&2\\2&-1&-1\\2&-1&-1\end{pmatrix}
+\]
+has row sums and column sums $(1,0,0)$ and squared Frobenius norm $5/9$.
+Thus $\sqrt{P_1}-\sqrt{Q_1}$ is the corresponding linear combination of
+$\sqrt{P_i}-\sqrt{Q_j}$, giving
+$\|\sqrt{P_1}-\sqrt{Q_1}\|_2^2\le5M/9$. In addition, the flag comparison
+graph has three edge-disjoint paths from $R_1$ to $C_1$, one direct and
+the other two through $(C_i,R_i)$ for $i=2,3$. Summing the triangle
+inequalities for the trace differences along these paths gives
+$|\tau(P_1)-\tau(Q_1)|\le M/3$. Consequently,
+\begin{equation}\label{eq:tracial-weight}
+ w=\tfrac12\bigl(\tau(P_1)+\tau(Q_1)\bigr)
+      -\tfrac14\|\sqrt{P_1}-\sqrt{Q_1}\|_2^2
+ \ge\tau(B)-\alpha-\tfrac{11}{36}M.
+\end{equation}
+
+Let $E_x,F_y$ denote the sums of the sign effects of $T_x,U_y$, and let
+$S_x,H_y$ denote their signed differences. Put
+\[
+ d_x=\tau(W(I-E_x)),\qquad e_y=\tau(W(I-F_y)),\qquad
+ D=\sum_x d_x+\sum_y e_y.
+\]
+The calibration loss at $(T_x,C_1)$ bounds $\tau(Q_1(I-E_x))$, since a flag
+on $C_1$ requires a sign on $T_x$. The loss at $(R_1,U_y)$ likewise bounds
+$\tau(P_1(I-F_y))$. In each of the four norms defining the square roots of
+$d_x,e_y$, replace $\sqrt W$ by the corresponding flag square root.
+The change is bounded by $\|\sqrt{P_1}-\sqrt{Q_1}\|_2/2$ since the remaining
+factor is a contraction. Taking the Euclidean norm of the four bounds gives
+\begin{equation}\label{eq:tracial-deficits}
+ \sqrt D\le\sqrt N+\sqrt{5M/9}.
+\end{equation}
+
+Write $t_{xy}=(-1)^{xy}$. For each losing pair of sign effects $(A,D')$ at
+$(T_x,U_y)$, use the two Hilbert--Schmidt vectors $\sqrt A\sqrt{D'}$ and
+$\sqrt A W\sqrt{D'}$. The sum of the squared norms of the first vectors is
+$L$. For the second vectors, the sum is
+\[
+ q=\frac12\left(\sum_{x,y}\tau(WE_xWF_y)-C\right),\qquad
+ C=\sum_{x,y}t_{xy}\tau(WS_xWH_y).
+\]
+This follows by expanding the two losing sign combinations per pair.
+Their inner products sum, in real part, to
+\[
+ R=\frac12\operatorname{Re}\sum_{x,y}\tau(W E_xF_y-t_{xy}W S_xH_y).
+\]
+Therefore $R\le\sqrt{Lq}$. Since $0\le W,E_x,F_y\le I$, the sum of
+$\tau(WE_xWF_y)$ is at most $2\sum_x\tau(WE_x)$ and also at most
+$2\sum_y\tau(WF_y)$. Averaging gives
+\begin{equation}\label{eq:tracial-sign-cs}
+ R\le\sqrt{Lq},\qquad 0\le q\le 2w-\tfrac12 D-\tfrac12 C.
+\end{equation}
+
+For Hermitian $S_x,H_y$, split the Hilbert--Schmidt inner products of
+$S_x\sqrt W,H_y\sqrt W$ with the weights $W$ and $I-W$. The contribution
+from $W$ is $C$, the CHSH sum of the vectors $\sqrt W S_x\sqrt W$ and
+$\sqrt W H_y\sqrt W$. Let $U$ be the sum of their four squared norms.
+The CHSH coefficient matrix has operator norm $\sqrt2$, so
+$|C|\le U/\sqrt2$. The contribution from $I-W$ is at most the sum of
+the four squared norms of $(I-W)^{1/2}S_x\sqrt W,(I-W)^{1/2}H_y\sqrt W$
+divided by $\sqrt2$. Each signed difference satisfies $S_x^2\le E_x$ or
+$H_y^2\le F_y$. Indeed, the row operator $[\sqrt{A_+}\ \sqrt{A_-}]$ is a
+contraction and the signed difference factors through it, with right factor
+the column of $\sqrt{A_+},-\sqrt{A_-}$. Thus the sum of the four squared
+norms in the $I-W$ contribution is at most $4w-D-U$. We obtain
+\[
+ \operatorname{Re}\sum_{x,y}t_{xy}\tau(W S_xH_y)
+ \le \frac{4w-D}{\sqrt2}+C-|C|.
+\]
+Expanding $E_xF_y$ around the identity gives
+$\operatorname{Re}\sum_{x,y}\tau(W E_xF_y)\ge4w-3D$. In fact the linear
+terms sum to $-2D$ and the four quadratic terms have total absolute value
+at most $\sum_{x,y}\sqrt{d_xe_y}\le D$ by Cauchy--Schwarz and the
+contraction bounds $(I-E_x)^2\le I-E_x$ and $(I-F_y)^2\le I-F_y$.
+Combining these estimates gives
+\[
+ R\ge (2-\sqrt2)w-\left(\tfrac32-\tfrac1{2\sqrt2}\right)D
+                  +\tfrac12(|C|-C).
+\]
+
+Set $u=(2-\sqrt2)^{-1}$, $c=(2-\sqrt2)/2$, and $k=(10-\sqrt2)/8$.
+Use $\sqrt{Lq}\le uL+q/(4u)$ and~\eqref{eq:tracial-sign-cs}. The term
+$-C/(8u)-(|C|-C)/2$ is nonpositive for every real $C$, so the preceding
+lower bound for $R$ implies $cw\le uL+kD$. Substituting
+\eqref{eq:tracial-weight} and~\eqref{eq:tracial-deficits} gives
+\[
+ c\tau(B)\le uL+c\alpha+
+   \begin{pmatrix}\sqrt M&\sqrt N\end{pmatrix}
+   \begin{pmatrix}1-2\sqrt2/9 & k\sqrt5/3\\ k\sqrt5/3&k\end{pmatrix}
+   \begin{pmatrix}\sqrt M\\\sqrt N\end{pmatrix}.
+\]
+The displayed matrix is bounded above by $uI$: the difference has first
+diagonal entry $13\sqrt2/18$ and determinant $(5-2\sqrt2)/288$, both
+positive. Since $c\le u$, we conclude $c\tau(B)\le u(L+\alpha+M+N)$.
+Sum over the nine copies and use that the label effects sum to the identity.
+All counted losses are disjoint, so the total conditional loss over the
+243 pairs is at least $c/u=3-2\sqrt2$.
+
+Linearity for fixed effects and trace-distance continuity give the mixed-state
+extensions. For pure states, $\big|\|K^{1/2}\psi\|-\|K^{1/2}\phi\|\big|\le
+\|\psi-\phi\|$ for any loss operator $0\le K\le I$. Take $\phi$ flat on the
+first $d$ Schmidt basis vectors, with overlap $d^{-1/2}\sum_{i=1}^d\lambda_i$.
+\end{proof}
+
+\paragraph{A weighted variant.}
+Assign raw weight $2$ to each $(R_1,C_1)$, weight $1$ to each of the four
+sign pairs and the four calibration pairs in a copy, and weight $1/5$ to
+each $(R_1,\mathrm{Lab})$. Any additional pairs can receive arbitrary
+nonnegative weights. The weighted sum of losses on every $\Phi_d$ is at
+least $3-2\sqrt2$. Indeed, using only the loss $\beta$ at $(R_1,C_1)$,
+the preceding argument has $w\ge\tau(B)-\alpha-3\beta/4$ and
+$\sqrt D\le\sqrt N+\sqrt\beta$. The last matrix in the proof is replaced
+by $\left(\begin{smallmatrix} k+3c/4&k\\k&k\end{smallmatrix}\right)$,
+which is bounded above by $u\operatorname{diag}(2,1)$. The difference
+has first diagonal entry $3\sqrt2/2$ and determinant $9/32-\sqrt2/16$,
+both positive. Also $c/u<1/5$. Summing the resulting bound over copies
+gives the raw floor, to be divided by the total raw weight for a game value.
+
+\paragraph{An exact finite separation.}
+Set $(x_0,\ldots,x_5)=(15,11,10,8,6,3)$. Let $\chi$ have decreasing
+Schmidt amplitudes $x_0/\sqrt{555}$ at rank one and
+$x_k/\sqrt{555\cdot2^{k-1}}$ at ranks $2^{k-1}<i\le2^k$ for $1\le k\le5$.
+These amplitudes have squared norm one, and with $x_6=0$ their duplication
+error is
+\[
+ \cE(\chi)=\frac{(1-1/\sqrt2)^2x_0^2+(x_1-x_0/\sqrt2)^2
+                 +\sum_{k=2}^6(x_k-x_{k-1})^2}{555}
+          =\frac{598-390\sqrt2}{555}.
+\]
+Prepare $\chi\otimes\Phi_9$, which has Schmidt rank $288$ and fits in nine
+qubits per party. The strategy of Theorem~\ref{thm:operational-upper} has
+loss $2\cE(\chi)/243<\gamma$, since $330\sqrt2<469$. A circuit can prepare
+the six shell weights, form the uniform superposition within each shell
+controlled by its index, and copy the computational index into the second
+register before distributing the registers. The leading nonzero bit gives
+the shell index for reversible erasure.
+
+
+\paragraph{A finite state separated by the two bounds.}
+For an integer $K\ge5$ set $\theta=\pi/(K+3)$, $x_k=\sin((k+2)\theta)$ for $1\le k\le K$, $x_0=\sqrt2 x_1$, and $x_{K+1}=0$. A rank-$2^K$ state $\chi$ has normalised Schmidt amplitudes proportional to $x_0$ at rank $1$ and to $x_k/\sqrt{2^{k-1}}$ on the ranks $2^{k-1}<i\le2^k$. These amplitudes are decreasing because $x_1\le x_0$ and $x_{k+1}/x_k\le(k+3)/(k+2)\le4/3$ for $k\ge1$, by monotonicity of $\sin u/u$ on $(0,\pi)$. Putting $A=\sum_{k=0}^K x_k^2$, the duplication formula yields
+\[
+ A\cE(\chi)=(\sqrt2-1)^2x_1^2+\sum_{k=2}^{K+1}(x_k-x_{k-1})^2
+ =2(1-\cos\theta)\sum_{k=1}^Kx_k^2+\bigl[\sin(2\theta)/\sin(3\theta)-(2\sqrt2-2)\bigr]x_1^2.
+\]
+The first equality follows by summing the square of $(1-D)\lambda$ over the dyadic rank intervals. The second uses the sine recurrence with fictitious left value $\sin(2\theta)$. Since $\cos\theta>9/10$, one has $\sin(2\theta)/\sin(3\theta)=2\cos\theta/(4\cos^2\theta-1)<45/56<2\sqrt2-2$. Hence $\cE(\chi)\le\theta^2$. Prepare $\psi=\chi\otimes\Phi_9$ so that the ninefold amplitudes are part of the target spectrum. For $K=9$, this shared state fits in 13 qubits per party, and the measurements above give
+\[
+ \mathcal B(p)=\frac2{243}\cE(\chi)\le\frac{2\pi^2}{243\cdot12^2}<5.65\times10^{-4}<\gamma.
+\]
+The Schmidt basis can be the computational basis. A circuit can prepare the shared shell state by preparing the $K+1$ shell weights, forming a uniform superposition within each shell controlled by the shell index, and copying the computational index into the second register before distributing the registers. The shell index can be erased reversibly because the leading nonzero bit gives the shell. This circuit and the local measurements use a number of elementary gates polynomial in $K$, at fixed precision.
+The inequality for $L^{1/2}$ also implies that a phase-aligned preparation error of at most $2\times10^{-3}$ in vector norm still gives loss below $\gamma$ with these measurements.

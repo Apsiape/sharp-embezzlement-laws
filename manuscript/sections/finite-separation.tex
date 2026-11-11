@@ -1,0 +1,226 @@
+\section{Finite-chain separations}\label{sec:finite-separation}
+
+Three constructions distinguish finite critical-chain resources from
+every maximally entangled state. The original game has an assisted
+certificate at $N=2^{19}$, using the chain together with one shared
+nine-dimensional maximally entangled register, and a chain-only
+certificate at $N=2^{84}$. A four-spin construction uses a tagged
+tilted CHSH test and the chain ground state alone.
+
+\subsection{The original game with a shared nine-dimensional register}
+\label{sec:xx-assisted-separation}
+
+\begin{theorem}[Assisted finite XX separation]\label{thm:xx-assisted-separation}
+Let $\psi_N$ be the ground state of the half-filled open XX chain on
+$N$ sites, cut in the middle. In the original uniform game $G$,
+$\psi_{2^{19}}\otimes\Phi_9$ admits a strategy with loss below
+$0.000703$, and $\psi_{2^{20}}\otimes\Phi_9$ admits one with loss below
+$0.000663$. Both losses are strictly below
+$\gamma=(3-2\sqrt2)/243$, the floor of Theorem~\ref{thm:operational-tracial}
+for every maximally entangled state of arbitrary finite rank and arbitrary
+local POVMs.
+\end{theorem}
+
+\begin{proof}
+The strategy of Theorem~\ref{thm:operational-upper} on
+$\psi_N\otimes\Phi_9$ has loss exactly $2\cE(\psi_N)/243$.
+Appendix~\ref{app:xx-assisted-certificate} bounds this expression using
+the exact finite XX covariance, certified quadrature and spectral errors,
+and directed integer rank calculations. The resulting upper bounds are
+$0.000702783850$ and $0.000662385080$, respectively.
+\end{proof}
+
+The auxiliary register is part of the shared input. Providing the same
+register to a maximally entangled competitor gives
+$\Phi_D\otimes\Phi_9\simeq\Phi_{9D}$.
+The prescribed assisted strategy beats $\gamma$ exactly when
+\[
+ \cE(\psi_N)<\frac{3-2\sqrt2}{2}=0.0857864376\ldots.
+\]
+The numerical estimates for $\cE(\psi_N)$ at $N=2^{18},2^{19},2^{20}$
+round to $0.0908$, $0.0854$, and $0.0805$, respectively. The certified
+intervals in Table~\ref{tab:xx-assisted-certificate} lie above the threshold
+at $N=2^{18}$ and below it at the other two sizes.
+
+\subsection{An explicit finite chain for the original game}\label{sec:xx84-separation}
+
+\begin{theorem}\label{thm:xx84-separation}
+The ground state of the open XX chain of length $N=2^{84}$, cut in the
+middle, has a strategy in the uniform game $\GIII$ with loss below
+$0.000461$. The chain state is the strategy's sole shared
+resource. This loss is strictly below the floor for every maximally
+entangled state in Theorem~\ref{thm:operational-tracial}.
+\end{theorem}
+
+The chain length is far beyond the sizes of the numerical sweep. The
+certificate uses a $1418\times1418$ approximation to one parity block
+of the exact cross covariance and integer rank counts for a finite model
+of its Schmidt spectrum. The dimension of the covariance calculation
+grows with the number of dyadic intervals in the half-chain. The model
+strategy has loss below $0.000410720762$. Propagating the spectral
+approximation and arithmetic bounds gives the certified loss bound in
+the theorem for the physical ground state. Appendix~\ref{app:xx84-certificate}
+gives the complete calculation.
+
+\subsection{A four-spin separation with tilted CHSH}
+\label{sec:finite-chain-hybrid}
+
+The four-spin construction realizes the known tilted CHSH separation on
+an XX-chain ground state~\cite{AMP12,BP15}. For $0<\alpha\le2$, define
+$T_\alpha$ with binary answers $a,b\in\{-1,1\}$.
+Each of the four pairs $(x,y)\in\{0,1\}^2$ is asked with probability
+$1/(4+\alpha)$ and wins when $ab=(-1)^{xy}$. The pair $(0,*)$ is asked
+with probability $\alpha/(4+\alpha)$ and wins when $a=1$. The question
+$0$ is the same in both rules. If $A_x,B_y$ denote the differences of the
+two answer effects, the loss is $(4+\alpha-S_\alpha)/(2(4+\alpha))$ where
+\begin{equation}\label{eq:tilted-score}
+ S_\alpha=\left\langle\alpha A_0+A_0(B_0+B_1)+A_1(B_0-B_1)\right\rangle.
+\end{equation}
+Let $H_\alpha$ choose $\GIII$ with probability $1/10$ and $T_\alpha$ with
+probability $9/10$. Each player receives the branch tag as part of the question.
+
+\begin{theorem}\label{thm:finite-chain-hybrid}
+The ground state of the four-site open XX chain, cut after site two, has a
+strategy on $H_1$ with loss less than $0.177$. Every maximally entangled state,
+of any finite rank and with arbitrary local POVMs, has loss at least $0.180$.
+The ground state is the sole shared resource, and the strategy plays $G$
+classically. The same loss floor holds for mixtures of maximally entangled
+states.
+\end{theorem}
+
+\begin{proof}
+On $\Phi_d$, absorb Bob's transpose into his effects and write
+$\tau=\Tr/d$. For fixed $B_0,B_1$, maximizing over the selfadjoint
+contractions $A_0,A_1$ allows them to be reflections. Indeed,
+$\max_{-I\le A\le I}\tau(AK)=\tau|K|$ for every selfadjoint $K$, and the
+maximum is attained by the spectral sign of $K$ with either sign on its kernel.
+Optimizing over Bob's two contractions now yields
+\[
+ \alpha\tau(A_0)+\tau|A_0+A_1|+\tau|A_0-A_1|.
+\]
+The selfadjoint operator $K=(A_0A_1+A_1A_0)/2$ commutes with the reflections.
+On its $k$ eigenspace, $|A_0\pm A_1|=\sqrt{2\pm2k}\,I$.
+For $-1<k<1$, the reflection $(A_1-kA_0)/\sqrt{1-k^2}$ anticommutes
+with $A_0$, so $\Tr A_0=0$ on this eigenspace. Its contribution per
+dimension is at most $2\sqrt2$. At $k=\pm1$ the contribution is at most
+$2+\alpha$. Thus
+\begin{equation}\label{eq:tilted-tracial}
+ S_\alpha(\Phi_d)\le\max\{2\sqrt2,2+\alpha\}.
+\end{equation}
+Local effects can always be compressed to the Schmidt supports, so this
+argument covers arbitrary local POVMs. Linearity for fixed measurements
+extends the corresponding loss bound to mixtures of flat states.
+
+Use the hopping convention $-\sum_{j=1}^3(a_j^*a_{j+1}+a_{j+1}^*a_j)$ for
+the open XX chain after Jordan--Wigner transformation. Reversing the hopping
+sign is an on-site unitary change of basis. The occupied standing waves are
+$v_1=\sqrt{2/5}\,(s,t,t,s)$ and $v_2=\sqrt{2/5}\,(t,s,-s,-t)$, where
+$s=\sin(\pi/5)$ and $t=\sin(2\pi/5)$. In the left half their covariance is
+\[
+ \frac25\begin{pmatrix}s^2+t^2&2st\\2st&s^2+t^2\end{pmatrix}
+   =\begin{pmatrix}1/2&1/\sqrt5\\1/\sqrt5&1/2\end{pmatrix}.
+\]
+In particular $\nu=1/2+1/\sqrt5$ is its larger eigenvalue. Define the
+left orbitals $\ell_1=(1,1)/\sqrt2$, $\ell_2=(-1,1)/\sqrt2$ and the
+right orbitals $r_1=(1,-1)/\sqrt2$, $r_2=(1,1)/\sqrt2$. The occupied
+vectors $(v_1+v_2)/\sqrt2$ and $(v_1-v_2)/\sqrt2$ are respectively
+$\sqrt\nu\,\ell_1+\sqrt{1-\nu}\,r_1$ and
+$\sqrt{1-\nu}\,\ell_2+\sqrt\nu\,r_2$.
+
+Use local occupation bases in these orbitals with left creation operators
+ordered before right ones. If $(n_1,n_2)$ are the left occupations in the
+two occupied orbital pairs, the right occupations are $(1-n_1,1-n_2)$
+and the Slater determinant has phase $(-1)^{(1-n_1)n_2}$ in that component,
+up to an overall phase. The local basis changes
+\[
+ \ket{n_1n_2}_A\longmapsto (-1)^{(1-n_1)n_2}\ket{1-n_1,n_2}_A,
+ \qquad
+ \ket{m_1m_2}_B\longmapsto\ket{m_1,1-m_2}_B
+\]
+therefore give exactly two Schmidt qubit pairs, both in
+$\ket{\xi}=\sqrt\nu\ket{00}+\sqrt{1-\nu}\ket{11}$.
+On the first pair measure $A_0=Z$, $A_1=X$ and
+$B_0=(\sqrt5Z+X)/\sqrt6$, $B_1=(\sqrt5Z-X)/\sqrt6$. Its three
+expectations $\langle Z\otimes I\rangle$, $\langle Z\otimes Z\rangle$,
+and $\langle X\otimes X\rangle$ are $2/\sqrt5$, $1$, and $1/\sqrt5$.
+The score in~\eqref{eq:tilted-score} is consequently
+\begin{equation}\label{eq:tilted-xx4-score}
+ S_\alpha(\psi_4)\ge \frac{2\sqrt6+2\alpha}{\sqrt5}.
+\end{equation}
+The other pair is ignored. In the $\GIII$ branch use the deterministic
+strategy of Theorem~\ref{thm:operational-upper}. With $\alpha=1$ the
+total loss on $\psi_4$ is at most
+\[
+ \frac1{270}+\frac9{100}\left(5-\frac{2\sqrt6+2}{\sqrt5}\right)
+ <\frac{177}{1000}.
+\]
+For example, $\sqrt6>2449/1000$ and $\sqrt5<2237/1000$ show
+$(2\sqrt6+2)/\sqrt5>37/12$. Equation~\eqref{eq:tilted-tracial}
+gives loss at least $(9/100)(5-3)=9/50$ on every $\Phi_d$.
+\end{proof}
+
+\paragraph{Question weights.}
+The separation also holds with the rational weight $\alpha=5/6$.
+One can draw the four CHSH pairs with six units of weight each and the
+marginal pair with five units. The tracial score bound is $17/6$ and the
+four-site strategy gives score at least $(2\sqrt6+5/3)/\sqrt5$.
+The total loss is less than $0.181$ on the ground state and at least
+$27/145>0.186$ on all flat states. For the fixed four-site observables in
+the proof, the unnormalized score gap over~\eqref{eq:tilted-tracial} is
+largest at $\alpha=2\sqrt2-2$.
+
+\paragraph{Stability under preparation error.}
+For either question distribution, write $L_{\rm flat}$ for the floor from
+\eqref{eq:tilted-tracial} and $L_4$ for the achieved four-site loss. The
+exact formulas give $L_{\rm flat}-L_4>0.0039$ at $\alpha=1$ and
+$L_{\rm flat}-L_4>0.0058$ at $\alpha=5/6$. Both inequalities follow by
+using $\sqrt6>2449489/10^6$ and $\sqrt5<2236068/10^6$ in the score.
+Trace distance $\eta$ from the four-site state raises the loss of its
+fixed strategy by at most $\eta$. Thus the separation survives preparation
+error in trace distance up to $0.0039$ or $0.0058$, respectively.
+
+\paragraph{The optimal benchmark and the type obstruction.}
+Ac\'in, Massar and Pironio give the sharp tilted CHSH score
+$\sqrt{8+2\alpha^2}$~\cite{AMP12}, and Bamps and Pironio give
+sum-of-squares decompositions~\cite{BP15}. For commuting local reflections
+$A_0,A_1,B_0,B_1$, set $C=(B_0+B_1)/2$, $D=(B_0-B_1)/2$,
+$U=(A_0A_1+A_1A_0)/2$ and $V=(A_0A_1-A_1A_0)/(2i)$.
+Then $C^2+D^2=I$, $CD+DC=0$, and $U^2+V^2=I$. If $W$ is the operator
+in~\eqref{eq:tilted-score},
+\[
+ W^2=(4+\alpha^2)I+R,\qquad R=4\alpha C+4\alpha U D+8V(iCD).
+\]
+The three terms of $R$ anticommute pairwise. For the commuting
+positive contractions $u=U^2$ and $c=C^2$ this gives
+\[
+ \frac{R^2}{16}=\alpha^2u+(1-u)\bigl[\alpha^2c+4c(1-c)\bigr]
+ \le \frac{(4+\alpha^2)^2}{16}I.
+\]
+The scalar bound follows by maximizing the quadratic on $0\le c\le1$
+and using $\alpha^2\le(4+\alpha^2)^2/16$. Hence $\norm W^2\le8+2\alpha^2$.
+Every selfadjoint contraction is an average of its spectral threshold
+reflections over thresholds in $[-1,1]$. Since $W$ is affine in each
+observable, the same score bound holds for contractions in commuting
+local von Neumann algebras. Equality for $0<\alpha<2$ is achieved on
+$\cos\theta\ket{00}+\sin\theta\ket{11}$ with
+$\sin(2\theta)=\sqrt{(4-\alpha^2)/(4+\alpha^2)}$, using $A_0=Z$, $A_1=X$
+and $B_{0,1}=(Z\pm\sin(2\theta)X)/\sqrt{1+\sin^2(2\theta)}$.
+The endpoint $\alpha=2$ is attained on a product state.
+
+Consequently the loss of $H_\alpha$ is at least
+\[
+ L_\alpha^* = \frac9{10}\frac{4+\alpha-\sqrt{8+2\alpha^2}}{2(4+\alpha)}.
+\]
+Equality forces a perfect strategy in the $\GIII$ branch. In particular,
+the original obstruction to exact play in the presence of a semifinite
+local trace applies to attaining this benchmark.
+For $0<\alpha<2$, the ground states of the finite open XX chains approach
+$L_\alpha^*$ as $N\to\infty$. The $\GIII$ branch approaches perfect play
+by Theorem~\ref{thm:value}. For $T_\alpha$, the exact finite-chain
+one-body entanglement energies contain a mode tending to the strictly
+positive energy $\log\cot^2\theta$. Indeed, in any fixed neighbourhood
+of this energy there are order $\log N$ mesh entries from
+Corollary~\ref{cor:xx-mesh}. The bounded sum of singular-value errors
+forces at least one true mode in the neighbourhood for all sufficiently
+large $N$. Measuring that mode approaches the optimal two-qubit score.
+The two branch strategies can be selected independently by the question tags.

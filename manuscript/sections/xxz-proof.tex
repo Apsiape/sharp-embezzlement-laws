@@ -1,0 +1,58 @@
+\section{Proof of the near-critical law for the XXZ CTM spectrum}\label{app:xxz-law}
+
+\begin{proof}[Proof of Theorem~\ref{thm:xxz-law}]
+Put $a=\pi^2/12$ and $\ell(t)=\log\mathcal Z(t)$. Writing $\eta_{\rm D}$
+for the Dedekind eta function, the product in~\eqref{eq:xxz-ctm-spectrum}
+gives $\mathcal Z(t)=e^{t/24}\eta_{\rm D}(it/\pi)/\eta_{\rm D}(it/(2\pi))$.
+The eta transformation $\eta_{\rm D}(i/y)=\sqrt y\,\eta_{\rm D}(iy)$
+for $y>0$ yields
+\[
+ \ell(t)=a/t-\tfrac12\log2+t/24-\ell(2\pi^2/t).
+\]
+Writing $w=2\pi^2/t$, the entropy
+$S=\ell(t)-t\ell'(t)$ equals
+$2a/t-\tfrac12\log2-\ell(w)-w\ell'(w)$.
+The product gives $\ell^{(k)}(w)=O(e^{-w})$ for $0\le k\le2$, so the
+last two terms are $O(we^{-w})$. Differentiating twice also gives the
+information variance $V=t^2\ell''(t)=2a/t+O(w^2e^{-w})$.
+
+Apply Proposition~\ref{prop:xx-count-to-error} with $W=t^{-1}$,
+one-mode energies $tj$, and $L(z)=\ell(tz)$. Define the analytic logarithm
+by summing $\log(1+e^{-tjz})$ over $j\ge1$, with each term given by its
+power series in $e^{-tjz}$. For $\operatorname{Re}z>1/2$,
+\[
+ |L(z)|\leq\sum_{k\ge1}\frac{1}{k(e^{kt/2}-1)}
+       \leq\frac2t\sum_{k\ge1}\frac1{k^2}.
+\]
+Cauchy's estimate gives the required derivative bounds on a fixed
+neighborhood of $[3/4,5/4]$. The tilted occupations are independent
+Bernoulli variables with probabilities $(1+e^{\beta tj})^{-1}$.
+For $M=\lfloor t^{-1}\rfloor$, modes $j\leq M$ have $tj\leq1$, so
+their Bernoulli variances are bounded below. Thus
+$v_\beta\geq c\sum_{j\leq M}(tj)^2\geq c'W$.
+Their characteristic factors also give
+\[
+ |\varphi_\beta(u)|\leq
+   \exp\!\left[-c\sum_{j=1}^M\sin^2(jtu/2)\right].
+\]
+Put $\theta=tu$. For $|\theta|\leq4\pi/M$, the first $\lfloor M/4\rfloor$
+terms give $\sum_{j\leq M}\sin^2(j\theta/2)\geq cM^3\theta^2$.
+For $4\pi/M\leq|\theta|\leq\pi$, the geometric sum of
+$e^{ij\theta}$ has modulus at most $\pi/|\theta|\leq M/4$, so the
+sine-square sum is at least $3M/8$. It follows that
+$|\varphi_\beta(u)|\leq\exp[-c' W\min\{1,u^2\}]$ for $|u|\leq\pi W$.
+This is~\eqref{eq:chain-damping}, uniformly in $\beta$. The criterion
+therefore gives
+\[
+ \mathcal E_d=\frac{(\log d)^2}{4V}+O_d(t^2)
+       =\frac{t(\log d)^2}{8a}+O_d(t^2).
+\]
+Using $t=2\eta$ and multiplying by $S$ proves the three estimates.
+
+In the symmetric CTM spectrum, the binary mode $j=0$ contributes two
+copies of every weight $p_j/2$~\cite[Sec.~4.1]{ACT18}. Thus its rank
+density is $p(x/2)/2$ and its logarithmic-rank square root is
+$T_{\log2}g_p$. Since translations are unitary and commute, the error
+in~\eqref{eq:exact-rank-translation} is identical. The entropy of the
+duplicated spectrum is $S+\log2$.
+\end{proof}

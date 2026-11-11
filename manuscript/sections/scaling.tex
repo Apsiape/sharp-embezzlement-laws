@@ -1,0 +1,106 @@
+\section{Transferring bounded continuum strategies}\label{app:scaling}
+Let $\A$, $\A_L$, $\A_R$ denote the quasi-local spin algebra and its two halves, with pure state $\omega$ and GNS triple $(\pi,\HH,\Omega)$. Write $M_s=\pi(\A_s)''$, $s=L,R$.
+
+Call a bounded sequence $(x_n)$ of elements of $\A_s$ supported asymptotically
+far from the cut if, for each finite $F\subset\mathbb Z$,
+\[
+\dist\!\left(x_n,\A_{s\setminus F}\right)\longrightarrow0.
+\]
+For matrices the same condition is taken in matrix norm. This condition holds
+for uniformly bounded observables supported in scaled intervals $[an,bn]$ or
+$[-bn,-an]$ with fixed $0<a<b<\infty$.
+
+\begin{proposition}[Transfer within the lattice GNS representation]\label{prop:escape}
+Suppose that for each $d_0$ and each unit vector
+$\zeta\in\mathbb C^{d_0}\otimes\mathbb C^{d_0}$ there are unitary sequences
+$U_{s,n}\in\A_s\otimes M_{d_0}$ supported asymptotically far from the cut and
+satisfying
+\[
+\big\|U_{L,n}U_{R,n}(\Omega\otimes|00\rangle)
+       -\Omega\otimes\zeta\big\|\longrightarrow0.
+\]
+Here the two unitaries use separate ancillas and are represented in the
+original GNS space. The same sequences work for every GNS vector. Both
+half-chain algebras have type $\III$ if $\omega$ is pure. For the physical pair
+$M_L,M_R$, the value at every GNS vector is at least the supremal
+finite-dimensional tensor-product value of any finite game.
+\end{proposition}
+
+\begin{proof}
+Use the isometries $V_n\xi=U_{L,n}U_{R,n}(\xi\otimes|00\rangle)$ and
+$W\xi=\xi\otimes\zeta$ and the positive errors
+$D_n=(V_n-W)^*(V_n-W)$ on $\HH$. They are uniformly bounded by $4$,
+asymptotically commute in norm with each $\pi(a)$ for local $a$, and satisfy
+$\langle\Omega,D_n\Omega\rangle\to0$. Thus
+$\|D_n\Omega\|^2\leq4\langle\Omega,D_n\Omega\rangle\to0$. Commuting $D_n$
+through $\pi(a)$ and using cyclicity gives $D_n\to0$ strongly. This proves
+the vector claim and $\widetilde\varphi(D_n)\to0$ for every normal state
+$\widetilde\varphi$ on $B(\HH)$.
+
+Let $\varphi$ be a normal state on $M_R$ and choose a normal state extension
+$\widetilde\varphi$ to $B(\HH)$, equivalently a trace-class density operator
+representing $\varphi$ in this representation. For every contraction
+$x\in M_R\overline\otimes M_{d_0}$, acting trivially on the left ancilla,
+$x$ commutes with $U_{L,n}$. The expectations of $V_n^*xV_n$ and $W^*xW$
+in $\widetilde\varphi$ are therefore those of $x$ in
+$\Ad(U_{R,n})_*(\varphi\otimes|0\rangle\langle0|)$ and
+$\varphi\otimes\rho_R(\zeta)$, respectively. Their difference in norm is
+bounded by $2\sqrt{\widetilde\varphi(D_n)}$, by Cauchy--Schwarz applied to
+$V_n-W$ and the two isometries. Every ancilla density operator is a marginal
+of a pure $\zeta$. Composing two such transformations gives approximate
+transitions between arbitrary ancilla states. Thus every normal state of $M_R$
+is monopartite embezzling in the sense of \cite[Theorem E]{vLSWW24}. The same
+argument applies to $M_L$. Purity implies each is a factor since the halves
+generate $B(\HH)$ and commute. The classification in \cite[Theorem E]{vLSWW24}
+then gives type $\III$.
+
+For the game claim choose any finite-dimensional tensor-product strategy.
+Embezzle its state into the two ancillas, then perform the strategy there.
+Conjugating the measurements by the corresponding $U_{s,n}$ and compressing
+to the initial ancilla vectors gives POVMs in the physical halves. Their
+success converges to that of the target strategy. Taking its supremum proves
+the claim, and gives value one for the game $G$.
+\end{proof}
+
+\begin{theorem}[A bounded-observable scaling hypothesis]\label{thm:scaling}
+Let $\D_s$ be a unital $C^*$-algebra of uniformly bounded families in
+$\prod_n\A_s$ supported asymptotically far from the cut as above. Let
+$\widehat\omega((x_n))=\lim_{n\to\mathcal U}\omega(x_n)$ on
+$C^*(\D_L,\D_R)$ for a free ultrafilter $\mathcal U$. Write
+$(\widehat\pi,\widehat\HH,\widehat\Omega)$ for its GNS triple. Suppose
+the pair $\widehat\pi(\D_L)'',\widehat\pi(\D_R)''$ contains, on this vacuum
+vector, a pair of continuum algebras whose state is bipartite embezzling.
+Then the conclusions of Proposition~\ref{prop:escape} hold. In particular
+the hypothesis holds if these closures contain the two complementary wedge
+algebras of a local net in a separable vacuum representation with wedge duality
+and their joint state at $\widehat\Omega$ agrees with the vacuum
+state~\cite[Theorem~97]{vLSWW24}.
+\end{theorem}
+
+\begin{proof}
+Fix an ancilla dimension, a target vector, and an error tolerance. The assumed
+continuum strategy supplies a unitary in each side's von Neumann algebra
+amplified by the local ancilla. Each such unitary is $e^{iH}$ for a bounded
+self-adjoint $H$ in that algebra. Kaplansky density approximates $H$ strongly
+by bounded self-adjoints in the represented $C^*$-algebra. Exponentiation
+preserves strong convergence on bounded sets, and hence the two unitaries can
+be approximated on the vectors relevant to the error norm. Lift those
+self-adjoints to self-adjoint elements of $M_{d_0}(\D_s)$ and exponentiate there.
+At each coordinate one has genuine lattice unitaries. Their squared errors at
+$\Omega$ have ultralimit equal to the squared error of the represented
+approximants at $\widehat\Omega$, as follows by expanding the squared norm
+in the finite ancilla matrix entries. Select a coordinate far enough out to
+make the desired error small and to make the chosen unitaries close in norm
+to the halves outside an arbitrarily large interval about the cut. Taking
+the tolerance to zero and the interval to infinity yields the sequences in
+Proposition~\ref{prop:escape}.
+\end{proof}
+
+Theorem~\ref{thm:scaling} requires bounded representatives preserving joint
+vacuum expectations and localization on both sides. For a continuum net
+generated by bounded observables in regions strictly inside each wedge, the
+corresponding lattice representatives must be approximable in norm outside
+every fixed cut neighbourhood. A continuum factor type, finite-size energy
+levels, and a formula for R\'enyi entropies do not supply those representatives.
+The theorem proves type and game value under this hypothesis, with no
+assumption or conclusion about microscopic Haag duality or attainment.

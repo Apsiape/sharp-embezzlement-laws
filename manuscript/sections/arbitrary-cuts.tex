@@ -1,0 +1,77 @@
+\subsection{Uniformity over cuts of open chains}
+
+\begin{corollary}[Arbitrary end cuts of the finite chains]
+\label{cor:chain-arbitrary-cuts}
+For the half-filled open XX chain of even length $N$, take the site
+bipartition $\{1,\ldots,\ell\}\mid\{\ell+1,\ldots,N\}$ and put
+$m=\min(\ell,N-\ell)$. As $m\to\infty$, uniformly in $N$ and $\ell$,
+\[
+ S=\tfrac16\log m+O(1),\qquad V=\tfrac16\log m+O(1),\qquad
+ \mathcal E_d=\frac{3(\log d)^2}{2\log m}+O_d((\log m)^{-2}).
+\]
+For the open critical Ising chain of any length $L$ cut after $k$ spins,
+put $m=\min(k,L-k)$. The same statement holds with
+$S,V=\tfrac1{12}\log m+O(1)$ and
+$\mathcal E_d=3(\log d)^2/\log m+O_d((\log m)^{-2})$.
+\end{corollary}
+
+\begin{proof}
+By reflection it suffices to treat the XX prefix cut with $\ell=m$.
+Write $M=N+1$. For $1\le x\le m<y\le N$, the exact cross-covariance
+entry, up to the sign of the filled standing-wave half, is
+\[
+ \frac{\sin(\pi(x-y)/2)}{2M\sin(\pi(x-y)/(2M))}
+ -\frac{\sin(\pi(x+y)/2)}{2M\sin(\pi(x+y)/(2M))}.
+\]
+This follows by expanding the product of standing waves and summing
+the first $N/2$ cosines. In both terms replace the reciprocal factor
+$(2M\sin(\pi(x\pm y)/(2M)))^{-1}$ by $(\pi(x\pm y))^{-1}$.
+The error in trace norm is $O(1)$ uniformly in $m,N$. Indeed the
+difference is $M^{-1}f((x\pm y)/M)$ with
+$f(z)=(2\sin(\pi z/2))^{-1}-(\pi z)^{-1}$ analytic for $|z|<2$.
+For a matrix $M^{-1}(a_x+b_y)^q$, the binomial rank-one expansion
+bounds its trace norm by
+$M^{-1}\sqrt{m(N-m)}(\max_x|a_x|+\max_y|b_y|)^q$.
+Here the sum of maxima is at most $3/2$ and the prefactor is at most
+$1/2$. The Taylor series of $f$ is absolutely summable on that
+smaller radius. Multiplication by either sine gives a linear
+combination of two diagonal-unitary left and right multipliers,
+so the same bound applies to the covariance remainder.
+
+We use a uniform bound for the rectangular matrix with entries
+$(j+k+a)^{-1}$ for $0\le j<p$ and $p\le k<q$, with fixed $a>0$ and
+$1\le p\le q$. Its Laplace rank-one representation bounds the trace
+norm by
+\[
+ \int_0^\infty e^{-(p+a)t}
+ \frac{\sqrt{\min\{p,(1-e^{-2t})^{-1}\}}}{\sqrt{1-e^{-2t}}}\,dt.
+\]
+On $0<t\le1/p$ the integrand is bounded by $C\sqrt{p/t}$.
+On $t\ge1/p$ it is bounded by $C e^{-pt}(1+t^{-1})$. Both
+integrals are bounded independently of $p,q$. Taking $a=2$ shows that
+the reflected principal matrix with entries
+$\sin(\pi(x+y)/2)/(\pi(x+y))$ has trace norm $O(1)$, using the same
+sine phase decomposition.
+
+Reverse the order on the left by setting $u=m+1-x$ and set $v=y-m$
+on the right. The remaining principal matrix has entries
+$\sin(\pi(u+v-1)/2)/(\pi(u+v-1))$. Its parity blocks, after removing
+alternating signs, are rectangular Hilbert matrices scaled by
+$(2\pi)^{-1}$, with $a=1/2,3/2$ and row counts
+$m_1=\lceil m/2\rceil$, $m_2=\lfloor m/2\rfloor$. Each column count
+is at least its row count. The rectangular bound just proved gives
+trace-norm error $O(1)$ when the columns beyond the leading square
+are deleted with zero padding. Lemma~\ref{lem:hilbert-mesh} and the
+singular-value perturbation inequality therefore give the comparison
+\eqref{eq:chain-main-mesh} with $L_i=\log(2m_i+1)=\log m+O(1)$.
+All constants in the comparison are independent of the cut. The
+proof of Theorem~\ref{thm:xx-full-law} applies with $W=\log m$.
+
+For Ising, reflect so that $k\le L/2$ and take the XX chain on $2L$
+sites with a cut after $2k$ sites. In the Majorana decomposition of
+Corollary~\ref{cor:ising-fourier}, each path then restricts to its
+first $2k$ Majoranas, the first $k$ Ising spins. The XX mode list is
+again the multiset union of two Ising lists. The XX result at
+$W=\log(2k)$ and exact doubling prove the claimed Ising estimates
+uniformly in $L,k$.
+\end{proof}

@@ -1,0 +1,253 @@
+{
+  "game": "original uniform 243-pair game",
+  "shared_resource": "central-cut open XX ground state tensored with a shared Phi_9",
+  "exact_flat_loss_floor": "(3-2*sqrt(2))/243",
+  "certified_flat_loss_floor": {
+    "lower": "0.000706061215036254742372932311031291534405992",
+    "upper": "0.000706061215036254742372932311031291534405993"
+  },
+  "quadrature_order": 24,
+  "geometric_amplitude_ratio": "32767/32768",
+  "geometric_prefix_energy_cutoff": 400000,
+  "required_strict_error_caps": {
+    "covariance_compression_singular_l2_upper": "0.000000079500000000000000000000000000000000000",
+    "kernel_enclosure_frobenius_upper": "0.000000000000000003320000000000000000000000000",
+    "omitted_squared_singular_mass_upper": "0.000000000000003000000000000000000000000000000",
+    "retained_squared_singular_error_upper": "0.000000000012100000000000000000000000000000000",
+    "total_one_parity_singular_l2_upper": "0.000003550000000000000000000000000000000000000",
+    "omitted_geometric_probability_upper": "0.000000013000000000000000000000000000000000000"
+  },
+  "rows": [
+    {
+      "power": 18,
+      "chain_length": 262144,
+      "compressed_covariance_dimension": 296,
+      "exponents": [
+        11037,
+        33596,
+        57136,
+        81569,
+        106688,
+        132338,
+        158423,
+        184879,
+        211661,
+        238735,
+        266074,
+        293658,
+        321469,
+        349490,
+        377711,
+        406118,
+        434702,
+        463456,
+        492369,
+        521437,
+        550651,
+        580008,
+        609500,
+        639124
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 18224,
+        "retained_probability": 0.9999999999883714,
+        "duplication_defect": 0.09078820393909291,
+        "assisted_loss": 0.0007472280159596125
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003313039272049203156831325942",
+        "omitted_squared_singular_mass_upper": "0.000000000000000638368429112969117652067923429",
+        "retained_squared_singular_error_upper": "0.000000000009293793069303251529639023290763970",
+        "total_one_parity_singular_l2_upper": "0.000003128163135286021044730738671355954337092",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000000742252542361875631761341988056",
+        "rounded_matrix_singular_l2_upper": "0.000003048676997934081651563720383674904303571",
+        "largest_physical_or_model_singular_value_upper": "0.472921558430913776587691758392631160478826593",
+        "schmidt_angle_derivative_upper": "3.080486131596829661730660657735741699330034252",
+        "sorted_schmidt_amplitude_l2_upper": "0.000013627734045275440574510644130138266754685",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000013630000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 4375,
+        "geometric_prefix_mass": {
+          "lower": "0.999999991994952810872971441165807405864534497",
+          "upper": "0.999999991994952810872971441165807405864583161"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.090788830184555012896788703422532634614455190",
+          "upper": "0.090788830184555012896788703422532634614646984"
+        },
+        "omitted_geometric_probability_upper": "0.000000008005047189127028558834192594135465503",
+        "geometric_duplication_defect_upper": "0.090788846194649391150845821090917822885577990",
+        "physical_duplication_defect": {
+          "lower": "0.090664610577313780605615103735180169455317533",
+          "upper": "0.090805274461198152334213973288712195109530451"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000746210786644557865066790977244281230084917",
+        "upper": "0.000747368514083935410158139697849483087321239"
+      },
+      "comparison_to_flat_loss_floor": "above",
+      "certified_absolute_gap": {
+        "lower": "0.000040149571608303122693858666212989695678924",
+        "upper": "0.000041307299047680667785207386818191552915247"
+      }
+    },
+    {
+      "power": 19,
+      "chain_length": 524288,
+      "compressed_covariance_dimension": 320,
+      "exponents": [
+        10537,
+        32018,
+        54344,
+        77460,
+        101191,
+        125398,
+        149994,
+        174920,
+        200135,
+        225608,
+        251316,
+        277239,
+        303362,
+        329670,
+        356152,
+        382798,
+        409599,
+        436548,
+        463637,
+        490860,
+        518212,
+        545687,
+        573281,
+        600990
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 24704,
+        "retained_probability": 0.9999999999847086,
+        "duplication_defect": 0.08537781667943643,
+        "assisted_loss": 0.0007026980796661434
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003311204688592632937040542817",
+        "omitted_squared_singular_mass_upper": "0.000000000000000426164464193080054910916824648",
+        "retained_squared_singular_error_upper": "0.000000000003763742490347739908311234822258405",
+        "total_one_parity_singular_l2_upper": "0.000002019632692334816419857485584952747257871",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000000573440162404204002104358009062",
+        "rounded_matrix_singular_l2_upper": "0.000001940146554982878861273923867491488007475",
+        "largest_physical_or_model_singular_value_upper": "0.475219311320796474747507820920032633606976149",
+        "schmidt_angle_derivative_upper": "3.216341631744648281968432046870028348918874231",
+        "sorted_schmidt_amplitude_l2_upper": "0.000009186489059387600278889430964465409992174",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000009187000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 5642,
+        "geometric_prefix_mass": {
+          "lower": "0.999999989555580358567165715616020362061794576",
+          "upper": "0.999999989555580358567165715616020362061843510"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.085377478906852419942687510148696859634537188",
+          "upper": "0.085377478906852419942687510148696859634729959"
+        },
+        "omitted_geometric_probability_upper": "0.000000010444419641432834284383979637938205424",
+        "geometric_duplication_defect_upper": "0.085377499795691702808356078916656135511140807",
+        "physical_duplication_defect": {
+          "lower": "0.085247344373876895557737786991056158435732955",
+          "upper": "0.085388237688856173543079677901243380133912122"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000701624233529850992244755448486058917166526",
+        "upper": "0.000702783849290997313111766896306529877645368"
+      },
+      "comparison_to_flat_loss_floor": "below",
+      "certified_absolute_gap": {
+        "lower": "0.000003277365745257429261165414724761656760624",
+        "upper": "0.000004436981506403750128176862545232617239467"
+      }
+    },
+    {
+      "power": 20,
+      "chain_length": 1048576,
+      "compressed_covariance_dimension": 344,
+      "exponents": [
+        10080,
+        30585,
+        51822,
+        73761,
+        96253,
+        119175,
+        142448,
+        166016,
+        189843,
+        213900,
+        238165,
+        262622,
+        287256,
+        312054,
+        337007,
+        362104,
+        387338,
+        412703,
+        438192,
+        463798,
+        489518,
+        515347,
+        541280,
+        567314
+      ],
+      "nominal": {
+        "relative_probability_cutoff": 1e-14,
+        "rank": 33154,
+        "retained_probability": 0.9999999999798471,
+        "duplication_defect": 0.08046152823982909,
+        "assisted_loss": 0.0006622348003278114
+      },
+      "certified_error_bounds": {
+        "covariance_compression_singular_l2_upper": "0.000000079486137348626353894969084524218707579",
+        "kernel_enclosure_frobenius_upper": "0.000000000000000003311785130720108250962012783",
+        "omitted_squared_singular_mass_upper": "0.000000000000001368099610460520504765703292589",
+        "retained_squared_singular_error_upper": "0.000000000012040068179821534454648995227866793",
+        "total_one_parity_singular_l2_upper": "0.000003549563410184921461487549880075140826001",
+        "largest_selected_eigenvalue_interval_width_upper": "0.000000000000001388868091785629210471825425636",
+        "rounded_matrix_singular_l2_upper": "0.000003470077272832983322461860687299960105639",
+        "largest_physical_or_model_singular_value_upper": "0.477243992091723172762516270331429431918792786",
+        "schmidt_angle_derivative_upper": "3.352898926308834413682069692829497115765154809",
+        "sorted_schmidt_amplitude_l2_upper": "0.000016831018544191224665492449838848410880055",
+        "sorted_schmidt_amplitude_l2_budget_used": "0.000016840000000000000000000000000000000000000"
+      },
+      "certified_score": {
+        "geometric_prefix_rank": 7295,
+        "geometric_prefix_mass": {
+          "lower": "0.999999987021851209881789127580634976018606169",
+          "upper": "0.999999987021851209881789127580634976018655853"
+        },
+        "geometric_prefix_duplication_defect": {
+          "lower": "0.080460653044529116535374991293872759216190075",
+          "upper": "0.080460653044529116535374991293872759216385721"
+        },
+        "omitted_geometric_probability_upper": "0.000000012978148790118210872419365023981393831",
+        "geometric_duplication_defect_upper": "0.080460679000826696771796736132602807179173383",
+        "physical_duplication_defect": {
+          "lower": "0.080312356168071461988169192649306386557089283",
+          "upper": "0.080479787197708736647817172263928377138512272"
+        }
+      },
+      "certified_physical_assisted_loss": {
+        "lower": "0.000661007046650793925828553025920217173309376",
+        "upper": "0.000662385079816532811916190718221632733650307"
+      },
+      "comparison_to_flat_loss_floor": "below",
+      "certified_absolute_gap": {
+        "lower": "0.000043676135219721930456741592809658800755685",
+        "upper": "0.000045054168385460816544379285111074361096617"
+      }
+    }
+  ]
+}

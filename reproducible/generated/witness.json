@@ -1,0 +1,13 @@
+{
+  "shells": 9,
+  "schmidt_rank": 4608,
+  "qubits_per_party": 13,
+  "E": 0.04887432761262169,
+  "E_shell_sum": 0.048874327612621705,
+  "E_repeated": 0.048874327612621726,
+  "explicit_loss": 0.00040225784043310066,
+  "proved_loss_upper": 0.0005641063329383492,
+  "tracial_loss_floor": 0.0007060612150362539,
+  "certified_margin": 0.00014195488209790472,
+  "loss_upper_after_vector_error": 0.0006631100240614503
+}

@@ -1,0 +1,239 @@
+\section{The finite-chain spectral mesh}\label{app:xx-mesh}
+The Hilbert spectral-counting approach goes back to Widom~\cite{Widom66}; see also Fedele~\cite{Fedele20}. Otte~\cite[Sections~3--4]{Otte22} uses the Hilbert-to-Carleman reduction
+for determinant asymptotics. The unit-cell comparison and periodization
+below give the ordered spectral estimate needed for the finite XX chain.
+
+\begin{lemma}[Finite Hilbert sections and the Carleman kernel]
+\label{lem:hilbert-mesh}
+For $m\ge1$ and fixed $a>0$ let
+\[
+H_a^{(m)}=\left(\frac1{j+k+a}\right)_{j,k=0}^{m-1},
+\qquad L_m=\ln(2m+1).
+\]
+Write $\sigma_j(A)$ for the nonincreasing singular values of $A$,
+padding finite lists by zeros. Write $(h_j^{(m)})_{j\ge1}$ for the
+decreasing rearrangement of
+$\{\pi\sech(2\pi^2 k/L_m):k\in\mathbb Z\}$. There is a constant
+$C_a$ independent of $m$ with
+\[
+\sum_{j\ge1}\left|\sigma_j(H_a^{(m)})-h_j^{(m)}\right|\le C_a.
+\]
+\end{lemma}
+
+\begin{proof}
+The difference $H_a^{(m)}-H_2^{(m)}$ is sign definite, since its
+entries are the moments of $(t^{a-1}-t)\,dt$ on $[0,1]$. Hence
+\[
+\|H_a^{(m)}-H_2^{(m)}\|_1
+=\sum_{j=0}^{m-1}\left|\frac1{2j+a}-\frac1{2j+2}\right|
+\le C_a'.
+\]
+Consider the integral operator $C_m$ on
+$L^2([1/2,m+1/2],dx)$ with kernel $(x+y)^{-1}$. The Laplace
+representation
+$(x+y)^{-1}=\int_0^\infty e^{-t x}e^{-t y}\,dt$ makes $C_m$ a
+positive trace-class operator, with trace
+$\int_{1/2}^{m+1/2}(2x)^{-1}dx=L_m/2$.
+
+Compress $C_m$ to the orthonormal indicators of the unit intervals
+$[j+1/2,j+3/2)$, $0\le j<m$. The resulting matrix has entries
+\[
+\int_0^\infty e^{-t(j+k+2)}
+\left(\frac{2\sinh(t/2)}{t}\right)^2\,dt.
+\]
+The factor in parentheses is at least one. The difference from
+$H_2^{(m)}$ is positive semidefinite, as is seen by evaluating
+quadratic forms inside the Laplace integral. The min--max principle
+for compression and positive perturbation therefore gives
+$\sigma_j(C_m)\ge\sigma_j(H_2^{(m)})$ for every $j$, with zero
+padding. Their difference in $\ell^1$ is
+\[
+\Tr C_m-\Tr H_2^{(m)}
+=\frac12\left(\ln(2m+1)-\sum_{j=1}^m\frac1j\right)=O(1).
+\]
+
+The unitary change of variables $x=e^s/2$ transforms $C_m$ to the
+convolution kernel $K(s-t)$ on $[0,L_m]$, where
+$K(z)=(2\cosh(z/2))^{-1}$. For $L=L_m$, define the periodized
+operator $P_L$ by the kernel $\sum_{k\in\mathbb Z}K(s-t+kL)$ on
+the same interval. The Fourier transform with convention
+$\widehat K(\xi)=\int_{\mathbb R}K(z)e^{-i\xi z}\,dz$ is
+$\pi\sech(\pi\xi)$. This follows by setting $u=e^z$ in the
+integral and using
+$\int_0^\infty u^{b-1}(1+u)^{-1}du=\pi/\sin(\pi b)$ at
+$b=1/2-i\xi$. The Fourier modes on $[0,L]$ diagonalize $P_L$,
+with eigenvalues $\widehat K(2\pi k/L)$ for $k\in\mathbb Z$.
+They are nonnegative and summable for each $L$.
+
+The trace norm of the difference between $P_L$ and the original
+convolution operator is bounded uniformly for $L\ge1$. For
+$k\ge1$, the image kernel $K(s-t+kL)$ is, after reflection of the
+second variable, $K(s+t+(k-1)L)$. Negative images are transposes.
+For $k=1$, expand for $z>0$
+\[
+K(z)=\sum_{j\ge0}(-1)^j e^{-(j+1/2)z}.
+\]
+Group consecutive terms into rank-two kernels
+$f_b\otimes f_b-f_{b+1}\otimes f_{b+1}$ with
+$f_b(x)=e^{-b x}$ and $b=2j+1/2$. On $[0,L]$,
+$\|f_b\|_2\le (2b)^{-1/2}$ and
+$\|f_b-f_{b+1}\|_2\le\|x e^{-b x}\|_{L^2(0,\infty)}=O(b^{-3/2})$.
+Each paired trace norm is thus $O(b^{-2})$, uniformly in $L$.
+The series converges in trace norm and its kernel agrees almost
+everywhere with $K(s+t)$. For $k\ge2$, there is a positive offset
+$d=(k-1)L\ge1$. The trace norms of the unpaired rank-one kernels
+are bounded in sum by
+\[
+\sum_{j\ge0}\frac{e^{-(j+1/2)d}}{2j+1}\le C e^{-d/2}.
+\]
+These bounds sum over the images. The trace-norm perturbation
+inequality for singular values now bounds the $\ell^1$ distance
+between the spectra of $C_m$ and $P_{L_m}$ by an absolute constant.
+Combining with the compression comparison proves the claim.
+\end{proof}
+
+\begin{corollary}[Quantitative active-mode mesh of the finite open XX chain]
+\label{cor:xx-mesh}
+Let $N=2n\ge4$ be even, $m_1=\lceil n/2\rceil$,
+$m_2=\lfloor n/2\rfloor$. For the cross block $B_N$ of the
+half-filled finite open XX covariance, the singular values are at
+bounded $\ell^1$ distance from the decreasing rearrangement of
+\begin{equation}
+\left\{\frac12\sech(2\pi^2 k/L_{m_i}):
+              i=1,2,\ k\in\mathbb Z\right\}.
+\label{eq:xx-explicit-mesh}
+\end{equation}
+For each fixed $0<a<b<\infty$, among the mesh entries whose
+energy $4\pi^2|k|/L_{m_i}$ belongs to $[a,b]$, all but $O_{a,b}(1)$
+can be matched to finite-chain modes with energies in $[a/2,2b]$.
+The sum of the absolute energy errors over those matches is $O_{a,b}(1)$.
+\end{corollary}
+
+\begin{proof}
+Write $M=N+1$. In reversed left and forward right coordinates
+$1\le u,v\le n$ the covariance cross block, up to a global sign
+from choosing the other occupied half of the standing waves, has
+entries
+\[
+\frac{\sin(\pi (u+v-1)/2)}{2M\sin(\pi(u+v-1)/(2M))}
+-\frac{\sin(\pi(M+v-u)/2)}{2M\cos(\pi(v-u)/(2M))}.
+\]
+This follows from the product-to-sum identity for the sine waves
+and the finite cosine sum. Subtract the principal matrix with
+entries $\sin(\pi(u+v-1)/2)/[\pi(u+v-1)]$. The two remaining
+reciprocal factors have the form $M^{-1}f(a_u+b_v)$, with
+$f(z)=(2\sin(\pi z/2))^{-1}-(\pi z)^{-1}$ and
+$|a_u|,|b_v|\le1/2$ for the first term. For the second use
+$f(z)=(2\cos(\pi z/2))^{-1}$ with centered coordinates
+$|a_u|,|b_v|\le1/4$. The functions are analytic on the disks
+of radii $2$ and $1$, respectively, with a removable singularity
+at zero for the first. If $|a_u|,|b_v|\le r$, the trace norm
+of the degree-$k$ monomial matrix is at most $(n/M)(2r)^k$
+by the binomial expansion into rank-one matrices. Each sine is a
+sum of two products of phases in $u$ and $v$. Their diagonal-unitary
+multipliers preserve these bounds. Absolute summability of the
+Taylor coefficients on the relevant smaller radii gives a uniformly
+bounded trace-norm error.
+
+Separating the parities and removing the alternating signs makes
+the principal matrix equivalent in singular values to the direct
+sum of $(2\pi)^{-1}H_{1/2}^{(m_1)}$ and $(2\pi)^{-1}H_{3/2}^{(m_2)}$.
+Apply Lemma~\ref{lem:hilbert-mesh} to the
+blocks, together with the trace-norm perturbation inequality.
+Rearranging the union in decreasing order only decreases the
+$\ell^1$ distance, which proves~\eqref{eq:xx-explicit-mesh}.
+
+A true singular value $s$ equals $\sqrt{\lambda(1-\lambda)}$
+for an eigenvalue $\lambda$ of the restricted covariance, since
+the full covariance is a projection. The one-mode energy
+$|\ln(\lambda/(1-\lambda))|$ is therefore
+$e(s)=2\arcosh(1/(2s))$, with $e(0)=\infty$.
+Match the ordered singular-value lists from~\eqref{eq:xx-explicit-mesh}. Mesh values of
+energy in $[a,b]$ have positive distance from the complement
+of the singular-value interval corresponding to $[a/2,2b]$.
+Thus at most a bounded number of their matches are outside that
+interval. On the remaining matches $e(s)$ has bounded derivative,
+which converts the $\ell^1$ singular-value bound to the stated
+energy bound.
+\end{proof}
+
+\begin{corollary}[Fourier damping for tilted energy laws]
+\label{cor:xx-fourier}
+Let $e_j$ denote the finite open XX mode energies and $W=\ln N$. Under a tilt
+$\beta$ in a fixed compact subinterval of $(0,\infty)$, let $X_j$
+be independent Bernoulli variables of parameters
+$(1+e^{\beta e_j})^{-1}$, with deterministic zero contribution from
+any infinite-energy mode. For $\varphi_\beta(t)
+=\mathbb E_\beta\exp(it\sum_j e_j X_j)$ there are constants
+$c,\delta,\tau>0$ such that for all sufficiently large even $N$,
+\[
+|\varphi_\beta(t)|\le
+\begin{cases}
+\exp(-cWt^2), & |t|\le\delta,\\
+\exp(-cW), & \delta\le |t|\le \tau W.
+\end{cases}
+\]
+The constants and large-$N$ threshold can be chosen uniformly in
+the given compact set of tilts.
+\end{corollary}
+
+\begin{proof}
+Use just one mesh branch from~\eqref{eq:xx-explicit-mesh} with $k\ge1$ and mesh energies
+in a fixed interval $[a,b]\subset(0,\infty)$. The matched true
+energies lie in $[a/2,2b]$ with $O(1)$ deletions and total
+absolute energy discrepancy $O(1)$. On these modes, the Bernoulli
+variances are uniformly bounded below. The squared modulus of
+one characteristic factor is
+$1-4q(1-q)\sin^2(te_j/2)$, where $q=(1+e^{\beta e_j})^{-1}$.
+It follows that $|\varphi_\beta(t)|$ is bounded by
+$\exp(-c_0\sum_j\sin^2(te_j/2))$ using the matched modes only.
+For $|t|\le\delta$ with $\delta b$ sufficiently small, each
+sine square is bounded below by a constant times $t^2$ and the
+number of matches is of order $W$.
+
+For $|t|\ge\delta$ the integral
+$\int_a^b\sin^2(tx/2)\,dx$ is bounded below by a strictly positive
+constant. It is positive on compact subsets away from zero and
+tends to $(b-a)/2$ at infinity. The mesh spacing is
+$4\pi^2/L_{m_i}$ with $L_{m_i}=W+O(1)$. The corresponding
+Riemann sum for the sine squares differs from this integral
+divided by the mesh spacing by $O(1+|t|)$, since the derivative
+in $x$ is bounded by $|t|/2$. Deleting $O(1)$ terms and replacing
+mesh energies by matched true energies changes the sum by at
+most another $O(1+|t|)$ by the same derivative bound. The resulting
+lower bound is $c_1W-C_1(1+|t|)$ with $c_1,C_1>0$ independent of $N$.
+Choose $\tau\le c_1/(4C_1)$ and take $N$ large enough that
+$C_1\le c_1W/4$. The sum is then at least $c_1W/2$ throughout
+$\delta\le |t|\le\tau W$, proving the second estimate.
+\end{proof}
+
+\begin{corollary}[Transfer to the finite open critical Ising chain]
+\label{cor:ising-fourier}
+Let $L$ be even. Across its middle cut, the entanglement-mode
+energies of the finite open critical Ising chain on $L$ spins
+occur twice in the finite open XX chain on $2L$ spins across
+its middle cut. In particular, the XX bounds in
+Corollary~\ref{cor:xx-fourier} apply to the Ising characteristic
+function with adjusted constants.
+\end{corollary}
+
+\begin{proof}
+This is the covariance decomposition behind the even-block
+identity of Igl\'oi and Juh\'asz~\cite[eqs.~(19)--(23)]{IgloiJuhasz08}.
+Write $a_j=c_j+c_j^\dagger$ and $b_j=i(c_j^\dagger-c_j)$
+for the two Majoranas of the XX site $j$. Its hopping term is
+$\tfrac i2(a_j b_{j+1}-b_j a_{j+1})$. There are two disjoint
+Majorana paths, one using $a_j$ on odd sites and $b_j$ on even
+sites and the other using the opposite assignment. In each path,
+the signs of the hopping terms can be made uniform by changing
+signs of individual Majoranas. Each path is then, up to a positive
+scale of its Hamiltonian, the critical Ising chain of $L$ spins
+in its Majorana representation. Since $L$ is even, the first
+$L$ XX sites restrict each path to its first $L$ Majoranas, which
+are precisely the first $L/2$ Ising spins. The restricted Gaussian
+covariance is the direct sum of the two path covariances. The
+mode-energy lists therefore add by multiset union. The tilted
+characteristic function of the XX energy is the square of the
+Ising characteristic function. Taking its modulus square root
+gives the desired damping.
+\end{proof}

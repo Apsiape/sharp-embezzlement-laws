@@ -1,0 +1,88 @@
+\section{Gapped chains and singlet products}\label{sec:entropy}
+
+\begin{theorem}[An entropy bound]\label{thm:floor}
+Every pure bipartite state of finite entanglement entropy $S$ satisfies
+\[
+\cE\ge\frac{(\ln2)^2}{4(S+1+3\ln2)^2}.
+\]
+Consequently, for a uniformly gapped family of one-dimensional Hamiltonians with
+fixed local dimension, uniformly bounded interaction range and strength,
+and unique ground states, the game loss is bounded below
+uniformly in the chain length.
+\end{theorem}
+\begin{proof}
+The inequality is~\eqref{eq:entropybound}. The area law bounds $S$ by a
+constant depending on the uniform gap, interaction strength and local
+dimension~\cite{Hastings07,AKLV13}. Apply Theorem~\ref{thm:equiv}.
+\end{proof}
+Uniformly bounded finite-interval entropy also implies a type I half-chain in the pure infinite
+state~\cite{Matsui13}. In the corresponding tensor-product representation
+the state has a normalizable Schmidt sequence, so $\cE>0$ and the game has
+a strictly positive loss floor there as well.
+
+\begin{theorem}[The same entropy law, a different type]\label{thm:entropy}
+For every $c>0$ there is a pure spin-chain state whose centered restrictions
+have $S_N=(c/6)\ln N+O_c(1)$ and $\cE=2-\sqrt2$, and whose infinite
+half-chains have type II$_\infty$. Its finite and infinite game losses are
+at least $\gamma$. The state can be the unique ground state of a gapless,
+inhomogeneous interaction that decays exponentially with the distance
+between the interacting sites.
+\end{theorem}
+\begin{proof}
+Put $P=\{\lceil2^{6k/c}\rceil:k=0,1,\ldots\}$ and place a singlet on every
+pair $(1-x,x)$ with $x\in P$. Fix every unused spin in a pure one-site state.
+For even $N$, the centered interval contains $n_N$ singlet pairs,
+all crossing the cut. Counting the indices $k$ with
+$\lceil2^{6k/c}\rceil\le N/2$ gives
+$\lfloor c\ln(N/2)/(6\ln2)\rfloor+1$. Counting distinct sites
+subtracts the repetitions from rounding, whose total is finite for
+fixed $c$ because successive unrounded values eventually differ by
+more than one. Thus $n_N=c\ln N/(6\ln2)+O_c(1)$.
+The nonzero Schmidt probabilities are all $2^{-n_N}$, so
+$S_N=n_N\ln2=(c/6)\ln N+O_c(1)$ and $\cE=2-\sqrt2$.
+Theorem~\ref{thm:operational-tracial} gives the finite loss floor.
+
+In the infinite right half, the infinitely many singlet endpoints generate
+the hyperfinite II$_1$ factor in its tracial representation. The unused
+spins generate a type I$_\infty$ factor in their pure representation.
+Their tensor product is type II$_\infty$, and the tensor-product
+commutation theorem gives Haag duality. The singlet algebras act by left and right multiplication on
+$L^2(R,\tau)$ for the hyperfinite II$_1$ factor $R$.
+Compress both unused type I factors to their pure vectors. The remaining
+POVMs have correlations $\tau(AB)$, so the normalized-trace proof of
+Theorem~\ref{thm:operational-tracial} gives the same $\gamma$.
+
+For a parent interaction, put
+$e^{-\alpha(2x-1)}(1-|s\rangle\langle s|)$ on each pair $(1-x,x)$,
+where $|s\rangle$ is its singlet and $\alpha>0$, and a one-site projector
+fixing each unused spin. These disjoint positive terms have exactly the
+stated product ground state. On any finite union of pairs and unused
+sites, local ground-state stability forces the unique zero-energy
+product state; these restrictions determine the infinite state. The pair couplings tend to zero, giving
+gaplessness, while their norms decay exponentially in their diameters.
+\end{proof}
+
+Random-singlet fixed-point states provide a familiar physical version of
+the entropy contrast~\cite{Fisher94,RefaelMoore04,Sierant26}.
+Liu and Yi already obtain several half-chain types with the same
+$\Theta(\ln\ell)$ interval-entropy order in translation-invariant pure
+states~\cite{LiuYi26}. Their examples have superpolynomially decaying
+parent interactions. Their remaining locality question concerns the
+interacting exponentially local class, rather than translation invariance
+alone.
+
+\begin{table}[t]
+\centering\small
+\begin{tabular}{@{}>{\raggedright\arraybackslash}p{3.9cm}>{\raggedright\arraybackslash}p{2.5cm}>{\raggedright\arraybackslash}p{3.2cm}>{\raggedright\arraybackslash}p{4.8cm}@{}}
+\toprule
+State or family & Infinite half-chain type & Finite entropy & Game behavior\\
+\midrule
+Sparse crossing singlets & II$_\infty$ & $(c/6)\ln N+O_c(1)$ & Loss at least $\gamma$\\\addlinespace
+Uniformly gapped chain & I & Bounded & Uniform positive loss\\\addlinespace
+Critical XX chain & III$_1$ & $S_N\sim(\ln N)/6$ & Finite loss tends to zero; infinite vacuum value one is not attained\\\addlinespace
+XX with the quartic impurity of Section~\ref{sec:interacting} & III$_1$ & Not used in the proof & Finite loss tends to zero; every sector vector has value one\\\addlinespace
+Free massive field, complementary wedges & III$_1$ & No finite reduced-density entropy & Vacuum value one is not attained\\
+\bottomrule
+\end{tabular}
+\caption{The type column refers to the infinite system. Every finite spin chain has type I local algebras. A score for one finite state does not by itself determine an infinite-system type.}\label{tab:reads}
+\end{table}

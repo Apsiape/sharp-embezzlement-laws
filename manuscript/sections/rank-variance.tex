@@ -1,0 +1,55 @@
+\section{Rank variance and information variance}\label{app:rank-variance}
+\begin{lemma}[Rank variance and information variance]
+\label{lem:rank-info}
+Let $(p_j)_{j\ge1}$ be decreasing probabilities with finite support, and let
+$T$ have density $p(t)=p_{\lceil t\rceil}$ on $(0,\infty)$. Put $X=\ln T$,
+$Y=-\ln p(T)$ and $S=\mathbb E Y$. Then
+\[
+|\sd(X)-\sd(Y)|\le 2\sqrt2+\ln2+2\ln(e+S)
+\]
+and, for every integer $d\ge 2$,
+\[
+\E_d\ge \frac{(\ln d)^2}{4\Var(X)+(\ln d)^2}.
+\]
+\end{lemma}
+
+\begin{proof}
+Monotonicity gives $t p(t)\le\int_0^t p(u)\,du\le1$, so $X\le Y$.
+The function
+\[
+q(t)=\frac{1}{(1+t)(1+\ln(1+t))^2}
+\]
+is a probability density. For $Z=\ln(q(T)/p(T))$ we have
+$\Pr[Z>z]\le e^{-z}$ for $z\ge0$, since
+$\mathbb E e^Z=\int_{\{p>0\}}q(t)\,dt\le1$. Hence
+$\|Z_+\|_2\le\sqrt2$. Also $\|X_-\|_2^2=2p_1\le2$. Now
+\[
+0\le Y-X
+ =Z+\ln((1+T)/T)+2\ln(1+\ln(1+T))
+ \le Z_+ +\ln 2+X_-+2\ln(e+Y).
+\]
+The squared logarithm $y\mapsto\ln^2(e+y)$ is concave for $y\ge0$.
+Jensen's inequality and the triangle inequality give the stated bound on
+$\|Y-X\|_2$. Subtracting means is an orthogonal projection in $L^2$, so the
+same bound holds for the difference of the standard deviations.
+
+Write $a=\ln d$ and $f(x)=e^x p(e^x)$, the density of $X$.
+By aligning the Schmidt coefficients of the resource and target states,
+\[
+\E_d=\int_0^\infty
+\bigl(\sqrt{p(t)}-d^{-1/2}\sqrt{p(t/d)}\bigr)^2\,dt
+=\int_\mathbb R(\sqrt{f(x)}-\sqrt{f(x-a)})^2\,dx.
+\]
+With $m=\mathbb E X+a/2$, the means of $f(x-a)$ and $f(x)$ differ by $a$.
+Factoring their difference and applying Cauchy--Schwarz gives
+\[
+a\le \sqrt{\E_d}\,
+\bigl(\|(x-m)\sqrt{f(x-a)}\|_2+\|(x-m)\sqrt{f(x)}\|_2\bigr)
+=2\sqrt{\E_d}\sqrt{\Var(X)+a^2/4}.
+\]
+\end{proof}
+For XX, $S_N,V_N\sim(\ln N)/6$ while the standard-deviation error in the
+lemma is $O(\ln\ln N)$. Hence the logarithmic-rank variance is
+$V_N(1+o(1))$, and the lemma gives
+$\liminf S_N\cE_d\ge(\ln d)^2/4$ directly. The cumulative-counting
+argument in Appendix~\ref{app:xx-full} supplies the matching upper limit.

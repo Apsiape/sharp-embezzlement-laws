@@ -1,0 +1,137 @@
+\section{Critical chains}\label{sec:critical}
+
+\paragraph{The model.} The XX chain is $H=\tfrac12\sum_j(\sigma^x_j\sigma^x_{j+1}+\sigma^y_j\sigma^y_{j+1})$,
+which the Jordan--Wigner transformation~\cite{LSM61} turns into free fermions hopping on the
+chain, $H=\sum_j(a_j^*a_{j+1}+a_{j+1}^*a_j)$, the model of Ref.~\cite[Example~23]{vLSW25}. The
+fermionic ground state $\omega$ on the infinite chain is gauge-invariant and quasi-free, with
+two-point function
+\begin{equation}\label{eq:C}
+\omega(a_x^*a_y)=C_{xy}=\frac{1}{2\pi}\int_{\pi/2}^{3\pi/2}e^{ik(x-y)}\,dk ,
+\end{equation}
+the filled Fermi sea of the modes with negative energy $2\cos k$. On the two-sided infinite chain
+we use the Jordan--Wigner transformation of Refs.~\cite{Araki84,ArakiMatsui85}. The spin
+ground state $\omega_{\mathrm{spin}}$ is even and agrees with $\omega$ on even elements. Alice's half
+is $\{1,2,\ldots\}$ and Bob's is $\{\ldots,-1,0\}$. Conjugating every other spin by $\sigma^z$
+and rescaling by a positive constant gives the zero-field isotropic XY Hamiltonian in the
+convention of Refs.~\cite{Matsui01,KMSW}. Matsui proved that its ground-state half-chain
+factors are type III$_1$~\cite[Theorem~4.3]{Matsui01}. Keyl, Matsui, Schlingemann and Werner
+record this result and establish Haag duality for the physical half-chain
+pair~\cite[Corollary~6.8 and Proposition~6.9]{KMSW}.
+
+More generally, van Luijk, Stottmeister and Wilming consider translation-invariant
+free-fermion Hamiltonians with continuous finite-matrix symbols for which the
+positive-energy spectral projection is piecewise continuous and has at least one
+jump~\cite[Assumption~20 and Definition~21]{vLSW25}. Their theorem gives a pure,
+gauge-invariant quasi-free ground state with type-III$_1$ half-chain
+factors~\cite[Theorem~25]{vLSW25}. The physical bipartition is into complementary
+left and right half-chains. The fermionic parties use the parity-even observable
+algebras on the even GNS sector. In the Jordan--Wigner spin dual they use the full
+spin algebras of the two halves. The physical algebras are each other's commutants
+in both representations~\cite[Proposition~8 and Remark~10]{vLSW25}.
+
+
+\begin{proof}[Proof of Theorem~\ref{thm:value} for the infinite chains]
+In a bipartite system given by a type-$\IIIone$ factor with separable predual and its
+commutant, every unit vector is bipartite embezzling~\cite[Theorems~11 and~63]{vLSWW24}.
+Finite truncations of a van Dam--Hayden state give finite-dimensional strategies with
+loss approaching zero by Theorem~\ref{thm:operational-upper}. Embezzle the state of
+one of these strategies into two initially pure local ancillas to within vector
+distance $\varepsilon$. Conjugating the target measurements by the local embezzling
+unitaries and compressing to the initial ancilla vectors gives POVMs in the physical
+algebras. The induced loss differs from the target loss by at most $2\varepsilon$,
+since the loss operator is a contraction. This gives value one at every unit vector
+in each of the ground-state sectors above, with the stated half-chain bipartition.
+\end{proof}
+
+\begin{proposition}[A modular obstruction]\label{prop:modular-obstruction}
+Let the marginal $\varphi$ of a unit vector $\Omega$ on $M_A$ be faithful. If
+$2$ is absent from the point spectrum of $\Delta_\varphi$ on $\overline{M_A\Omega}$,
+every POVM strategy for $G$ in the commuting algebras $M_A,M_B$ has positive loss.
+\end{proposition}
+\begin{proof}
+By Lemma~\ref{lem:linked-bridge}, perfect play would give
+$\Delta_\varphi^{it}w_j\Omega=2^{it}w_j\Omega$ for every real $t$, with
+$\|w_j\Omega\|^2=\varphi(F_j)=1/9$. This would give a nonzero modular eigenvector
+of eigenvalue two. Van Luijk, Stottmeister, Werner and Wilming established the
+point-spectrum obstruction for exact embezzlement of ancillary
+states~\cite[Proposition~35 and Corollary~36]{vLSWW24}.
+\end{proof}
+\begin{proof}[Proof of Theorem~\ref{thm:notattained}]
+With Jordan--Wigner strings starting at site $1$, the right half-chain algebra $\fA_R$ is
+isomorphic to the algebra of canonical anticommutation relations over $\ell^2(\N)$. Under this
+isomorphism the restriction of $\omega_{\mathrm{spin}}$ is the gauge-invariant quasi-free state
+$\omega_C$ with $C=(C_{xy})_{x,y\ge1}$ from~\eqref{eq:C}. This $C$ is the Toeplitz operator on
+$\ell^2(\N)$ whose symbol is the indicator
+function of the arc $(\pi/2,3\pi/2)$. A Toeplitz operator with a real, bounded, non-constant
+symbol has no eigenvalues~\cite{HartmanWintner54}. In particular $C$ and $1-C$ are injective.
+This makes the Araki--Wyss vacuum separating in the cyclic representation of $\omega_C$.
+The compression of the physical factor $M_A$ to $\overline{M_A\Omega}$ is a nonzero normal
+representation of a factor and hence faithful. Thus the physical marginal $\varphi$ is faithful.
+In the Araki--Wyss representation the cyclic space is the antisymmetric Fock space over
+$\ell^2(\N)\oplus\overline{\ell^2(\N)}$. The modular unitary group is the second quantization of
+the one-particle group with generator $K\oplus(-\overline K)$, up to an overall sign convention,
+where $K$ is the Borel function $s\mapsto\ln(s/(1-s))$ of
+$C$~\cite{ArakiWyss64,PowersStormer70,Araki71,BR2}. The endpoint spectral projections of $C$
+vanish, and the scalar function is injective on $(0,1)$. It follows that the one-particle
+generator has no eigenvalues.
+
+In fact the only modular eigenvectors are multiples of $\Omega$, with eigenvalue one. On the full $n$-fold tensor product, $n\ge1$, the generator is a sum of
+commuting copies of the one-particle generator. In a product vector its
+spectral measure is a convolution of atomless measures, hence atomless.
+Product vectors are total, so every singleton spectral projection vanishes.
+The antisymmetric subspace reduces the group and therefore has no
+eigenvalues either.
+
+Proposition~\ref{prop:modular-obstruction} now excludes perfect play.
+\end{proof}
+\begin{lemma}[Local approximation of measurements]\label{lem:local}
+Let $\fA_1\subset\fA_2\subset\cdots$ be finite-dimensional unital $*$-subalgebras of a von
+Neumann algebra $M$ on a separable Hilbert space whose union is strongly dense in $M$. For every
+POVM $(A_a)_{a=1}^n$ in $M$, every vector $\Omega$ and every $\delta>0$ there are $k$ and a POVM
+$(A'_a)_{a=1}^n$ in $\fA_k$ with $\norm{(A_a-A'_a)\Omega}<\delta$ for all $a$.
+\end{lemma}
+
+\begin{proof}
+By the Kaplansky density theorem, and because positive contractions of the norm closure of
+$\bigcup_k\fA_k$ are norm limits of positive contractions in the $\fA_k$, there are positive
+contractions $T_a\in\fA_k$ converging strongly to $A_a$ as $k\to\infty$. Then $S=\sum_aT_a$
+converges strongly to $1$ and $0\le S\le n$. Let $\gamma(s)=\max(s,\tfrac12)^{-1/2}$. Continuous
+functions act strongly continuously on bounded sets of self-adjoint
+operators~\cite{KadisonRingrose1}, so $\gamma(S)\to1$ and $\gamma(S)T_a\gamma(S)\to A_a$
+strongly. These operators lie in $\fA_k$, are positive, and sum to $S\gamma(S)^2\le1$. Adding
+the deficit $1-S\gamma(S)^2=(1-2S)_+$, which tends strongly to zero, to the first of them gives
+the POVM $(A'_a)$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:value} for finite chains]
+Label the sites of the open chain by $x=-N/2+1,\dots,N/2$, with the cut between $0$ and $1$ and
+$N$ even, so that the ground state $\psi_N$ is unique. Its two-point function is
+$C^{(N)}_{xy}=\tfrac{2}{N+1}\sum_{k>N/2}\sin(\theta_ki)\sin(\theta_kj)$ with
+$\theta_k=\pi k/(N+1)$, $i=x+N/2$ and $j=y+N/2$. Writing the product of sines as a difference of
+cosines, the term with $i-j=x-y$ is a Riemann sum for~\eqref{eq:C}, and the term with
+$i+j=N+x+y$ is $\tfrac{1}{N+1}\sum_k(-1)^k\cos(\theta_k(x+y-1))$, an alternating sum of a smooth
+function, which is $O(1/N)$. Hence $C^{(N)}_{xy}\to C_{xy}$ for fixed $x,y$. Both states are
+gauge-invariant and quasi-free, so by Wick's theorem all correlation functions in a fixed window
+$\{-k+1,\dots,k\}$ converge. In the spin picture both states are even, and even operators of the
+window are even operators of the fermions in the window. Therefore the reduced density matrices
+of $\psi_N$ on the window converge in norm to that of $\omega_{\mathrm{spin}}$.
+
+Fix $\delta>0$. At the infinite ground state choose embezzling unitaries
+$U_A\in M_A\overline\otimes M_2$ and
+$U_B\in M_B\overline\otimes M_2$ with squared error below $\delta$.
+Each unitary is the exponential of a bounded self-adjoint operator.
+Kaplansky density, followed by exponentiation, approximates it strongly by
+unitaries supported on finitely many sites and the local ancilla. Their
+joint error can therefore be made less than $2\delta$. Expanding this squared
+norm expresses it as the expectation of a fixed bounded operator on the
+finite window and the two ancillas. Local convergence of $\psi_N$ then gives
+the same error below $3\delta$ for all sufficiently large even $N$.
+Hence $\cE(\psi_N)\to0$ along the full sequence. The upper bound in
+Theorem~\ref{thm:equiv} gives $\omega(\psi_N)\to1$.
+\end{proof}
+
+This local approximation argument is the mechanism behind the finite-family
+results in Ref.~\cite{vLSW25}. It uses convergence of all fixed-window states
+and does not require the robust lower constant $C$. The same argument applies
+to any locally convergent finite sequence whose limiting physical pair is
+bipartite embezzling.

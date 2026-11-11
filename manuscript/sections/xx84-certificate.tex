@@ -1,0 +1,346 @@
+\section{Certified finite-chain separations}\label{app:xx84-certificate}
+
+This appendix proves Theorems~\ref{thm:xx84-separation}
+and~\ref{thm:xx-assisted-separation}. We first give the chain-only
+certificate and then the assisted certificate at smaller sizes.
+\paragraph{Exact cross covariance and dyadic quadrature.}
+Put $M=N+1$ and $m=N/4$. The exact covariance in the proof of
+Corollary~\ref{cor:xx-mesh} has two cross-cut parity blocks. On the
+even-even block, multiplying rows and columns by signs gives the symmetric
+matrix with entries
+\begin{equation}\label{eq:xx84-kernel}
+ B_{ij}=\frac{1}{2M}\left[
+ \csc\!\left(\frac{\pi(2i+2j-1)}{2M}\right)+
+ \sec\!\left(\frac{\pi(2i-2j)}{2M}\right)\right],
+ \qquad 1\le i,j\le m.
+\end{equation}
+The two parity blocks have identical singular-value lists. In fact the
+left covariance $C_A$ satisfies $\Gamma C_A\Gamma=I-C_A$, where $\Gamma$
+alternates signs between the sites. This follows from the sign reversal of
+the hopping Hamiltonian under $\Gamma$ and the absence of a zero energy
+at even length. Thus in parity order $C_A-I/2$ has off-diagonal block $D$
+and its adjoint, with $D$ square. The product of the full covariance
+cross block and its adjoint equals $C_A-C_A^2$, whose parity blocks are
+$I/4-DD^*$ and $I/4-D^*D$.
+
+Partition the index interval into the integer bins
+$[a,\min(2a-1,m)]$ for $a=1,2,4,\ldots,m$. On a bin of $L$ points use
+Gaussian quadrature of order $k=\min(18,L)$ for counting measure.
+For a bin with midpoint $b$ the nodes are $b+L\mu_i$, where $\mu_i$
+are eigenvalues of the $k\times k$ Jacobi matrix with diagonal zero
+and off-diagonal entries
+\[
+ \beta_j=\frac{j}{2L}\sqrt{\frac{L^2-j^2}{4j^2-1}},\qquad 1\le j<k.
+\]
+The weights are $L|v_i(1)|^2$ for unit eigenvectors $v_i$. These
+recurrence coefficients follow by taking the ratios of the squared
+norms of monic orthogonal polynomials on $0,\ldots,L-1$. For degree $j$
+the monic polynomial is the $j$th forward difference of
+$x^{\underline j}(x-L)^{\underline j}$ divided by $(2j)!/j!$.
+Summation by parts gives orthogonality to lower degrees and squared
+norm $(j!)^4\binom{L+j}{2j+1}/(2j)!$ by Vandermonde's identity.
+The symmetric grid gives the zero diagonal after centering. The
+quadrature moments agree through degree $2k-1$ because a path from
+the first basis vector back to itself in that many Jacobi steps cannot
+use any index beyond $k$. The nodes lie in the bin since the Jacobi
+matrix compresses multiplication by the centered grid coordinate.
+At $k=L$ the nodes and weights are the
+original integers and unit weights.
+
+Form the exact quadrature matrix $K$ by evaluating~\eqref{eq:xx84-kernel}
+at the nodes and multiplying each entry by the geometric mean of the
+associated weights. Write $s(A)$ for the decreasing singular values of
+a matrix $A$, padding by zeros when comparing lists. We show
+\begin{equation}\label{eq:xx84-compression}
+ \|s(B)-s(K)\|_{\ell^2}<6\times10^{-6}.
+\end{equation}
+For a pair of bins, decompose the kernel into
+$1/(\pi w)+M^{-1}[f(w/M)+g(z/M)]$ with $w=2i+2j-1$, $z=2i-2j$,
+$f(t)=(2\sin(\pi t/2))^{-1}-(\pi t)^{-1}$, and
+$g(t)=(2\cos(\pi t/2))^{-1}$. Approximate each of the three terms by
+its degree-$17$ Taylor polynomial about the two bin midpoints. These
+polynomials in the bin variables have separate degrees at most 17.
+The corresponding weighted quadrature matrix therefore has the same
+nonzero singular values as the polynomial matrix evaluated on the full
+integer grid. This follows from the isometric evaluation of polynomials
+on each bin by exact quadrature for their pairwise inner products.
+
+For the first term, $|w-w_0|/w_0\le1/3$ on a dyadic bin pair, so the
+geometric series error is at most $3^{-18}/(\pi w)$. On the original
+grid, the Frobenius norm of $1/(\pi w)$ is at most
+$\sqrt{1+\ln(2m)}/(2\pi)<4/3$ by summing over $i+j-1$. The corresponding
+quadrature Frobenius norm is at most twice as large, since the maximum
+of $w$ on a bin pair is less than twice its minimum and the quadrature
+weights sum to the number of grid points in each bin.
+On $|t|=3/2$, $|f(t)|<1$. Indeed, either $|\Im t|\ge1/2$ or
+$\sqrt2\le |\Re t|\le 3/2$, and each case gives
+$|\sin(\pi t/2)|\ge1/\sqrt2$. On $|t|=3/4$ we have $|g(t)|\le4/3$
+since $|\cos(\pi t/2)|\ge\cos(3\pi/8)>3/8$. These bounds hold
+in the enclosed disks by analyticity. Write $t_0$ for a bin-pair center
+and $\delta$ for the argument's maximum deviation on the bin rectangle.
+The bin lengths give $\delta\le1/4$. The argument interval is symmetric
+about $t_0$, so $\delta\le R_0-|t_0|$, with $R_0=1$ for $f$ and
+$R_0=1/2$ for $g$. Consequently
+$\delta/(R-|t_0|)\le(1/4)/(R-R_0+1/4)$, where $R=3/2$ and $3/4$,
+respectively. These ratios are at most $1/3$ and $1/2$.
+The Cauchy estimates bound the two Taylor
+remainders by $(3/2)3^{-18}$ and $(8/3)2^{-18}$. Their contribution to
+the sum of the two Frobenius errors is at most their sum times
+$2m/M<1/2$. The full sum is less than $6\times10^{-6}$. The
+singular-value perturbation inequality in Frobenius norm gives
+\eqref{eq:xx84-compression}.
+
+\paragraph{Verification of the compressed covariance.}
+The code \texttt{certify\_xx84\_modes.py} uses binary64 eigensolvers to
+propose eigenpairs. It checks them by the following enclosures. Write
+$\widehat K$ for the symmetric binary64 matrix produced by the code.
+For round-to-nearest arithmetic put $u_0=2^{-53}$ and
+$\gamma_j=ju_0/(1-ju_0)$. A product of $j$ relative rounding factors
+or their inverses differs from one by at most $\gamma_j$.
+
+\begin{enumerate}
+\item \emph{Nodes and weights.} Rational square comparisons verify each
+Jacobi entry to within $2\times10^{-15}$, so the operator-norm perturbation
+is at most $4\times10^{-15}$. For each proposed pair $(\mu,v)$, exact
+rational checks give $|\|v\|^2-1|<2\times10^{-14}$ and rounded-matrix
+residual norm below $2\times10^{-14}$. The normalized residual on the
+exact matrix is bounded by
+\[
+ \frac{2\times10^{-14}}{\sqrt{1-2\times10^{-14}}}+4\times10^{-15}
+ < r_J,\qquad r_J=4\times10^{-14}.
+\]
+The computed gaps exceed $10^{-3}$, so the disjoint intervals of radius
+$r_J$ each contain a distinct exact eigenvalue and exhaust the spectrum.
+Expanding $v/\|v\|$ in the exact eigenvectors bounds the norm of its
+component perpendicular to the matching eigenvector by
+$r_J/(10^{-3}-r_J)$. After sign alignment and restoring the original norm,
+the vector error is bounded by
+$\sqrt2\,r_J/(10^{-3}-r_J)+2\times10^{-14}<b_v=5.66\times10^{-11}$.
+Since the checked first-coordinate square of $v$ exceeds $10^{-3}$, the
+relative weight error after the two multiplications is at most
+\[
+ \frac{2b_v+b_v^2+\gamma_2(1+2\times10^{-14})}{10^{-3}-2b_v-b_v^2}
+ < \epsilon_w,
+ \qquad \epsilon_w=2\times10^{-7}.
+\]
+The bin start $a$ and length $L$ are powers of two, and $L\le a$.
+In forming $a+(L-1)/2+L\mu$, the multiplication by $L$ is exact and
+$|\mu|\le1/2+r_J$. Thus the node's absolute error is bounded by
+\[
+ Lr_J+a\gamma_2+\tfrac L2\gamma_3+L(\tfrac12+r_J)u_0
+ < a\epsilon_x,\qquad \epsilon_x=5\times10^{-14}.
+\]
+The exact node is at least $a$, giving a relative error below $\epsilon_x$.
+The integer nodes and unit weights in the short bins are represented exactly.
+
+\item \emph{Kernel entries.} The Machin enclosure verifies an absolute
+error below $10^{-15}$ for the binary64 value of $\pi$, hence relative
+error below $\epsilon_\pi=10^{-15}/3$. Rounding $H=2M$ to $2N$ gives
+relative error $1/M<u_0$. For nodes $x,y$ let $t_+=\pi(2x+2y-1)/H$
+and $t_-=\pi|2x-2y|/H$. Substituting the rounded nodes into $2x+2y-1$
+contributes relative error at most $4\epsilon_x/3$ since $2x+2y-1\ge3$.
+The rounded nodes are also at least one and their doubling is exact.
+The addition and subtraction in the rounded numerator give relative error
+at most $(4/3)u_0+u_0(1+(4/3)u_0)<3u_0$. For the difference argument,
+substituting the nodes contributes absolute error at most
+$(\pi/2)\epsilon_x$, since $x+y\le2m$. With the remaining rounding factors
+and the enclosure of $\pi$, these estimates give
+\begin{align*}
+ \left|\frac{\widehat t_+}{t_+}-1\right|
+ &\le (1+4\epsilon_x/3)(1+3u_0)(1+\epsilon_\pi)(1+\gamma_3)-1
+ <3\times10^{-13},\\
+ |\widehat t_--t_-|
+ &\le \tfrac\pi2\epsilon_x+
+     (\tfrac\pi4+\tfrac\pi2\epsilon_x)
+     \bigl[(1+\epsilon_\pi)(1+\gamma_4)-1\bigr]
+ <3\times10^{-13}.
+\end{align*}
+The rounded arguments satisfy $|\widehat t_+|\le1.58$ and
+$|\widehat t_-|\le0.8$. Their nonzero magnitudes exceed $2^{-137}$,
+since doubled rounded nodes are multiples of $2^{-51}$ and the rounded
+denominator is $2^{85}$. Thus the argument squares are normal when nonzero.
+For the degree-20 even Taylor polynomials the first omitted terms are
+below $10^{-17}$ and the sums of absolute terms are below $3$ on these
+intervals. The ratios of adjacent term magnitudes are below $0.42$,
+so each Horner sum retains at least half the magnitude of its coefficient.
+The smallest coefficient has magnitude above $2^{-66}$. This also keeps
+nonzero Horner products in the normal range. Each term passes through
+at most 31 rounding factors, counting coefficient rounding, the powers
+of the rounded square, and the Horner multiplications and additions.
+The polynomial evaluation and truncation error is therefore bounded by
+$3\gamma_{31}+10^{-17}<10^{-13}$ for each function.
+
+At the exact arguments, $\operatorname{sinc}(t_+)\ge2/\pi$ and
+$\cos(t_-)\ge1/\sqrt2$. The function
+$\operatorname{sinc}(t)=\int_0^1\cos(zt)\,dz$ has Lipschitz constant
+$1/2$, and cosine has Lipschitz constant one. With $b=3\times10^{-13}$,
+the relative errors of the evaluated sine and cosine are bounded by
+\begin{align*}
+ &(1+b)\bigl[1+(\pi/2)(10^{-13}+(\pi/4)b)\bigr](1+u_0)-1
+   <10^{-12},\\
+ &\sqrt2(10^{-13}+b)<10^{-12},
+\end{align*}
+respectively. The rounded reciprocal of either factor then has relative
+error at most $(10^{-12}+u_0)/(1-10^{-12})<2\times10^{-12}$.
+
+Let $p$ be the product of the two exact weights, $\widehat p$ their
+rounded counterpart, and $h$ the proposed square root of $\widehat p$.
+The rounded weights lie between $2^{-10}$ and $2^{83}$. The rounded
+square and division in the root check produce a quotient within
+$10^{-14}$ of one. The final subtraction of one is exact by Sterbenz's
+lemma. The check forces the rounded square and quotient into the normal
+range, so allowing for those two roundings gives
+\[
+ \left|\frac{h^2}{\widehat p}-1\right|
+ \le(1+10^{-14})(1+\gamma_2)-1<1.1\times10^{-14}.
+\]
+The weight enclosures then put $h^2/p$ between
+$(1-\epsilon_w)^2(1-u_0)(1-1.1\times10^{-14})$ and
+$(1+\epsilon_w)^2(1+u_0)(1+1.1\times10^{-14})$. These endpoints lie
+strictly between $(1-3\times10^{-7})^2$ and $(1+3\times10^{-7})^2$.
+The two reciprocal terms are positive, so their sum has the same
+relative error bound before rounding. Including the addition, denominator
+rounding, division and final multiplication gives
+\[
+ \left|\frac{\widehat K_{ij}}{K_{ij}}-1\right|
+ \le (1+2\times10^{-12})(1+3\times10^{-7})(1+\gamma_4)-1
+ <10^{-6}.
+\]
+
+\item \emph{Frobenius norm and eigenpairs.} The entry calculation uses
+normal numbers or zero throughout. In particular its positive entries
+exceed $2^{-100}$ by the weight bounds and the upper bounds on the
+evaluated sine and cosine. The rounded sum of squared entries is below
+four. With $d<1600$ the matrix dimension, squaring and the two sums
+use at most $2d+1$ rounding factors per term. The absolute error is below
+$4\gamma_{2d+1}/(1-\gamma_{2d+1})<3\times10^{-12}$. Hence
+\[
+ \|K-\widehat K\|_F
+ \le \frac{10^{-6}}{1-10^{-6}}\|\widehat K\|_F
+ < \frac{10^{-6}\sqrt{4+3\times10^{-12}}}{1-10^{-6}}
+ <2.1\times10^{-6}.
+\]
+For each proposed leading eigenpair $(\mu,v)$ the code verifies
+$|\mu|<1$, a computed squared norm within $10^{-11}$ of one, and
+each computed residual component below $10^{-14}$ in absolute value.
+The positive-sum error bound gives $\|v\|>0.99$. The arithmetic error in
+the matrix-vector product is at most $\gamma_{d+1}\|\widehat K\|_F\|v\|$
+apart from underflow. Allowing $2^{-1075}$ per scalar operation for gradual
+underflow, its total contribution after summation, taking norms and
+normalizing is below $2^{-1000}$. The scalar multiplication contributes
+at most $u_0\|v\|$ apart from underflow, and the final subtraction costs
+a factor $1/(1-u_0)$ in recovering the norm before rounding. Thus
+\[
+ \frac{\|\widehat K v-\mu v\|}{\|v\|}
+ < \frac{40\times10^{-14}}{0.99(1-u_0)}
+    +2.01\gamma_{d+1}+u_0+2^{-1000}<3\times10^{-12}.
+\]
+The selected signed intervals with this radius are disjoint and each
+contains an exact eigenvalue. Subtracting the sum of the squared lower
+bounds on their absolute values from the upper bound on the squared
+Frobenius norm controls the remaining squared singular mass.
+\end{enumerate}
+
+For the finite model take amplitudes with single-mode ratios
+$r_i=(32767/32768)^{k_i}$, where the 81 integers $k_i$ are listed in Table~\ref{tab:xx84-model}. Each mode occurs twice. The model
+singular values are $s_i^*=r_i/(1+r_i^2)$. The code encloses each
+$r_i$ by binary exponentiation with directed decimal rounding and
+compares $s_i^*$ to the interval for the assigned exact singular value.
+The reference run bounds the omitted squared mass and the squared error
+of the retained singular values by $3.46\times10^{-11}$ and
+$4.73\times10^{-11}$. Match each selected exact singular value to its
+assigned $s_i^*$ and every other singular value to zero. Sorting both
+lists in decreasing order cannot increase their $\ell^2$ distance,
+by the rearrangement inequality. The verifier checks that the two squared
+errors sum to less than $(4\times10^{-5})^2$. Combining this bound with
+the two matrix approximation errors gives one-parity singular-list
+distance at most $4.81\times10^{-5}$. The verifier also checks that the
+largest model singular value plus this distance is below $0.499$.
+
+
+\begin{table}[htb]
+\centering\footnotesize
+\begin{tabular}{@{}rrrrrrrrr@{}}
+\toprule
+2676 & 8030 & 13389 & 18758 & 24138 & 29530 & 34936 & 40355 & 45787 \\
+51231 & 56686 & 62153 & 67629 & 73114 & 78607 & 84109 & 89617 & 95132 \\
+100653 & 106180 & 111713 & 117250 & 122793 & 128340 & 133892 & 139448 & 145007 \\
+150571 & 156139 & 161710 & 167284 & 172862 & 178443 & 184027 & 189614 & 195204 \\
+200797 & 206393 & 211991 & 217592 & 223195 & 228801 & 234410 & 240021 & 245634 \\
+251249 & 256867 & 262486 & 268108 & 273732 & 279358 & 284986 & 290616 & 296248 \\
+301882 & 307517 & 313155 & 318794 & 324435 & 330078 & 335722 & 341368 & 347016 \\
+352665 & 358316 & 363968 & 369622 & 375278 & 380935 & 386594 & 392254 & 397915 \\
+403578 & 409242 & 414908 & 420575 & 426243 & 431913 & 437584 & 443256 & 448929 \\
+\bottomrule
+\end{tabular}
+\caption{The 81 exponents of the finite geometric model, read row by row.
+Each exponent occurs twice in the Schmidt-mode product. The common
+amplitude ratio is $32767/32768$.}\label{tab:xx84-model}
+\end{table}
+
+\paragraph{State and game loss.}
+The Schmidt angle of a mode with singular value $s$ is
+$\theta(s)=\tfrac12\arcsin(2s)$. The occupation and its complement are
+the squares of the two Schmidt amplitudes. The derivative of $\theta$
+is less than 16 on $0\le s\le0.499$. Choose the finite model state
+$\widehat\psi$ in the exact Schmidt mode bases of the chain and freeze
+the omitted modes. The two parity lists agree and each mode overlap is
+the cosine of the angle difference. Hence
+\[
+ \|\psi_N-\widehat\psi\|^2
+ =2\left(1-\prod_i\cos^2(\theta(s_i)-\theta(s_i^*))\right)
+ \le 2\sum_i(\theta(s_i)-\theta(s_i^*))^2,
+\]
+which gives vector distance less than
+$16\sqrt2\,(4.81\times10^{-5})<0.0011063<3/2500$.
+
+\paragraph{Scoring the geometric model.}
+Let $q=32767/32768$, and let $k_i$ be the integer exponents in
+Table~\ref{tab:xx84-model}, one for each of the 81 retained mode pairs.
+The model uses two modes with Schmidt ratio $q^{k_i}$ for every $i$. Put
+$p_0=\prod_i(1+q^{2k_i})^{-2}$ and let $n_e$ be the coefficient of $z^e$ in
+$\prod_i(1+z^{k_i})^2$. The Schmidt amplitudes are $\sqrt{p_0}q^e$, with
+multiplicity $n_e$ in increasing order of $e$. Retain the prefix $e\le380000$.
+For its unnormalised amplitudes $\lambda$, put
+$\tau=1-\|\lambda\|_2^2$, $E=\|(I-D)\lambda\|_2^2$, and
+$v=\|(I-P)\lambda\|_2^2$, where $P$ averages consecutive groups of nine
+amplitudes and the prefix is padded with zeros. The players project locally
+onto the corresponding Schmidt-prefix subspaces, which gives a common
+branch on $\widehat\psi$. Apply~\eqref{eq:operational-adaptive} to the
+prefix by homogeneity and use the classical strategy on the complement,
+with loss contribution $\tau/27$. This gives
+\[
+ L_{\rm model}\le
+ \frac{2(\sqrt E+\sqrt{8v/9})^2+72v+9\tau}{243}.
+\]
+The integer recurrence for $n_e$ adds $2n_{e-k_i}+n_{e-2k_i}$ for each
+mode pair, processing $e$ in decreasing order and using zero for a negative
+index. The prefix has rank $185{,}926{,}736$. The score verifier uses this run
+representation throughout. For $E$, it intersects intervals of equal
+amplitudes with the intervals obtained by doubling their endpoints. The
+overlap on each intersection is the product of the corresponding two
+amplitudes, its integer length, and $1/\sqrt2$. To compute $v$ it counts
+only the nine-element groups that cross an interval endpoint or the end of
+the prefix. Their contribution is the sum of the nine squared amplitudes
+minus the square of their sum divided by nine.
+
+Every interval endpoint in the verifier is an integer multiple of
+$10^{-45}$. Addition is exact on this grid. Products and quotients use
+integer floor and ceiling, and square roots use integer square roots of the
+endpoints multiplied by $10^{45}$. This gives
+$\tau<0.000082218$, $E<0.013735797$, $v<0.000800859$, and
+$L_{\rm model}<0.000410720762$. Use the same local POVMs on $\psi_N$.
+Their average losing effect $F$ satisfies $0\le F\le I$, so
+$\sqrt{L_{\rm XX}}=\|F^{1/2}\psi_N\|
+\le\|F^{1/2}\widehat\psi\|+\|\psi_N-\widehat\psi\|$.
+With the aligned vector-distance bound $3/2500$, the physical loss obeys
+\[
+ L_{\rm XX}\le(\sqrt{L_{\rm model}}+3/2500)^2.
+\]
+Using the directed upper endpoint for $L_{\rm model}$, the integer
+score verifier \texttt{model\_score.py} gives the upper endpoint
+\[
+ 0.000460799754443163771129846265247324951980458
+ <0.000461<\frac{3-2\sqrt2}{243}.
+\]
+

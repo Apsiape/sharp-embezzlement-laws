@@ -1,0 +1,39 @@
+{
+  "title": "Sharp embezzlement laws for quantum chains and finite Bell tests",
+  "upload_type": "publication",
+  "publication_type": "preprint",
+  "version": "1.0.0",
+  "publication_date": "2026-11-11",
+  "creators": [
+    {
+      "name": "Douglas, Seth",
+      "orcid": "0009-0007-4708-3252"
+    },
+    {
+      "name": "Mghirbi, Nidhal",
+      "orcid": "0009-0005-6534-1118"
+    }
+  ],
+  "description": "For the finite open critical XX and Ising chains, we prove a sharp entanglement-embezzlement law from their exact discrete Schmidt spectra, including all degeneracies. For a maximally entangled target of fixed dimension d, the optimal squared local-unitary error is E_d = (ln d)^2/(4S) + O_d(S^-2), where S is the half-chain entanglement entropy. A counting criterion gives a Gaussian crossover for growing d and the same sharp law for the XXZ corner-transfer-matrix spectrum as Δ decreases to 1. We compare the optimal loss in a fixed Bell game with 243 question pairs to the Bell-pair embezzlement error with explicit constants, and prove the loss floor (3−2√2)/243 for maximally entangled states of every dimension. With a shared nine-dimensional maximally entangled register, the open XX ground state at N = 2^19 beats this floor in the original game. At N = 2^84 the chain alone suffices. A tagged test gives an exact tilted CHSH separation for the four-spin XX ground state, with classical play in the original game branch. For the infinite critical XX ground state, the half-chain factors are type III_1 and the game value is one without attainment.",
+  "keywords": [
+    "entanglement embezzlement",
+    "critical spin chains",
+    "XX chain",
+    "Ising chain",
+    "Schmidt spectrum",
+    "nonlocal games",
+    "Bell tests",
+    "type III factors"
+  ],
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "notes": "Preprint. It has not been peer reviewed. Version 1.0.0. Text, documentation and data: CC BY 4.0. Programs: MIT or Apache 2.0.",
+  "related_identifiers": [
+    {
+      "identifier": "https://finite.works/papers/embezzlement-laws/",
+      "relation": "isDescribedBy",
+      "scheme": "url"
+    }
+  ]
+}
